@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = "<group>"; };
+		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
 		523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+EasyExecute.m"; sourceTree = "<group>"; };
 		523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+EasyExecute.h"; sourceTree = "<group>"; };
 		918AE7D917954FCC00FD6F07 /* atos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +51,6 @@
 		918AE7D017954FCC00FD6F07 = {
 			isa = PBXGroup;
 			children = (
-				0B4F1C311796D968001FA5EF /* atos.iconset */,
 				918AE7E217954FCC00FD6F07 /* atos */,
 				918AE7DB17954FCC00FD6F07 /* Frameworks */,
 				918AE7DA17954FCC00FD6F07 /* Products */,
@@ -90,10 +89,9 @@
 			children = (
 				918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */,
 				918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */,
-				918AE7F117954FCC00FD6F07 /* MainMenu.xib */,
-				918AE7E317954FCC00FD6F07 /* Supporting Files */,
 				523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */,
 				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
+				918AE7E317954FCC00FD6F07 /* Supporting Files */,
 			);
 			path = atos;
 			sourceTree = "<group>";
@@ -101,6 +99,8 @@
 		918AE7E317954FCC00FD6F07 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				918AE7F117954FCC00FD6F07 /* MainMenu.xib */,
+				0B4F1C311796D968001FA5EF /* atos.iconset */,
 				918AE7E417954FCC00FD6F07 /* atos-Info.plist */,
 				918AE7E517954FCC00FD6F07 /* InfoPlist.strings */,
 				918AE7E817954FCC00FD6F07 /* main.m */,

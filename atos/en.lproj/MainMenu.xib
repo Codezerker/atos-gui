@@ -257,6 +257,8 @@
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="567"/>
                             <menuItem title="Re-Symbolicate" keyEquivalent="r" id="568"/>
+                            <menuItem title="Set Excutable" keyEquivalent="E" id="18w-SQ-EeQ"/>
+                            <menuItem isSeparatorItem="YES" id="w06-aS-YO4"/>
                         </items>
                     </menu>
                 </menuItem>
@@ -493,6 +495,7 @@
         <customObject id="494" customClass="ATSAppDelegate">
             <connections>
                 <action selector="performReSymbolicate:" destination="568" id="569"/>
+                <action selector="performSetExcutable:" destination="18w-SQ-EeQ" id="zOE-HL-D3X"/>
                 <outlet property="textView" destination="547" id="566"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>

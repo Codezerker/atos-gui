@@ -21,12 +21,17 @@
 @implementation ATSAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [self performSetExcutable:self];
+}
+
+
+- (IBAction)performSetExcutable:(id)sender {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     [openPanel setCanChooseFiles:YES];
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowsMultipleSelection:NO];
     [openPanel setAllowedFileTypes:@[@"app"]];
-
+    
     if ([openPanel runModal] == NSFileHandlingPanelOKButton) {
         NSString *appPath = [openPanel.URLs[0] path];
         self.appName      = [[appPath lastPathComponent] stringByReplacingOccurrencesOfString:@".app" withString:@""];

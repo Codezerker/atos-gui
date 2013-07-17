@@ -64,7 +64,7 @@
 
             NSString *baseAddress = [[matchesStringMapping allKeysForObject:[[matchesStringMapping allValues] valueForKeyPath:@"@max.intValue"]] lastObject];
 
-            [matchesString enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [[matchesString copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 NSString *address = (NSString *)obj;
                 if ([address isEqualToString:baseAddress]) {
                     [matchesString removeObjectAtIndex:idx];

@@ -453,44 +453,12 @@
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="HNY-59-Nek">
-                        <rect key="frame" x="-1" y="-1" width="482" height="362"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="fKM-w4-ofH">
-                            <rect key="frame" x="1" y="1" width="480" height="360"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView importsGraphics="NO" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="D2D-rF-4Nv">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="480" height="360"/>
-                                    <size key="maxSize" width="480" height="10000000"/>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="480" height="360"/>
-                                    <size key="maxSize" width="480" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="0eC-pu-nhG">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="5a9-ms-3U8">
-                            <rect key="frame" x="465" y="1" width="16" height="360"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                </subviews>
             </view>
         </window>
         <customObject id="494" customClass="ATSAppDelegate">
             <connections>
                 <action selector="performReSymbolicate:" destination="568" id="569"/>
                 <action selector="performSetExcutable:" destination="18w-SQ-EeQ" id="zOE-HL-D3X"/>
-                <outlet property="textView" destination="D2D-rF-4Nv" id="REK-cR-UCO"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

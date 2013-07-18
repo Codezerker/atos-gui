@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B4F1C321796D968001FA5EF /* atos.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F1C311796D968001FA5EF /* atos.iconset */; };
 		523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */; };
+		912E2A381798114100804718 /* ATSMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912E2A361798114100804718 /* ATSMainWindowController.m */; };
+		912E2A391798114100804718 /* ATSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912E2A371798114100804718 /* ATSMainWindowController.xib */; };
 		918AE7DD17954FCC00FD6F07 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AE7DC17954FCC00FD6F07 /* Cocoa.framework */; };
 		918AE7E717954FCC00FD6F07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7E517954FCC00FD6F07 /* InfoPlist.strings */; };
 		918AE7E917954FCC00FD6F07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 918AE7E817954FCC00FD6F07 /* main.m */; };
@@ -21,6 +23,9 @@
 		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
 		523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+EasyExecute.m"; sourceTree = "<group>"; };
 		523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+EasyExecute.h"; sourceTree = "<group>"; };
+		912E2A351798114100804718 /* ATSMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSMainWindowController.h; sourceTree = "<group>"; };
+		912E2A361798114100804718 /* ATSMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSMainWindowController.m; sourceTree = "<group>"; };
+		912E2A371798114100804718 /* ATSMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATSMainWindowController.xib; sourceTree = "<group>"; };
 		918AE7D917954FCC00FD6F07 /* atos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		918AE7DC17954FCC00FD6F07 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		918AE7DF17954FCC00FD6F07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -89,6 +94,9 @@
 			children = (
 				918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */,
 				918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */,
+				912E2A351798114100804718 /* ATSMainWindowController.h */,
+				912E2A361798114100804718 /* ATSMainWindowController.m */,
+				912E2A371798114100804718 /* ATSMainWindowController.xib */,
 				523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */,
 				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
 				918AE7E317954FCC00FD6F07 /* Supporting Files */,
@@ -163,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				918AE7E717954FCC00FD6F07 /* InfoPlist.strings in Resources */,
+				912E2A391798114100804718 /* ATSMainWindowController.xib in Resources */,
 				918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */,
 				0B4F1C321796D968001FA5EF /* atos.iconset in Resources */,
 				918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */,
@@ -177,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				918AE7E917954FCC00FD6F07 /* main.m in Sources */,
+				912E2A381798114100804718 /* ATSMainWindowController.m in Sources */,
 				918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */,
 				523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */,
 			);

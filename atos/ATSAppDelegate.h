@@ -11,9 +11,5 @@
 @interface ATSAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property (unsafe_unretained) IBOutlet NSTextView *textView;
-
-- (IBAction)performReSymbolicate:(id)sender;
-- (IBAction)performSetExcutable:(id)sender;
 
 @end

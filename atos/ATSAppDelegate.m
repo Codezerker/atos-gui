@@ -43,58 +43,92 @@
 - (IBAction)performReSymbolicate:(id)sender {
     dispatch_async(dispatch_queue_create("com.atos.AddressSeaching", NULL), ^{
         if (self.textView.string.length > 0) {
-            NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"0[xX][0-9a-fA-F]+"
-                                                                                               options:0
-                                                                                                 error:NULL];
-            NSMutableArray *matches = [[regularExpression matchesInString:self.textView.string
-                                                                  options:0
-                                                                    range:NSMakeRange(0, self.textView.string.length)] mutableCopy];
-
-            NSMutableArray *matchesString = [NSMutableArray arrayWithCapacity:matches.count];
-
-            for (NSTextCheckingResult *match in matches) {
-                [matchesString addObject:[self.textView.string substringWithRange:match.range]];
-            }
-
-            NSMutableDictionary *matchesStringMapping = [NSMutableDictionary dictionaryWithCapacity:matches.count];
-
-            for (NSString *string in matchesString) {
-                matchesStringMapping[string] = matchesStringMapping[string] ? @([matchesStringMapping[string] intValue] + 1) : @0;
-            }
-
-            NSString *baseAddress = [[matchesStringMapping allKeysForObject:[[matchesStringMapping allValues] valueForKeyPath:@"@max.intValue"]] lastObject];
-
-            [[matchesString copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                NSString *address = (NSString *)obj;
-                if ([address isEqualToString:baseAddress]) {
-                    [matchesString removeObjectAtIndex:idx];
-                }
-            }];
-
+            NSString *baseAddress   = [self baseAddress];
+            NSArray  *matchesString = [self matchesString];
+            
             dispatch_sync(dispatch_get_main_queue(), ^{
-                [matchesString enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    NSString *address = (NSString *)obj;
-                    [[self.textView.textStorage mutableString] replaceOccurrencesOfString:address
-                                                                               withString:[self reSymbolicateAddress:address baseAddress:baseAddress]
-                                                                                  options:NSCaseInsensitiveSearch
-                                                                                    range:NSMakeRange(0, self.textView.textStorage.length)];
-                }];
+                [self reSymbolicateWithBaseAddress:baseAddress
+                                     matchesString:matchesString];
             });
         }
     });
 }
 
 
-- (NSString *)reSymbolicateAddress:(NSString *)address baseAddress:(NSString *)baseAddress {
+- (void)reSymbolicateWithBaseAddress:(NSString *)baseAddress matchesString:(NSArray *)matchesString {
+    [[matchesString copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *address = (NSString *)obj;
+        if (![address isEqualToString:baseAddress]) {
+            NSString *symbol = [self reSymbolicateAddress:address
+                                              baseAddress:baseAddress];
+            
+            [[self.textView.textStorage mutableString] replaceOccurrencesOfString:address
+                                                                       withString:symbol
+                                                                          options:NSCaseInsensitiveSearch
+                                                                            range:NSMakeRange(0, self.textView.textStorage.length)];
+        }
+    }];
+}
 
+
+- (NSString *)baseAddress {
+    
+    NSRegularExpression *baseAddressRegex = [NSRegularExpression regularExpressionWithPattern:@"(0[xX][0-9a-fA-F]+) \\+ ([0-9]+)"
+                                                                                      options:0
+                                                                                        error:NULL];
+    NSArray *baseMatches = [baseAddressRegex matchesInString:self.textView.string
+                                                     options:0
+                                                       range:NSMakeRange(0, self.textView.string.length)];
+    
+    NSTextCheckingResult *baseAddressMatch = [baseMatches lastObject];
+    
+    if (!baseAddressMatch) {
+        return @"";
+    }
+    
+    NSString *baseAddress = [self.textView.string substringWithRange:baseAddressMatch.range];
+    
+    NSRegularExpression *baseAddressTail = [NSRegularExpression regularExpressionWithPattern:@" \\+ ([0-9]+)"
+                                                                                     options:0
+                                                                                       error:NULL];
+    
+    baseAddress = [baseAddressTail stringByReplacingMatchesInString:baseAddress
+                                                            options:0
+                                                              range:NSMakeRange(0, baseAddress.length)
+                                                       withTemplate:@""];
+    
+    return baseAddress;
+}
+
+
+- (NSArray *)matchesString {
+    NSRegularExpression *addressRegex = [NSRegularExpression regularExpressionWithPattern:@"(0[xX][0-9a-fA-F]+)"
+                                                                                  options:0
+                                                                                    error:NULL];
+    NSArray *matches = [[addressRegex matchesInString:self.textView.string
+                                              options:0
+                                                range:NSMakeRange(0, self.textView.string.length)] mutableCopy];
+    
+    NSMutableArray *matchesString = [NSMutableArray arrayWithCapacity:matches.count];
+    
+    for (NSTextCheckingResult *match in matches) {
+        [matchesString addObject:[self.textView.string substringWithRange:match.range]];
+    }
+    
+    return matchesString;
+}
+
+
+- (NSString *)reSymbolicateAddress:(NSString *)address baseAddress:(NSString *)baseAddress {
+    
     if (!self.appPath) {
         return address;
     }
-
+    
     NSString *shellCommand = [NSString stringWithFormat:@"cd %@; xcrun atos -o %@.app/Contents/MacOS/%@ -l %@ %@",
-                    self.appPath,
-                    self.appName, self.appName, baseAddress, address];
-
+                              self.appPath,
+                              self.appName, self.appName, baseAddress, address];
+    
     NSString *symbol = [NSTask executeAndReturnStdOut:@"/bin/sh" arguments:@[@"-c", shellCommand]];
     return symbol;
 }

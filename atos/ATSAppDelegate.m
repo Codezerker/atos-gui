@@ -61,18 +61,36 @@
         return;
     }
     
+    NSMutableArray *validSymbols = [NSMutableArray arrayWithCapacity:matchesString.count];
+    
     [[matchesString copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
         NSString *address = (NSString *)obj;
+        
         if (![address isEqualToString:baseAddress]) {
             NSString *symbol = [self reSymbolicateAddress:address
                                               baseAddress:baseAddress];
             
-            [[self.textView.textStorage mutableString] replaceOccurrencesOfString:address
-                                                                       withString:symbol
-                                                                          options:NSCaseInsensitiveSearch
-                                                                            range:NSMakeRange(0, self.textView.textStorage.length)];
+            if (![symbol isEqualToString:address]) {
+                [[self.textView.textStorage mutableString] replaceOccurrencesOfString:address
+                                                                           withString:symbol
+                                                                              options:NSCaseInsensitiveSearch
+                                                                                range:NSMakeRange(0, self.textView.textStorage.length)];
+                [validSymbols addObject:symbol];
+            }
         }
     }];
+    
+    for (NSString *validSymbol in validSymbols) {
+        [self colorizeSymbol:validSymbol];
+    }
+}
+
+
+- (void)colorizeSymbol:(NSString *)symbol {
+    NSRange symbolRange = [self.textView.string rangeOfString:symbol];
+    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor redColor]}
+                                       range:symbolRange];
 }
 
 

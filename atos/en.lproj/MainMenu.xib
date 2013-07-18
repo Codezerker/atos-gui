@@ -258,7 +258,6 @@
                             <menuItem isSeparatorItem="YES" id="567"/>
                             <menuItem title="Re-Symbolicate" keyEquivalent="r" id="568"/>
                             <menuItem title="Set Excutable" keyEquivalent="E" id="18w-SQ-EeQ"/>
-                            <menuItem isSeparatorItem="YES" id="w06-aS-YO4"/>
                         </items>
                     </menu>
                 </menuItem>
@@ -415,6 +414,7 @@
                 <menuItem title="View" id="295">
                     <menu key="submenu" title="View" id="296">
                         <items>
+                            <menuItem title="Fullscreen" keyEquivalent="F" id="BaE-WL-5e6"/>
                             <menuItem title="Show Toolbar" keyEquivalent="t" id="297">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>
@@ -461,7 +461,7 @@
                             <rect key="frame" x="1" y="1" width="480" height="360"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="D2D-rF-4Nv">
+                                <textView importsGraphics="NO" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="D2D-rF-4Nv">
                                     <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

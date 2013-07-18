@@ -56,6 +56,11 @@
 
 
 - (void)reSymbolicateWithBaseAddress:(NSString *)baseAddress matchesString:(NSArray *)matchesString {
+    
+    if (baseAddress.length == 0) {
+        return;
+    }
+    
     [[matchesString copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *address = (NSString *)obj;
         if (![address isEqualToString:baseAddress]) {

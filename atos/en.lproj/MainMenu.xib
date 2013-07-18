@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4471.1" systemVersion="13A510d" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4471.1"/>
@@ -449,51 +449,48 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView wantsLayer="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="546">
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="HNY-59-Nek">
                         <rect key="frame" x="-1" y="-1" width="482" height="362"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="c1H-Ef-dRc">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <clipView key="contentView" id="fKM-w4-ofH">
                             <rect key="frame" x="1" y="1" width="480" height="360"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="547">
+                                <textView importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="D2D-rF-4Nv">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="maxSize" width="500" height="10000000"/>
+                                    <size key="minSize" width="480" height="360"/>
+                                    <size key="maxSize" width="480" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="maxSize" width="500" height="10000000"/>
+                                    <size key="minSize" width="480" height="360"/>
+                                    <size key="maxSize" width="480" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="548">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="0eC-pu-nhG">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="549">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="5a9-ms-3U8">
                             <rect key="frame" x="465" y="1" width="16" height="360"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="546" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="-1" id="558"/>
-                    <constraint firstItem="546" firstAttribute="top" secondItem="372" secondAttribute="top" constant="-1" id="562"/>
-                    <constraint firstAttribute="trailing" secondItem="546" secondAttribute="trailing" constant="-1" id="564"/>
-                    <constraint firstAttribute="bottom" secondItem="546" secondAttribute="bottom" constant="-1" id="565"/>
-                </constraints>
             </view>
         </window>
         <customObject id="494" customClass="ATSAppDelegate">
             <connections>
                 <action selector="performReSymbolicate:" destination="568" id="569"/>
                 <action selector="performSetExcutable:" destination="18w-SQ-EeQ" id="zOE-HL-D3X"/>
-                <outlet property="textView" destination="547" id="566"/>
+                <outlet property="textView" destination="D2D-rF-4Nv" id="REK-cR-UCO"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

@@ -31,6 +31,15 @@
 }
 
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    if (!flag) {
+        [self.mainWindowController.window makeKeyAndOrderFront:self];
+    }
+    
+    return YES;
+}
+
+
 - (void)performReSymbolicate:(id)sender {
     [self.mainWindowController performReSymbolicate];
 }

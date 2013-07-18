@@ -48,6 +48,8 @@
         NSString *appPath = [openPanel.URLs[0] path];
         self.appName      = [[appPath lastPathComponent] stringByReplacingOccurrencesOfString:@".app" withString:@""];
         self.appPath      = [appPath stringByDeletingLastPathComponent];
+        
+        self.window.title = [NSString stringWithFormat:@"%@ - (%@)", self.appName, appPath];
     }
 }
 

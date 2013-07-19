@@ -10,9 +10,13 @@
 #import "NSTask+EasyExecute.h"
 
 
-@interface ATSMainWindowController ()
+@interface ATSMainWindowController ()<NSPopoverDelegate>
 
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
+@property (weak) IBOutlet NSButton  *popoverButton;
+@property (weak) IBOutlet NSPopover *listPopover;
+
+- (IBAction)showListPopover:(id)sender;
 
 @property (nonatomic, strong) NSString *appName;
 @property (nonatomic, strong) NSString *appPath;
@@ -168,6 +172,34 @@
     
     NSString *symbol = [NSTask executeAndReturnStdOut:@"/bin/sh" arguments:@[@"-c", shellCommand]];
     return symbol;
+}
+
+
+#pragma mark - List Popover
+
+- (void)showListPopover:(id)sender {
+    if (self.popoverButton.state == NSOnState) {
+        [self showPopover];
+    } else {
+        [self closePopover];
+    }
+}
+
+
+- (void)showPopover {
+    [self.listPopover showRelativeToRect:self.popoverButton.frame
+                                  ofView:self.window.contentView
+                           preferredEdge:NSMaxYEdge];
+}
+
+
+- (void)closePopover {
+    [self.listPopover close];
+}
+
+
+- (void)popoverDidClose:(NSNotification *)notification {
+    [self.popoverButton setState:NSOffState];
 }
 
 @end

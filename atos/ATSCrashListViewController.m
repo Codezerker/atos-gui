@@ -11,41 +11,49 @@
 
 @interface ATSCrashListViewController ()<NSTableViewDelegate, NSTableViewDataSource>
 
-- (IBAction)addCrashList:(id)sender;
-- (IBAction)removeCrashList:(id)sender;
+@property (weak) IBOutlet NSTableView *listView;
+
+- (IBAction)addCrashListItem:(id)sender;
+- (IBAction)removeCrashListItem:(id)sender;
+
+@property (nonatomic, strong) NSMutableArray *items;
 
 @end
 
 
 @implementation ATSCrashListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-
 #pragma mark - IBActions
 
-- (void)addCrashList:(id)sender {
-    NSLog(@"add crash list...");
+- (void)addCrashListItem:(id)sender {
+    [self.items addObject:@"dummy"];
+    [self.listView reloadData];
 }
 
 
-- (void)removeCrashList:(id)sender {
-    NSLog(@"remove crash list...");
+- (void)removeCrashListItem:(id)sender {
+    if (self.listView.selectedRowIndexes.count > 0) {
+        [self.items removeObjectsAtIndexes:self.listView.selectedRowIndexes];
+        [self.listView reloadData];
+    }
 }
 
 
 #pragma mark - NSTableView Delegate and Data Source
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return 5;
+    return self.items.count;
+}
+
+
+#pragma Getters
+
+- (NSMutableArray *)items {
+    if (!_items) {
+        _items = [NSMutableArray array];
+    }
+    
+    return _items;
 }
 
 @end

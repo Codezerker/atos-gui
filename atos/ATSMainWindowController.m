@@ -177,6 +177,11 @@
 
 #pragma mark - List Popover
 
+- (BOOL)popoverShouldClose:(NSPopover *)popover {
+    return YES;
+}
+
+
 - (void)showListPopover:(id)sender {
     if (self.popoverButton.state == NSOnState) {
         [self showPopover];

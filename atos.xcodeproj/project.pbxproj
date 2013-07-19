@@ -24,6 +24,8 @@
 		91DF8BF417994C3B006D2543 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 91DF8BF017994C3B006D2543 /* plus.png */; };
 		91DF8BF517994C3B006D2543 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91DF8BF117994C3B006D2543 /* plus@2x.png */; };
 		91DF8BFB17994F7C006D2543 /* ATSCrashListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91DF8BFA17994F7C006D2543 /* ATSCrashListViewController.m */; };
+		91EB82AB17995AAD003ABE7F /* ATSCrashListCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EB82AA17995AAD003ABE7F /* ATSCrashListCellView.m */; };
+		91EB82AE17995DA1003ABE7F /* ATSCrashSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EB82AD17995DA1003ABE7F /* ATSCrashSymbol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,10 @@
 		91DF8BF117994C3B006D2543 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
 		91DF8BF917994F7C006D2543 /* ATSCrashListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSCrashListViewController.h; sourceTree = "<group>"; };
 		91DF8BFA17994F7C006D2543 /* ATSCrashListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSCrashListViewController.m; sourceTree = "<group>"; };
+		91EB82A917995AAD003ABE7F /* ATSCrashListCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSCrashListCellView.h; sourceTree = "<group>"; };
+		91EB82AA17995AAD003ABE7F /* ATSCrashListCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSCrashListCellView.m; sourceTree = "<group>"; };
+		91EB82AC17995DA1003ABE7F /* ATSCrashSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSCrashSymbol.h; sourceTree = "<group>"; };
+		91EB82AD17995DA1003ABE7F /* ATSCrashSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSCrashSymbol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,15 +113,9 @@
 		918AE7E217954FCC00FD6F07 /* atos */ = {
 			isa = PBXGroup;
 			children = (
-				918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */,
-				918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */,
-				912E2A351798114100804718 /* ATSMainWindowController.h */,
-				912E2A361798114100804718 /* ATSMainWindowController.m */,
-				912E2A371798114100804718 /* ATSMainWindowController.xib */,
-				91DF8BF917994F7C006D2543 /* ATSCrashListViewController.h */,
-				91DF8BFA17994F7C006D2543 /* ATSCrashListViewController.m */,
-				523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */,
-				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
+				91EB82B017995FE5003ABE7F /* AppDelegate */,
+				91EB82B117995FF5003ABE7F /* MainWindow */,
+				91EB82AF17995FD8003ABE7F /* Helper */,
 				918AE7E317954FCC00FD6F07 /* Supporting Files */,
 			);
 			path = atos;
@@ -130,7 +130,6 @@
 				91DF8BF117994C3B006D2543 /* plus@2x.png */,
 				91266F9417993EC900995DFB /* list@2x.png */,
 				91266F9517993EC900995DFB /* list.png */,
-				918AE7F117954FCC00FD6F07 /* MainMenu.xib */,
 				0B4F1C311796D968001FA5EF /* atos.iconset */,
 				918AE7E417954FCC00FD6F07 /* atos-Info.plist */,
 				918AE7E517954FCC00FD6F07 /* InfoPlist.strings */,
@@ -139,6 +138,49 @@
 				918AE7EB17954FCC00FD6F07 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91EB82AF17995FD8003ABE7F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */,
+				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		91EB82B017995FE5003ABE7F /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				918AE7F117954FCC00FD6F07 /* MainMenu.xib */,
+				918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */,
+				918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		91EB82B117995FF5003ABE7F /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				91EB82B217996003003ABE7F /* CrashListView */,
+				912E2A351798114100804718 /* ATSMainWindowController.h */,
+				912E2A361798114100804718 /* ATSMainWindowController.m */,
+				912E2A371798114100804718 /* ATSMainWindowController.xib */,
+			);
+			name = MainWindow;
+			sourceTree = "<group>";
+		};
+		91EB82B217996003003ABE7F /* CrashListView */ = {
+			isa = PBXGroup;
+			children = (
+				91DF8BF917994F7C006D2543 /* ATSCrashListViewController.h */,
+				91DF8BFA17994F7C006D2543 /* ATSCrashListViewController.m */,
+				91EB82A917995AAD003ABE7F /* ATSCrashListCellView.h */,
+				91EB82AA17995AAD003ABE7F /* ATSCrashListCellView.m */,
+				91EB82AC17995DA1003ABE7F /* ATSCrashSymbol.h */,
+				91EB82AD17995DA1003ABE7F /* ATSCrashSymbol.m */,
+			);
+			name = CrashListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +257,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				918AE7E917954FCC00FD6F07 /* main.m in Sources */,
+				91EB82AE17995DA1003ABE7F /* ATSCrashSymbol.m in Sources */,
+				91EB82AB17995AAD003ABE7F /* ATSCrashListCellView.m in Sources */,
 				912E2A381798114100804718 /* ATSMainWindowController.m in Sources */,
 				91DF8BFB17994F7C006D2543 /* ATSCrashListViewController.m in Sources */,
 				918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */,

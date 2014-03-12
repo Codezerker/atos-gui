@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B4F1C321796D968001FA5EF /* atos.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F1C311796D968001FA5EF /* atos.iconset */; };
+		523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */; };
 		523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */; };
 		91266F9617993EC900995DFB /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91266F9417993EC900995DFB /* list@2x.png */; };
 		91266F9717993EC900995DFB /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 91266F9517993EC900995DFB /* list.png */; };
@@ -27,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
+		523C5085B02B067DA30384D0 /* ATSSymbolParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSSymbolParser.h; sourceTree = "<group>"; };
+		523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSSymbolParser.m; sourceTree = "<group>"; };
 		523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+EasyExecute.m"; sourceTree = "<group>"; };
 		523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+EasyExecute.h"; sourceTree = "<group>"; };
 		91266F9417993EC900995DFB /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
@@ -65,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		523C575D8DB210B7A678A2CC /* SymbolParser */ = {
+			isa = PBXGroup;
+			children = (
+				523C5085B02B067DA30384D0 /* ATSSymbolParser.h */,
+				523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */,
+			);
+			path = SymbolParser;
+			sourceTree = "<group>";
+		};
 		918AE7D017954FCC00FD6F07 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +120,7 @@
 				91EB82B117995FF5003ABE7F /* MainWindow */,
 				91EB82AF17995FD8003ABE7F /* Helper */,
 				918AE7E317954FCC00FD6F07 /* Supporting Files */,
+				523C575D8DB210B7A678A2CC /* SymbolParser */,
 			);
 			path = atos;
 			sourceTree = "<group>";
@@ -237,6 +250,7 @@
 				912E2A381798114100804718 /* ATSMainWindowController.m in Sources */,
 				918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */,
 				523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */,
+				523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

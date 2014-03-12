@@ -20,9 +20,10 @@
 
 @implementation ATSSymbolParser
 
-- (instancetype)init {
+- (instancetype)initWithDelegate:(id <ATSSymbolParserDelegate>)delegate {
     if (self = [super init]) {
         _parsingQueue = dispatch_queue_create("com.eyeplum.atos.parsing", NULL);
+        _delegate = delegate;
     }
 
     return self;

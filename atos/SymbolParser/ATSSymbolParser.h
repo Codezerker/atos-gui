@@ -25,7 +25,7 @@
 
 @property (nonatomic, weak) id<ATSSymbolParserDelegate> delegate;
 
-- (instancetype)init;
+- (instancetype)initWithDelegate:(id<ATSSymbolParserDelegate>)delegate;
 - (void)parseWithString:(NSString *)symbolString;
 
 @end

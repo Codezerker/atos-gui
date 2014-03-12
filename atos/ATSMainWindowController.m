@@ -24,8 +24,7 @@
 
 - (instancetype)init {
     if (self = [super initWithWindowNibName:self.className]) {
-        _symbolParser = [[ATSSymbolParser alloc] init];
-        _symbolParser.delegate = self;
+        _symbolParser = [[ATSSymbolParser alloc] initWithDelegate:self];
     }
     
     return self;
@@ -86,10 +85,8 @@
                                                                   options:NSCaseInsensitiveSearch
                                                                     range:NSMakeRange(0, self.textView.textStorage.length)];
 
-    NSRange symbolRange = [self.textView.string rangeOfString:symbol];
-    NSColor *highlightColor = [NSColor colorWithDeviceRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0];
-    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : highlightColor}
-                                       range:symbolRange];
+    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor colorWithDeviceRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0]}
+                                       range:[self.textView.string rangeOfString:symbol]];
 }
 
 @end

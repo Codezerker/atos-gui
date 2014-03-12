@@ -457,7 +457,7 @@
         <customObject id="494" customClass="ATSAppDelegate">
             <connections>
                 <action selector="performReSymbolicate:" destination="568" id="569"/>
-                <action selector="performSetExcutable:" destination="18w-SQ-EeQ" id="zOE-HL-D3X"/>
+                <action selector="performSetExecutable:" destination="18w-SQ-EeQ" id="zOE-HL-D3X"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

@@ -12,11 +12,7 @@
 
 @interface ATSMainWindowController ()<NSPopoverDelegate>
 
-@property (unsafe_unretained) IBOutlet NSTextView *textView;
-@property (weak) IBOutlet NSButton  *popoverButton;
-@property (weak) IBOutlet NSPopover *listPopover;
-
-- (IBAction)showListPopover:(id)sender;
+@property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
 
 @property (nonatomic, strong) NSString *appName;
 @property (nonatomic, strong) NSString *appPath;
@@ -25,6 +21,8 @@
 
 
 @implementation ATSMainWindowController
+
+#pragma mark - View Controller Lifecycle
 
 - (instancetype)init {
     if (self = [super initWithWindowNibName:self.className]) {
@@ -35,13 +33,28 @@
 }
 
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    [self performSetExcutable];
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    NSColor *backgroundColor = [NSColor colorWithDeviceRed:57.0/255.0 green:57.0/255.0 blue:57.0/255.0 alpha:1.0];
+    NSColor *selectedBackgroundColor = [NSColor colorWithDeviceRed:65.0/255.0 green:65.0/255.0 blue:65.0/255.0 alpha:1.0];
+
+    [self.textView setFont:[NSFont fontWithName:@"SourceCodePro-Regular" size:13]];
+    [self.textView setTextColor:[NSColor lightGrayColor]];
+    [self.textView setBackgroundColor:backgroundColor];
+    [self.textView setSelectedTextAttributes:@{NSBackgroundColorAttributeName : selectedBackgroundColor}];
 }
 
 
-- (void)performSetExcutable {
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    [self performSetExecutable];
+}
+
+
+#pragma mark - Action
+
+- (void)performSetExecutable {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     [openPanel setCanChooseFiles:YES];
     [openPanel setCanChooseDirectories:NO];
@@ -63,7 +76,7 @@
         if (self.textView.string.length > 0) {
             NSString *baseAddress   = [self baseAddress];
             NSArray  *matchesString = [self matchesString];
-            
+
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self reSymbolicateWithBaseAddress:baseAddress
                                      matchesString:matchesString];
@@ -72,6 +85,8 @@
     });
 }
 
+
+#pragma mark - Utility
 
 - (void)reSymbolicateWithBaseAddress:(NSString *)baseAddress matchesString:(NSArray *)matchesString {
     
@@ -107,7 +122,8 @@
 
 - (void)colorizeSymbol:(NSString *)symbol {
     NSRange symbolRange = [self.textView.string rangeOfString:symbol];
-    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor redColor]}
+    NSColor *highlightColor = [NSColor colorWithDeviceRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0];
+    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : highlightColor}
                                        range:symbolRange];
 }
 
@@ -172,39 +188,6 @@
     
     NSString *symbol = [NSTask executeAndReturnStdOut:@"/bin/sh" arguments:@[@"-c", shellCommand]];
     return symbol;
-}
-
-
-#pragma mark - List Popover
-
-- (BOOL)popoverShouldClose:(NSPopover *)popover {
-    return YES;
-}
-
-
-- (void)showListPopover:(id)sender {
-    if (self.popoverButton.state == NSOnState) {
-        [self showPopover];
-    } else {
-        [self closePopover];
-    }
-}
-
-
-- (void)showPopover {
-    [self.listPopover showRelativeToRect:self.popoverButton.frame
-                                  ofView:self.window.contentView
-                           preferredEdge:NSMaxYEdge];
-}
-
-
-- (void)closePopover {
-    [self.listPopover close];
-}
-
-
-- (void)popoverDidClose:(NSNotification *)notification {
-    [self.popoverButton setState:NSOffState];
 }
 
 @end

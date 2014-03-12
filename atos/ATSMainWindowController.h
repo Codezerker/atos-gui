@@ -11,6 +11,6 @@
 @interface ATSMainWindowController : NSWindowController
 
 - (void)performReSymbolicate;
-- (void)performSetExcutable;
+- (void)performSetExecutable;
 
 @end

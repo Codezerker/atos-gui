@@ -12,10 +12,10 @@
 
 @interface ATSAppDelegate()
 
-- (IBAction)performReSymbolicate:(id)sender;
-- (IBAction)performSetExcutable:(id)sender;
+@property (nonatomic, strong) ATSMainWindowController *mainWindowController;
 
-@property (strong) ATSMainWindowController *mainWindowController;
+- (IBAction)performReSymbolicate:(id)sender;
+- (IBAction)performSetExecutable:(id)sender;
 
 @end
 
@@ -45,8 +45,8 @@
 }
 
 
-- (void)performSetExcutable:(id)sender {
-    [self.mainWindowController performSetExcutable];
+- (void)performSetExecutable:(id)sender {
+    [self.mainWindowController performSetExecutable];
 }
 
 @end

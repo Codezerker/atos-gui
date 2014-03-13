@@ -106,7 +106,7 @@
 			children = (
 				91EB82B017995FE5003ABE7F /* AppDelegate */,
 				91EB82B117995FF5003ABE7F /* MainWindow */,
-				91EB82AF17995FD8003ABE7F /* Helper */,
+				91EB82AF17995FD8003ABE7F /* Category */,
 				918AE7E317954FCC00FD6F07 /* Supporting Files */,
 				523C575D8DB210B7A678A2CC /* SymbolParser */,
 			);
@@ -126,13 +126,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		91EB82AF17995FD8003ABE7F /* Helper */ = {
+		91EB82AF17995FD8003ABE7F /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */,
 				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
 			);
-			name = Helper;
+			name = Category;
 			sourceTree = "<group>";
 		};
 		91EB82B017995FE5003ABE7F /* AppDelegate */ = {

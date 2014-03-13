@@ -40,12 +40,12 @@
 }
 
 
-- (void)performReSymbolicate:(id)sender {
+- (IBAction)performReSymbolicate:(id)sender {
     [self.mainWindowController performReSymbolicate];
 }
 
 
-- (void)performSetExecutable:(id)sender {
+- (IBAction)performSetExecutable:(id)sender {
     [self.mainWindowController performSetExecutable];
 }
 

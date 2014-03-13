@@ -10,7 +10,7 @@
 #import "ATSSymbolParser.h"
 
 
-@interface ATSMainWindowController ()<NSPopoverDelegate, ATSSymbolParserDelegate>
+@interface ATSMainWindowController ()<ATSSymbolParserDelegate>
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
 @property (nonatomic, strong) ATSSymbolParser *symbolParser;

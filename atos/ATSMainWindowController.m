@@ -71,6 +71,7 @@
 
 
 - (void)performReSymbolicate {
+    [self.textView scrollPoint:NSZeroPoint];
     [self.symbolParser parseWithString:self.textView.string];
 }
 

@@ -14,11 +14,15 @@
 
 @property (nonatomic, strong) dispatch_queue_t parsingQueue;
 @property (nonatomic, strong) NSString *symbolString;
+@property (nonatomic, strong) NSString *internalApplicationFilePath;
+@property (nonatomic, strong) NSString *internalApplicationName;
 
 @end
 
 
 @implementation ATSSymbolParser
+
+#pragma mark - Public Methods
 
 - (instancetype)initWithDelegate:(id <ATSSymbolParserDelegate>)delegate {
     if (self = [super init]) {
@@ -27,6 +31,22 @@
     }
 
     return self;
+}
+
+
+- (void)setApplicationLocationWithFilePath:(NSString *)applicationFilePath {
+    self.internalApplicationName = [[applicationFilePath lastPathComponent] stringByReplacingOccurrencesOfString:@".app" withString:@""];
+    self.internalApplicationFilePath = [applicationFilePath stringByDeletingLastPathComponent];
+}
+
+
+- (NSString *)applicationName {
+    return [self.internalApplicationName copy];
+}
+
+
+- (NSString *)applicationFilePath {
+    return [self.internalApplicationFilePath copy];
 }
 
 
@@ -43,6 +63,8 @@
     });
 }
 
+
+#pragma mark - Private Methods
 
 - (void)reSymbolicateWithBaseAddress:(NSString *)baseAddress matchesString:(NSArray *)matchesString {
 
@@ -115,13 +137,13 @@
 
 
 - (NSString *)reSymbolicateAddress:(NSString *)address baseAddress:(NSString *)baseAddress {
-    if (!self.applicationFilePath) {
+    if (!self.internalApplicationFilePath) {
         return address;
     }
 
     NSString *shellCommand = [NSString stringWithFormat:@"cd %@; xcrun atos -o %@.app/Contents/MacOS/%@ -l %@ %@",
-                                                        self.applicationFilePath,
-                                                        self.applicationName, self.applicationName, baseAddress, address];
+                                                        self.internalApplicationFilePath,
+                                                        self.internalApplicationName, self.internalApplicationName, baseAddress, address];
 
     NSString *symbol = [NSTask executeAndReturnStdOut:@"/bin/sh" arguments:@[@"-c", shellCommand]];
     return symbol;

@@ -19,13 +19,14 @@
 
 @interface ATSSymbolParser : NSObject
 
-@property (nonatomic, strong) NSString *applicationName;
-@property (nonatomic, strong) NSString *applicationFilePath;
+@property (nonatomic, strong, readonly) NSString *applicationName;
+@property (nonatomic, strong, readonly) NSString *applicationFilePath;
 @property (nonatomic, strong, readonly) NSString *symbolString;
 
 @property (nonatomic, weak) id<ATSSymbolParserDelegate> delegate;
 
 - (instancetype)initWithDelegate:(id<ATSSymbolParserDelegate>)delegate;
+- (void)setApplicationLocationWithFilePath:(NSString *)applicationFilePath;
 - (void)parseWithString:(NSString *)symbolString;
 
 @end

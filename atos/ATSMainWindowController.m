@@ -61,13 +61,11 @@
     
     if ([openPanel runModal] == NSFileHandlingPanelOKButton) {
         NSString *appPath = [[openPanel.URLs firstObject] path];
-        NSString *appName = [[appPath lastPathComponent] stringByReplacingOccurrencesOfString:@".app" withString:@""];
-        appPath = [appPath stringByDeletingLastPathComponent];
+        [self.symbolParser setApplicationLocationWithFilePath:appPath];
 
-        self.window.title = [NSString stringWithFormat:@"%@ - (%@)", appPath, appPath];
-
-        [self.symbolParser setApplicationFilePath:appPath];
-        [self.symbolParser setApplicationName:appName];
+        self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
+                        self.symbolParser.applicationName,
+                        self.symbolParser.applicationFilePath];
     }
 }
 

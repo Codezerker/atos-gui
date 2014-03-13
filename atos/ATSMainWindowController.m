@@ -8,6 +8,7 @@
 
 #import "ATSMainWindowController.h"
 #import "ATSSymbolParser.h"
+#import "NSColor+ATSAddition.h"
 
 
 @interface ATSMainWindowController ()<ATSSymbolParserDelegate>
@@ -34,13 +35,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    NSColor *backgroundColor = [NSColor colorWithDeviceRed:57.0/255.0 green:57.0/255.0 blue:57.0/255.0 alpha:1.0];
-    NSColor *selectedBackgroundColor = [NSColor colorWithDeviceRed:65.0/255.0 green:65.0/255.0 blue:65.0/255.0 alpha:1.0];
-
     [self.textView setFont:[NSFont fontWithName:@"SourceCodePro-Regular" size:13]];
-    [self.textView setTextColor:[NSColor lightGrayColor]];
-    [self.textView setBackgroundColor:backgroundColor];
-    [self.textView setSelectedTextAttributes:@{NSBackgroundColorAttributeName : selectedBackgroundColor}];
+    [self.textView setTextColor:[NSColor ats_textColor]];
+    [self.textView setBackgroundColor:[NSColor ats_backgroundColor]];
+    [self.textView setSelectedTextAttributes:@{NSBackgroundColorAttributeName : [NSColor ats_highlightedBackgroundColor]}];
 }
 
 
@@ -84,7 +82,7 @@
                                                                   options:NSCaseInsensitiveSearch
                                                                     range:NSMakeRange(0, self.textView.textStorage.length)];
 
-    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor colorWithDeviceRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0]}
+    [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor ats_highlightedTextColor]}
                                        range:[self.textView.string rangeOfString:symbol]];
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B4F1C321796D968001FA5EF /* atos.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F1C311796D968001FA5EF /* atos.iconset */; };
 		523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */; };
+		523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */; };
 		523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */; };
 		912E2A381798114100804718 /* ATSMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912E2A361798114100804718 /* ATSMainWindowController.m */; };
 		912E2A391798114100804718 /* ATSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912E2A371798114100804718 /* ATSMainWindowController.xib */; };
@@ -23,9 +24,11 @@
 /* Begin PBXFileReference section */
 		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
 		523C5085B02B067DA30384D0 /* ATSSymbolParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSSymbolParser.h; sourceTree = "<group>"; };
+		523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ATSAddition.m"; sourceTree = "<group>"; };
 		523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSSymbolParser.m; sourceTree = "<group>"; };
 		523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+EasyExecute.m"; sourceTree = "<group>"; };
 		523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+EasyExecute.h"; sourceTree = "<group>"; };
+		523C5C5137F7CE5FA8AB3898 /* NSColor+ATSAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+ATSAddition.h"; sourceTree = "<group>"; };
 		912E2A351798114100804718 /* ATSMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSMainWindowController.h; sourceTree = "<group>"; };
 		912E2A361798114100804718 /* ATSMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSMainWindowController.m; sourceTree = "<group>"; };
 		912E2A371798114100804718 /* ATSMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATSMainWindowController.xib; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 			children = (
 				523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */,
 				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
+				523C5C5137F7CE5FA8AB3898 /* NSColor+ATSAddition.h */,
+				523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */,
 				523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */,
 				523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */,
+				523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

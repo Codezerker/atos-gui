@@ -55,16 +55,18 @@
     [openPanel setCanChooseFiles:YES];
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowsMultipleSelection:NO];
-    [openPanel setAllowedFileTypes:@[@"app"]];
-    
-    if ([openPanel runModal] == NSFileHandlingPanelOKButton) {
-        NSString *appPath = [[openPanel.URLs firstObject] path];
-        [self.symbolParser setApplicationLocationWithFilePath:appPath];
+    [openPanel setAllowedFileTypes:@[@"app", @"xcarchive"]];
 
-        self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
-                        self.symbolParser.applicationName,
-                        self.symbolParser.applicationFilePath];
-    }
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSString *appPath = [[openPanel.URLs firstObject] path];
+            [self.symbolParser setApplicationLocationWithFilePath:appPath];
+
+            self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
+                                                           self.symbolParser.applicationName,
+                                                           self.symbolParser.applicationFilePath];
+        }
+    }];
 }
 
 

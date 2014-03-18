@@ -10,6 +10,13 @@
 #import "NSTask+EasyExecute.h"
 
 
+static NSString * const kXCArchiveExt = @".xcarchive";
+static NSString * const kAppExt       = @".app";
+
+static NSString * const kdSYMDirName  = @"dSYMs";
+static NSString * const kAppDirName   = @"Products/Applications";
+
+
 @interface ATSSymbolParser ()
 
 @property (nonatomic, strong) dispatch_queue_t parsingQueue;
@@ -35,7 +42,29 @@
 
 
 - (void)setApplicationLocationWithFilePath:(NSString *)applicationFilePath {
-    self.internalApplicationName = [[applicationFilePath lastPathComponent] stringByReplacingOccurrencesOfString:@".app" withString:@""];
+    BOOL isFileXCArchive = [applicationFilePath.lastPathComponent rangeOfString:kXCArchiveExt].location != NSNotFound;
+
+    if (isFileXCArchive) {
+        NSString *dSYMDirPath  = [applicationFilePath stringByAppendingPathComponent:kdSYMDirName];
+        NSString *dSYMFilePath = [self neededFilePathInDirectory:dSYMDirPath];
+
+        NSString *appDirPath  = [applicationFilePath stringByAppendingPathComponent:kAppDirName];
+        NSString *appFilePath = [self neededFilePathInDirectory:appDirPath];
+
+        NSString *tempDirPath = NSTemporaryDirectory();
+
+        applicationFilePath = [tempDirPath stringByAppendingPathComponent:[appFilePath lastPathComponent]] ;
+
+        [[NSFileManager defaultManager] copyItemAtPath:dSYMFilePath
+                                                toPath:[tempDirPath stringByAppendingPathComponent:[dSYMFilePath lastPathComponent]]
+                                                 error:NULL];
+
+        [[NSFileManager defaultManager] copyItemAtPath:appFilePath
+                                                toPath:applicationFilePath
+                                                 error:NULL];
+    }
+
+    self.internalApplicationName = [[applicationFilePath lastPathComponent] stringByReplacingOccurrencesOfString:kAppExt withString:@""];
     self.internalApplicationFilePath = [applicationFilePath stringByDeletingLastPathComponent];
 }
 
@@ -65,6 +94,14 @@
 
 
 #pragma mark - Private Methods
+
+- (NSString *)neededFilePathInDirectory:(NSString *)dirPath {
+    NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager] enumeratorAtPath:dirPath];
+    NSString *fileName = [[dirEnum allObjects] firstObject];
+    NSString *filePath = [dirPath stringByAppendingPathComponent:fileName];
+    return filePath;
+}
+
 
 - (void)reSymbolicateWithBaseAddress:(NSString *)baseAddress matchesString:(NSArray *)matchesString {
 
@@ -143,7 +180,10 @@
 
     NSString *shellCommand = [NSString stringWithFormat:@"cd %@; xcrun atos -o %@.app/Contents/MacOS/%@ -l %@ %@",
                                                         self.internalApplicationFilePath,
-                                                        self.internalApplicationName, self.internalApplicationName, baseAddress, address];
+                                                        self.internalApplicationName,
+                                                        self.internalApplicationName,
+                                                        baseAddress,
+                                                        address];
 
     NSString *symbol = [NSTask executeAndReturnStdOut:@"/bin/sh" arguments:@[@"-c", shellCommand]];
     return symbol;

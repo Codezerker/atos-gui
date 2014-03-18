@@ -62,9 +62,13 @@
             NSString *appPath = [[openPanel.URLs firstObject] path];
             [self.symbolParser setApplicationLocationWithFilePath:appPath];
 
-            self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
-                                                           self.symbolParser.applicationName,
-                                                           self.symbolParser.applicationFilePath];
+            if (self.symbolParser.applicationFilePath.length > 0) {
+                self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
+                                                               self.symbolParser.applicationName,
+                                                               self.symbolParser.applicationFilePath];
+            } else {
+                self.window.title = self.symbolParser.applicationName;
+            }
         }
     }];
 }

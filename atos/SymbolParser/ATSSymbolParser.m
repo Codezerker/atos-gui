@@ -24,6 +24,8 @@ static NSString * const kAppDirName   = @"Products/Applications";
 @property (nonatomic, strong) NSString *internalApplicationFilePath;
 @property (nonatomic, strong) NSString *internalApplicationName;
 
+@property (nonatomic, assign) BOOL isFileXCArchive;
+
 @end
 
 
@@ -42,9 +44,9 @@ static NSString * const kAppDirName   = @"Products/Applications";
 
 
 - (void)setApplicationLocationWithFilePath:(NSString *)applicationFilePath {
-    BOOL isFileXCArchive = [applicationFilePath.lastPathComponent rangeOfString:kXCArchiveExt].location != NSNotFound;
+    self.isFileXCArchive = [applicationFilePath.lastPathComponent rangeOfString:kXCArchiveExt].location != NSNotFound;
 
-    if (isFileXCArchive) {
+    if (self.isFileXCArchive) {
         NSString *dSYMDirPath  = [applicationFilePath stringByAppendingPathComponent:kdSYMDirName];
         NSString *dSYMFilePath = [self neededFilePathInDirectory:dSYMDirPath];
 
@@ -75,7 +77,7 @@ static NSString * const kAppDirName   = @"Products/Applications";
 
 
 - (NSString *)applicationFilePath {
-    return [self.internalApplicationFilePath copy];
+    return self.isFileXCArchive ? nil : [self.internalApplicationFilePath copy];
 }
 
 

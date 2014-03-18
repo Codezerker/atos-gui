@@ -16,6 +16,10 @@ static NSString * const kAppExt       = @".app";
 static NSString * const kdSYMDirName  = @"dSYMs";
 static NSString * const kAppDirName   = @"Products/Applications";
 
+static NSString * const kBaseAddressRegexString     = @"(0[xX][0-9a-fA-F]+) \\+ ([0-9]+)";
+static NSString * const kBaseAddressTailRegexString = @" \\+ ([0-9]+)";
+static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
+
 
 @interface ATSSymbolParser ()
 
@@ -129,7 +133,7 @@ static NSString * const kAppDirName   = @"Products/Applications";
 
 - (NSString *)baseAddress {
 
-    NSRegularExpression *baseAddressRegex = [NSRegularExpression regularExpressionWithPattern:@"(0[xX][0-9a-fA-F]+) \\+ ([0-9]+)"
+    NSRegularExpression *baseAddressRegex = [NSRegularExpression regularExpressionWithPattern:kBaseAddressRegexString
                                                                                       options:0
                                                                                         error:NULL];
     NSArray *baseMatches = [baseAddressRegex matchesInString:self.symbolString
@@ -144,7 +148,7 @@ static NSString * const kAppDirName   = @"Products/Applications";
 
     NSString *baseAddress = [self.symbolString substringWithRange:baseAddressMatch.range];
 
-    NSRegularExpression *baseAddressTail = [NSRegularExpression regularExpressionWithPattern:@" \\+ ([0-9]+)"
+    NSRegularExpression *baseAddressTail = [NSRegularExpression regularExpressionWithPattern:kBaseAddressTailRegexString
                                                                                      options:0
                                                                                        error:NULL];
 
@@ -158,7 +162,7 @@ static NSString * const kAppDirName   = @"Products/Applications";
 
 
 - (NSArray *)matchesString {
-    NSRegularExpression *addressRegex = [NSRegularExpression regularExpressionWithPattern:@"(0[xX][0-9a-fA-F]+)"
+    NSRegularExpression *addressRegex = [NSRegularExpression regularExpressionWithPattern:kAddressRegexString
                                                                                   options:0
                                                                                     error:NULL];
     NSArray *matches = [[addressRegex matchesInString:self.symbolString

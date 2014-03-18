@@ -11,6 +11,10 @@
 #import "NSColor+ATSAddition.h"
 
 
+static const CGFloat kFontSize    = 13.0f;
+static const CGFloat kLineHeight  = 14.0f;
+static const CGFloat kLineSpacing = 8.0f;
+
 @interface ATSMainWindowController ()<ATSSymbolParserDelegate>
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
@@ -35,10 +39,24 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    [self.textView setFont:[NSFont fontWithName:@"SourceCodePro-Regular" size:13]];
+    // Preferred text font is SourceCodePro-Regular
+    NSFont *textFont = [NSFont fontWithName:@"Hahaha-SourceCodePro-Regular" size:kFontSize];
+
+    // If preferred font not found, fallback to system font
+    if (!textFont) {
+        textFont = [NSFont systemFontOfSize:kFontSize];
+    }
+
+    [self.textView setFont:textFont];
     [self.textView setTextColor:[NSColor ats_textColor]];
     [self.textView setBackgroundColor:[NSColor ats_backgroundColor]];
     [self.textView setSelectedTextAttributes:@{NSBackgroundColorAttributeName : [NSColor ats_highlightedBackgroundColor]}];
+
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setMinimumLineHeight:kLineHeight];
+    [paragraphStyle setMaximumLineHeight:kLineHeight];
+    [paragraphStyle setLineSpacing:kLineSpacing];
+    [self.textView setDefaultParagraphStyle:paragraphStyle];
 }
 
 

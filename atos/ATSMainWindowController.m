@@ -40,7 +40,7 @@ static const CGFloat kLineSpacing = 8.0f;
     [super awakeFromNib];
 
     // Preferred text font is SourceCodePro-Regular
-    NSFont *textFont = [NSFont fontWithName:@"Hahaha-SourceCodePro-Regular" size:kFontSize];
+    NSFont *textFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:kFontSize];
 
     // If preferred font not found, fallback to system font
     if (!textFont) {

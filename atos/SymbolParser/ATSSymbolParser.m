@@ -51,11 +51,11 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
     self.isFileXCArchive = [applicationFilePath.lastPathComponent rangeOfString:kXCArchiveExt].location != NSNotFound;
 
     if (self.isFileXCArchive) {
-        NSString *dSYMDirPath  = [applicationFilePath stringByAppendingPathComponent:kdSYMDirName];
-        NSString *dSYMFilePath = [self neededFilePathInDirectory:dSYMDirPath];
-
         NSString *appDirPath  = [applicationFilePath stringByAppendingPathComponent:kAppDirName];
-        NSString *appFilePath = [self neededFilePathInDirectory:appDirPath];
+        NSString *appFilePath = [self neededFilePathInDirectory:appDirPath withFileNameHint:nil];
+
+        NSString *dSYMDirPath  = [applicationFilePath stringByAppendingPathComponent:kdSYMDirName];
+        NSString *dSYMFilePath = [self neededFilePathInDirectory:dSYMDirPath withFileNameHint:[appFilePath lastPathComponent]];
 
         NSString *tempDirPath = NSTemporaryDirectory();
 
@@ -101,10 +101,25 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 
 #pragma mark - Private Methods
 
-- (NSString *)neededFilePathInDirectory:(NSString *)dirPath {
+- (NSString *)neededFilePathInDirectory:(NSString *)dirPath withFileNameHint:(NSString *)hint {
     NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager] enumeratorAtPath:dirPath];
-    NSString *fileName = [[dirEnum allObjects] firstObject];
+
+    __block NSString *fileName;
+    if (hint.length > 0) {
+        [[dirEnum allObjects] enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+            if ([file rangeOfString:hint].location != NSNotFound) {
+                fileName = file;
+                *stop = YES;
+            }
+        }];
+    }
+
+    if (fileName.length == 0) {
+        fileName = [[dirEnum allObjects] firstObject];
+    }
+
     NSString *filePath = [dirPath stringByAppendingPathComponent:fileName];
+
     return filePath;
 }
 

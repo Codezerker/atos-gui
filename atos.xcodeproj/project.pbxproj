@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1AC0C318DEE6B2006773C4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1AC0C218DEE6B2006773C4 /* XCTest.framework */; };
+		0B1AC0C918DEE6B2006773C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B1AC0C718DEE6B2006773C4 /* InfoPlist.strings */; };
+		0B1AC0CB18DEE6B2006773C4 /* atosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AC0CA18DEE6B2006773C4 /* atosTests.m */; };
 		0B4F1C321796D968001FA5EF /* atos.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F1C311796D968001FA5EF /* atos.iconset */; };
 		523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */; };
 		523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */; };
@@ -21,7 +24,23 @@
 		918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7F117954FCC00FD6F07 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0B1AC0CD18DEE6B2006773C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 918AE7D117954FCC00FD6F07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 918AE7D817954FCC00FD6F07;
+			remoteInfo = atos;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0B1AC0C118DEE6B2006773C4 /* atosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B1AC0C218DEE6B2006773C4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0B1AC0C618DEE6B2006773C4 /* atosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "atosTests-Info.plist"; sourceTree = "<group>"; };
+		0B1AC0C818DEE6B2006773C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0B1AC0CA18DEE6B2006773C4 /* atosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atosTests.m; sourceTree = "<group>"; };
+		0B1AC0CC18DEE6B2006773C4 /* atosTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "atosTests-Prefix.pch"; sourceTree = "<group>"; };
 		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
 		523C5085B02B067DA30384D0 /* ATSSymbolParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSSymbolParser.h; sourceTree = "<group>"; };
 		523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ATSAddition.m"; sourceTree = "<group>"; };
@@ -48,6 +67,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0B1AC0BE18DEE6B2006773C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B1AC0C318DEE6B2006773C4 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918AE7D617954FCC00FD6F07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,6 +86,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B1AC0C418DEE6B2006773C4 /* atosTests */ = {
+			isa = PBXGroup;
+			children = (
+				0B1AC0CA18DEE6B2006773C4 /* atosTests.m */,
+				0B1AC0C518DEE6B2006773C4 /* Supporting Files */,
+			);
+			path = atosTests;
+			sourceTree = "<group>";
+		};
+		0B1AC0C518DEE6B2006773C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B1AC0C618DEE6B2006773C4 /* atosTests-Info.plist */,
+				0B1AC0C718DEE6B2006773C4 /* InfoPlist.strings */,
+				0B1AC0CC18DEE6B2006773C4 /* atosTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		523C575D8DB210B7A678A2CC /* SymbolParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				918AE7E217954FCC00FD6F07 /* atos */,
+				0B1AC0C418DEE6B2006773C4 /* atosTests */,
 				918AE7DB17954FCC00FD6F07 /* Frameworks */,
 				918AE7DA17954FCC00FD6F07 /* Products */,
 			);
@@ -81,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				918AE7D917954FCC00FD6F07 /* atos.app */,
+				0B1AC0C118DEE6B2006773C4 /* atosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				918AE7DC17954FCC00FD6F07 /* Cocoa.framework */,
+				0B1AC0C218DEE6B2006773C4 /* XCTest.framework */,
 				918AE7DE17954FCC00FD6F07 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -163,6 +212,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0B1AC0C018DEE6B2006773C4 /* atosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B1AC0D118DEE6B2006773C4 /* Build configuration list for PBXNativeTarget "atosTests" */;
+			buildPhases = (
+				0B1AC0BD18DEE6B2006773C4 /* Sources */,
+				0B1AC0BE18DEE6B2006773C4 /* Frameworks */,
+				0B1AC0BF18DEE6B2006773C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0B1AC0CE18DEE6B2006773C4 /* PBXTargetDependency */,
+			);
+			name = atosTests;
+			productName = atosTests;
+			productReference = 0B1AC0C118DEE6B2006773C4 /* atosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		918AE7D817954FCC00FD6F07 /* atos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 918AE7F617954FCC00FD6F07 /* Build configuration list for PBXNativeTarget "atos" */;
@@ -190,6 +257,11 @@
 				CLASSPREFIX = ATS;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = eyeplum;
+				TargetAttributes = {
+					0B1AC0C018DEE6B2006773C4 = {
+						TestTargetID = 918AE7D817954FCC00FD6F07;
+					};
+				};
 			};
 			buildConfigurationList = 918AE7D417954FCC00FD6F07 /* Build configuration list for PBXProject "atos" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -204,11 +276,20 @@
 			projectRoot = "";
 			targets = (
 				918AE7D817954FCC00FD6F07 /* atos */,
+				0B1AC0C018DEE6B2006773C4 /* atosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0B1AC0BF18DEE6B2006773C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B1AC0C918DEE6B2006773C4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918AE7D717954FCC00FD6F07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +322,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B1AC0BD18DEE6B2006773C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B1AC0CB18DEE6B2006773C4 /* atosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918AE7D517954FCC00FD6F07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,7 +345,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0B1AC0CE18DEE6B2006773C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 918AE7D817954FCC00FD6F07 /* atos */;
+			targetProxy = 0B1AC0CD18DEE6B2006773C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		0B1AC0C718DEE6B2006773C4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B1AC0C818DEE6B2006773C4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		918AE7E517954FCC00FD6F07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +389,63 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0B1AC0CF18DEE6B2006773C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/atos.app/Contents/MacOS/atos";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "atosTests/atosTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "atosTests/atosTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		0B1AC0D018DEE6B2006773C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/atos.app/Contents/MacOS/atos";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "atosTests/atosTests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "atosTests/atosTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		918AE7F417954FCC00FD6F07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,6 +532,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0B1AC0D118DEE6B2006773C4 /* Build configuration list for PBXNativeTarget "atosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B1AC0CF18DEE6B2006773C4 /* Debug */,
+				0B1AC0D018DEE6B2006773C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		918AE7D417954FCC00FD6F07 /* Build configuration list for PBXProject "atos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

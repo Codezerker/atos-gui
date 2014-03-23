@@ -47,4 +47,9 @@ static NSString * const kCrashLogTestFragment = @"0x000000010ffd78f4 0x10ffd6000
     XCTAssertEqualObjects([self.parser loadAddress], @"0x10ffd6000");
 }
 
+- (void)testAddressParsingInCrashLog
+{
+    XCTAssertEqualObjects([[self.parser symbolAddresses] firstObject], @"0x000000010ffd78f4");
+}
+
 @end

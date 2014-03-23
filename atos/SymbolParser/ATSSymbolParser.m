@@ -85,6 +85,11 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 }
 
 
+- (NSString *)loadAddress {
+    return [[self baseAddress] copy];
+}
+
+
 - (void)parseWithString:(NSString *)symbolString {
     if (symbolString.length == 0) {
         return;

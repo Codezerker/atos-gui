@@ -7,8 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ATSSymbolParser.h"
 
-@interface ATSTests : XCTestCase
+@interface ATSTests : XCTestCase <ATSSymbolParserDelegate>
 
 @end
 
@@ -26,11 +27,11 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testLoadAddressParsingInCrashLog
 {
-    NSString *string1 = [NSString stringWithFormat:@"%@", @"Hello World."];
-    NSString *string2 = @"Hello World.";
-    XCTAssertEqualObjects(string1, string2);
+    ATSSymbolParser *parser = [[ATSSymbolParser alloc] initWithDelegate:self];
+    [parser parseWithString:@"0x000000010ffd78f4 0x10ffd6000 + 6388"];
+    XCTAssertEqualObjects([parser loadAddress], @"0x10ffd6000");
 }
 
 @end

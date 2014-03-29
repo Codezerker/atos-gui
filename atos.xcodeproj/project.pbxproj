@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B1AC0C318DEE6B2006773C4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1AC0C218DEE6B2006773C4 /* XCTest.framework */; };
 		0B1AC0C918DEE6B2006773C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B1AC0C718DEE6B2006773C4 /* InfoPlist.strings */; };
-		0B1AC0CB18DEE6B2006773C4 /* atosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AC0CA18DEE6B2006773C4 /* atosTests.m */; };
+		0B1AC0CB18DEE6B2006773C4 /* ATSCrashLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AC0CA18DEE6B2006773C4 /* ATSCrashLogTests.m */; };
 		0B4F1C321796D968001FA5EF /* atos.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F1C311796D968001FA5EF /* atos.iconset */; };
 		523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */; };
 		523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */; };
 		523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */; };
+		91114C7318E6B2A800D576E2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1AC0C218DEE6B2006773C4 /* XCTest.framework */; };
 		912E2A381798114100804718 /* ATSMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912E2A361798114100804718 /* ATSMainWindowController.m */; };
 		912E2A391798114100804718 /* ATSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912E2A371798114100804718 /* ATSMainWindowController.xib */; };
 		918AE7DD17954FCC00FD6F07 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AE7DC17954FCC00FD6F07 /* Cocoa.framework */; };
@@ -39,7 +39,7 @@
 		0B1AC0C218DEE6B2006773C4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0B1AC0C618DEE6B2006773C4 /* atosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "atosTests-Info.plist"; sourceTree = "<group>"; };
 		0B1AC0C818DEE6B2006773C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0B1AC0CA18DEE6B2006773C4 /* atosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atosTests.m; sourceTree = "<group>"; };
+		0B1AC0CA18DEE6B2006773C4 /* ATSCrashLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSCrashLogTests.m; sourceTree = "<group>"; };
 		0B1AC0CC18DEE6B2006773C4 /* atosTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "atosTests-Prefix.pch"; sourceTree = "<group>"; };
 		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
 		523C5085B02B067DA30384D0 /* ATSSymbolParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSSymbolParser.h; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B1AC0C318DEE6B2006773C4 /* XCTest.framework in Frameworks */,
+				91114C7318E6B2A800D576E2 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 		0B1AC0C418DEE6B2006773C4 /* atosTests */ = {
 			isa = PBXGroup;
 			children = (
-				0B1AC0CA18DEE6B2006773C4 /* atosTests.m */,
+				0B1AC0CA18DEE6B2006773C4 /* ATSCrashLogTests.m */,
 				0B1AC0C518DEE6B2006773C4 /* Supporting Files */,
 			);
 			path = atosTests;
@@ -326,7 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B1AC0CB18DEE6B2006773C4 /* atosTests.m in Sources */,
+				0B1AC0CB18DEE6B2006773C4 /* ATSCrashLogTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +539,7 @@
 				0B1AC0D018DEE6B2006773C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		918AE7D417954FCC00FD6F07 /* Build configuration list for PBXProject "atos" */ = {
 			isa = XCConfigurationList;

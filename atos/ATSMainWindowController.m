@@ -36,9 +36,14 @@ static const CGFloat kLineSpacing = 8.0f;
 }
 
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    [self setupViews];
+    [self performSetExecutable];
+}
 
+
+- (void)setupViews {
     // Preferred text font is SourceCodePro-Regular
     NSFont *textFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:kFontSize];
 
@@ -57,12 +62,6 @@ static const CGFloat kLineSpacing = 8.0f;
     [paragraphStyle setMaximumLineHeight:kLineHeight];
     [paragraphStyle setLineSpacing:kLineSpacing];
     [self.textView setDefaultParagraphStyle:paragraphStyle];
-}
-
-
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    [self performSetExecutable];
 }
 
 

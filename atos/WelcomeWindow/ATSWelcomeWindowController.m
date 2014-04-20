@@ -125,7 +125,7 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
     [openPanel setCanChooseFiles:YES];
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowsMultipleSelection:NO];
-    [openPanel setAllowedFileTypes:@[@"app", @"xcarchive"]];
+    [openPanel setAllowedFileTypes:@[@"xcarchive"]];
 
     [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {

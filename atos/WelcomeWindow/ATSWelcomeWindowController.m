@@ -22,6 +22,8 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
 @property (nonatomic, weak) IBOutlet NSTextField *versionLabel;
 @property (nonatomic, strong) NSArray *archiveFileWrappers;
 
+- (IBAction)openOther:(id)sender;
+
 @end
 
 
@@ -100,9 +102,7 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
 
 - (void)tableViewDidBeDoubleClicked:(id)sender {
     ATSArchiveFileWrapper *fileWrapper = self.archiveFileWrappers[(NSUInteger) self.tableView.clickedRow];
-    [[NSNotificationCenter defaultCenter] postNotificationName:ATSArchiveDidBeSelectedNotification
-                                                        object:self
-                                                      userInfo:@{ATSArchiveFileWrapperKey:fileWrapper}];
+    [self postNotificationWithFileWrapper:fileWrapper];
 }
 
 
@@ -115,6 +115,34 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
     ATSArchiveFileTableCellView *cellView = [tableView makeViewWithIdentifier:kCellID owner:self];
     cellView.fileWrapper = self.archiveFileWrappers[(NSUInteger) row];
     return cellView;
+}
+
+
+#pragma mark - IBAction
+
+- (IBAction)openOther:(id)sender {
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseFiles:YES];
+    [openPanel setCanChooseDirectories:NO];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setAllowedFileTypes:@[@"app", @"xcarchive"]];
+
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            ATSArchiveFileWrapper *fileWrapper = [ATSArchiveFileWrapper fileWrapperWithURL:[openPanel.URLs firstObject]];
+            [self postNotificationWithFileWrapper:fileWrapper];
+        }
+    }];
+
+}
+
+
+#pragma mark - Notification Helper
+
+- (void)postNotificationWithFileWrapper:(ATSArchiveFileWrapper *)fileWrapper {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ATSArchiveDidBeSelectedNotification
+                                                        object:self
+                                                      userInfo:@{ATSArchiveFileWrapperKey:fileWrapper}];
 }
 
 @end

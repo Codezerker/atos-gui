@@ -138,6 +138,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <imageCell key="cell" selectable="YES" editable="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" image="icon" id="8kj-Rv-xWH"/>
                             </imageView>
+                            <button verticalHuggingPriority="750" id="2J9-gx-cA8">
+                                <rect key="frame" x="14" y="-7" width="260" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Open Other..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bl5-ul-BhZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openOther:" target="-2" id="hQM-BI-UVZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </customView>
                 </subviews>

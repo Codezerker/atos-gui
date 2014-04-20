@@ -7,11 +7,13 @@
 //
 
 #import "ATSAppDelegate.h"
+#import "ATSWelcomeWindowController.h"
 #import "ATSMainWindowController.h"
 
 
 @interface ATSAppDelegate()
 
+@property (nonatomic, strong) ATSWelcomeWindowController *welcomeWindowController;
 @property (nonatomic, strong) ATSMainWindowController *mainWindowController;
 
 - (IBAction)performReSymbolicate:(id)sender;
@@ -23,17 +25,20 @@
 @implementation ATSAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
+
     [self.window orderOut:self];
-    
-    self.mainWindowController = [[ATSMainWindowController alloc] init];
-    [self.mainWindowController.window makeKeyAndOrderFront:self];
+
+    self.welcomeWindowController = [[ATSWelcomeWindowController alloc] init];
+    [self.welcomeWindowController.window makeKeyAndOrderFront:self];
+
+    // self.mainWindowController = [[ATSMainWindowController alloc] init];
+    // [self.mainWindowController.window makeKeyAndOrderFront:self];
 }
 
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
     if (!flag) {
-        [self.mainWindowController.window makeKeyAndOrderFront:self];
+        // [self.mainWindowController.window makeKeyAndOrderFront:self];
     }
     
     return YES;

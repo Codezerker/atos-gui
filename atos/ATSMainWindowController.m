@@ -28,7 +28,7 @@ static const CGFloat kLineSpacing = 8.0f;
 #pragma mark - View Controller Lifecycle
 
 - (instancetype)init {
-    if (self = [super initWithWindowNibName:self.className]) {
+    if (self = [super initWithWindowNibName:[self className]]) {
         _symbolParser = [[ATSSymbolParser alloc] initWithDelegate:self];
     }
     

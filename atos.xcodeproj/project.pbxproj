@@ -10,6 +10,7 @@
 		0B1AC0C918DEE6B2006773C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B1AC0C718DEE6B2006773C4 /* InfoPlist.strings */; };
 		0B1AC0CB18DEE6B2006773C4 /* ATSCrashLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1AC0CA18DEE6B2006773C4 /* ATSCrashLogTests.m */; };
 		0B4F1C321796D968001FA5EF /* atos.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F1C311796D968001FA5EF /* atos.iconset */; };
+		0BC9BC471903CE680059C044 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9BC461903CE680059C044 /* Media.xcassets */; };
 		523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */; };
 		523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */; };
 		523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */ = {isa = PBXBuildFile; fileRef = 523C5AF341190FBA4B59A0F6 /* NSTask+EasyExecute.m */; };
@@ -22,8 +23,13 @@
 		918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7EB17954FCC00FD6F07 /* Credits.rtf */; };
 		918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */; };
 		918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7F117954FCC00FD6F07 /* MainMenu.xib */; };
+		B3139020977A0D2B2FCF16E3 /* ATSArchiveFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */; };
+		B31391243D89ED742EB33F4B /* ATSArchiveFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */; };
 		B31394BF1264DAB2AC670EDE /* ATSWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */; };
 		B313954ED580F4881CBCB02F /* ATSWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */; };
+		B31395FAE4E9AC75FF41B02C /* NSURL+ATSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139BE332723F4FA47C0E23 /* NSURL+ATSAddition.m */; };
+		B3139DCC5346A15A7B7B60EF /* ATSArchiveFileTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B31392C5001CF9BC34071426 /* ATSArchiveFileTableCellView.m */; };
+		B3139F31B7D9DAAA6123270F /* NSURL+ATSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139BE332723F4FA47C0E23 /* NSURL+ATSAddition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,7 @@
 		0B1AC0CA18DEE6B2006773C4 /* ATSCrashLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSCrashLogTests.m; sourceTree = "<group>"; };
 		0B1AC0CC18DEE6B2006773C4 /* atosTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "atosTests-Prefix.pch"; sourceTree = "<group>"; };
 		0B4F1C311796D968001FA5EF /* atos.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = atos.iconset; sourceTree = SOURCE_ROOT; };
+		0BC9BC461903CE680059C044 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		523C5085B02B067DA30384D0 /* ATSSymbolParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSSymbolParser.h; sourceTree = "<group>"; };
 		523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ATSAddition.m"; sourceTree = "<group>"; };
 		523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSSymbolParser.m; sourceTree = "<group>"; };
@@ -67,8 +74,14 @@
 		918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSAppDelegate.m; sourceTree = "<group>"; };
 		918AE7F217954FCC00FD6F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ATSWelcomeWindowController.xib; sourceTree = "<group>"; };
+		B31392B5092BB1DB8285D772 /* ATSArchiveFileTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSArchiveFileTableCellView.h; sourceTree = "<group>"; };
+		B31392C5001CF9BC34071426 /* ATSArchiveFileTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSArchiveFileTableCellView.m; sourceTree = "<group>"; };
+		B31395170DB390171A21DBE8 /* NSURL+ATSAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ATSAddition.h"; sourceTree = "<group>"; };
 		B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSWelcomeWindowController.m; sourceTree = "<group>"; };
+		B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSArchiveFileWrapper.m; sourceTree = "<group>"; };
+		B3139BE332723F4FA47C0E23 /* NSURL+ATSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ATSAddition.m"; sourceTree = "<group>"; };
 		B3139D999A4EBA07B1A49950 /* ATSWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSWelcomeWindowController.h; sourceTree = "<group>"; };
+		B3139F2190550EFAC88A7DC9 /* ATSArchiveFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSArchiveFileWrapper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +193,7 @@
 				918AE7E817954FCC00FD6F07 /* main.m */,
 				918AE7EA17954FCC00FD6F07 /* atos-Prefix.pch */,
 				918AE7EB17954FCC00FD6F07 /* Credits.rtf */,
+				0BC9BC461903CE680059C044 /* Media.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -191,6 +205,8 @@
 				523C5B218D981FFFCF80C768 /* NSTask+EasyExecute.h */,
 				523C5C5137F7CE5FA8AB3898 /* NSColor+ATSAddition.h */,
 				523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */,
+				B31395170DB390171A21DBE8 /* NSURL+ATSAddition.h */,
+				B3139BE332723F4FA47C0E23 /* NSURL+ATSAddition.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -221,6 +237,10 @@
 				B3139D999A4EBA07B1A49950 /* ATSWelcomeWindowController.h */,
 				B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */,
 				B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */,
+				B3139F2190550EFAC88A7DC9 /* ATSArchiveFileWrapper.h */,
+				B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */,
+				B31392B5092BB1DB8285D772 /* ATSArchiveFileTableCellView.h */,
+				B31392C5001CF9BC34071426 /* ATSArchiveFileTableCellView.m */,
 			);
 			path = WelcomeWindow;
 			sourceTree = "<group>";
@@ -312,6 +332,7 @@
 			files = (
 				918AE7E717954FCC00FD6F07 /* InfoPlist.strings in Resources */,
 				912E2A391798114100804718 /* ATSMainWindowController.xib in Resources */,
+				0BC9BC471903CE680059C044 /* Media.xcassets in Resources */,
 				918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */,
 				0B4F1C321796D968001FA5EF /* atos.iconset in Resources */,
 				918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */,
@@ -344,6 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B1AC0CB18DEE6B2006773C4 /* ATSCrashLogTests.m in Sources */,
+				B3139020977A0D2B2FCF16E3 /* ATSArchiveFileWrapper.m in Sources */,
+				B31395FAE4E9AC75FF41B02C /* NSURL+ATSAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +381,9 @@
 				523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */,
 				523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */,
 				B313954ED580F4881CBCB02F /* ATSWelcomeWindowController.m in Sources */,
+				B31391243D89ED742EB33F4B /* ATSArchiveFileWrapper.m in Sources */,
+				B3139F31B7D9DAAA6123270F /* NSURL+ATSAddition.m in Sources */,
+				B3139DCC5346A15A7B7B60EF /* ATSArchiveFileTableCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

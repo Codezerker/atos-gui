@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ATSArchiveFileWrapper;
+
 @interface ATSMainWindowController : NSWindowController
 
+- (instancetype)initWithArchiveFileWrapper:(ATSArchiveFileWrapper *)fileWrapper;
+
 - (void)performReSymbolicate;
-- (void)performSetExecutable;
 
 @end

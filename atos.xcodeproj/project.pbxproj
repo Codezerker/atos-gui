@@ -79,6 +79,7 @@
 		B31395170DB390171A21DBE8 /* NSURL+ATSAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ATSAddition.h"; sourceTree = "<group>"; };
 		B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSWelcomeWindowController.m; sourceTree = "<group>"; };
 		B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSArchiveFileWrapper.m; sourceTree = "<group>"; };
+		B313995CCFF27B7EC60D0DB3 /* ATSNotificationDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSNotificationDefinitions.h; sourceTree = "<group>"; };
 		B3139BE332723F4FA47C0E23 /* NSURL+ATSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ATSAddition.m"; sourceTree = "<group>"; };
 		B3139D999A4EBA07B1A49950 /* ATSWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSWelcomeWindowController.h; sourceTree = "<group>"; };
 		B3139F2190550EFAC88A7DC9 /* ATSArchiveFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSArchiveFileWrapper.h; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 				918AE7F117954FCC00FD6F07 /* MainMenu.xib */,
 				918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */,
 				918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */,
+				B313995CCFF27B7EC60D0DB3 /* ATSNotificationDefinitions.h */,
 			);
 			name = AppDelegate;
 			sourceTree = "<group>";

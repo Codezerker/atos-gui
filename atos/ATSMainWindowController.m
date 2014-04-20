@@ -8,6 +8,7 @@
 
 #import "ATSMainWindowController.h"
 #import "ATSSymbolParser.h"
+#import "ATSArchiveFileWrapper.h"
 #import "NSColor+ATSAddition.h"
 
 
@@ -15,9 +16,10 @@ static const CGFloat kFontSize    = 13.0f;
 static const CGFloat kLineHeight  = 14.0f;
 static const CGFloat kLineSpacing = 8.0f;
 
-@interface ATSMainWindowController ()<ATSSymbolParserDelegate>
+@interface ATSMainWindowController ()<ATSSymbolParserDelegate, NSWindowDelegate>
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
+@property (nonatomic, strong) ATSArchiveFileWrapper *fileWrapper;
 @property (nonatomic, strong) ATSSymbolParser *symbolParser;
 
 @end
@@ -25,10 +27,11 @@ static const CGFloat kLineSpacing = 8.0f;
 
 @implementation ATSMainWindowController
 
-#pragma mark - View Controller Lifecycle
+#pragma mark - Window Lifecycle
 
-- (instancetype)init {
+- (instancetype)initWithArchiveFileWrapper:(ATSArchiveFileWrapper *)fileWrapper {
     if (self = [super initWithWindowNibName:[self className]]) {
+        _fileWrapper = fileWrapper;
         _symbolParser = [[ATSSymbolParser alloc] initWithDelegate:self];
     }
     
@@ -39,11 +42,13 @@ static const CGFloat kLineSpacing = 8.0f;
 - (void)windowDidLoad {
     [super windowDidLoad];
     [self setupViews];
-    [self performSetExecutable];
+    [self setupParser];
 }
 
 
 - (void)setupViews {
+    [self.window setDelegate:self];
+
     // Preferred text font is SourceCodePro-Regular
     NSFont *textFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:kFontSize];
 
@@ -65,31 +70,28 @@ static const CGFloat kLineSpacing = 8.0f;
 }
 
 
-#pragma mark - Action
+- (void)setupParser {
+    // TODO: Adapt fileWrapper in symbolParser
+    NSString *appPath = [self.fileWrapper.fileURL path];
+    [self.symbolParser setApplicationLocationWithFilePath:appPath];
 
-- (void)performSetExecutable {
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    [openPanel setCanChooseFiles:YES];
-    [openPanel setCanChooseDirectories:NO];
-    [openPanel setAllowsMultipleSelection:NO];
-    [openPanel setAllowedFileTypes:@[@"app", @"xcarchive"]];
-
-    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            NSString *appPath = [[openPanel.URLs firstObject] path];
-            [self.symbolParser setApplicationLocationWithFilePath:appPath];
-
-            if (self.symbolParser.applicationFilePath.length > 0) {
-                self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
-                                                               self.symbolParser.applicationName,
-                                                               self.symbolParser.applicationFilePath];
-            } else {
-                self.window.title = self.symbolParser.applicationName;
-            }
-        }
-    }];
+    if (self.symbolParser.applicationFilePath.length > 0) {
+        self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
+                                                       self.symbolParser.applicationName,
+                                                       self.symbolParser.applicationFilePath];
+    } else {
+        self.window.title = self.symbolParser.applicationName;
+    }
 }
 
+
+- (BOOL)windowShouldClose:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ATSMainWindowDidCloseNotification object:self];
+    return YES;
+}
+
+
+#pragma mark - Action
 
 - (void)performReSymbolicate {
     [self.textView scrollPoint:NSZeroPoint];

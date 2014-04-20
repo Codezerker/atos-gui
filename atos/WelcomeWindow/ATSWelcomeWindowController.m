@@ -7,6 +7,7 @@
 //
 
 #import "ATSWelcomeWindowController.h"
+#import "ATSMainWindowController.h"
 #import "ATSArchiveFileWrapper.h"
 #import "ATSArchiveFileTableCellView.h"
 
@@ -59,6 +60,7 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
 - (void)setupTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.doubleAction = @selector(tableViewDidBeDoubleClicked:);
 }
 
 
@@ -95,6 +97,14 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
 
 
 #pragma mark - NSTableView Delegate & Data Source
+
+- (void)tableViewDidBeDoubleClicked:(id)sender {
+    ATSArchiveFileWrapper *fileWrapper = self.archiveFileWrappers[(NSUInteger) self.tableView.clickedRow];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ATSArchiveDidBeSelectedNotification
+                                                        object:self
+                                                      userInfo:@{ATSArchiveFileWrapperKey:fileWrapper}];
+}
+
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.archiveFileWrappers.count;

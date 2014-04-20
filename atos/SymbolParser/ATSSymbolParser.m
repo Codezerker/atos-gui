@@ -149,6 +149,8 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.delegate symbolParser:self didFindValidSymbol:symbol fromAddress:address];
                     });
+                } else {
+                    *stop = YES;
                 }
             }
         }

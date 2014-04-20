@@ -10,6 +10,9 @@
 
 @interface ATSArchiveFileWrapper : NSObject
 
+@property (nonatomic, strong, readonly) NSURL *fileURL;
+@property (nonatomic, strong, readonly) NSDictionary *archiveBundleInfo;
+
 @property (nonatomic, strong, readonly) NSImage *fileIcon;
 @property (nonatomic, strong, readonly) NSImage *appIcon;
 @property (nonatomic, strong, readonly) NSString *appName;

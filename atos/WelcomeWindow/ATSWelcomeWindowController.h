@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 eyeplum. All rights reserved.
 //
 
-
-
 @interface ATSWelcomeWindowController : NSWindowController
 
 @end

@@ -63,8 +63,6 @@
 - (NSDictionary *)archiveBundleInfo {
     if (!_archiveBundleInfo) {
         _archiveBundleInfo = [[NSBundle bundleWithURL:_fileURL] infoDictionary];
-
-        NSLog(@"%@", _archiveBundleInfo);
     }
 
     return _archiveBundleInfo;

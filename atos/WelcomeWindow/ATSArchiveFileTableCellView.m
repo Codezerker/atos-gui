@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet NSImageView *iconView;
 @property (nonatomic, weak) IBOutlet NSTextField *nameLabel;
 @property (nonatomic, weak) IBOutlet NSTextField *dateLabel;
+@property (nonatomic, weak) IBOutlet NSTextField *statusLabel;
 
 @end
 
@@ -25,7 +26,11 @@
 
     self.iconView.image = fileWrapper.appIcon;
     self.nameLabel.stringValue = [NSString stringWithFormat:@"%@ %@", fileWrapper.appName, fileWrapper.appVersion] ?: @"";
-    self.dateLabel.stringValue = [fileWrapper.appCreationDate description] ?: @"";
+
+    self.dateLabel.stringValue =
+            [fileWrapper.appCreationDate descriptionWithCalendarFormat:@"%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil] ?: @"";
+
+    [self.statusLabel setHidden:!fileWrapper.isSubmittedToAppStore.boolValue];
 }
 
 @end

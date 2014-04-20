@@ -16,6 +16,7 @@
 @property (nonatomic, strong, readonly) NSString *appVersion;
 @property (nonatomic, strong, readonly) NSString *appComment;
 @property (nonatomic, strong, readonly) NSDate *appCreationDate;
+@property (nonatomic, strong, readonly, getter=isSubmittedToAppStore) NSNumber *submittedToAppStore;
 
 + (instancetype)fileWrapperWithURL:(NSURL *)fileURL;
 - (instancetype)initWithFileURL:(NSURL *)fileURL;

@@ -26,7 +26,7 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
 
 @implementation ATSWelcomeWindowController
 
-#pragma mark - Initialier
+#pragma mark - Initializer
 
 - (id)init {
     if (self = [super initWithWindowNibName:[self className]]) {

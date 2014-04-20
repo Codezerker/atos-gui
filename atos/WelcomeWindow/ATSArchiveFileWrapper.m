@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *appVersion;
 @property (nonatomic, strong) NSString *appComment;
 @property (nonatomic, strong) NSDate *appCreationDate;
+@property (nonatomic, strong, getter=isSubmittedToAppStore) NSNumber *submittedToAppStore;
 
 @end
 
@@ -62,6 +63,8 @@
 - (NSDictionary *)archiveBundleInfo {
     if (!_archiveBundleInfo) {
         _archiveBundleInfo = [[NSBundle bundleWithURL:_fileURL] infoDictionary];
+
+        NSLog(@"%@", _archiveBundleInfo);
     }
 
     return _archiveBundleInfo;
@@ -122,6 +125,15 @@
     }
 
     return _appComment;
+}
+
+
+- (NSNumber *)isSubmittedToAppStore {
+    if (!_submittedToAppStore) {
+        _submittedToAppStore = @([self.archiveBundleInfo[@"Status"] isEqualToString:@"Submitted"]);
+    }
+
+    return _submittedToAppStore;
 }
 
 @end

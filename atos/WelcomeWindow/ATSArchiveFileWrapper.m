@@ -13,10 +13,14 @@
 @interface ATSArchiveFileWrapper ()
 
 @property (nonatomic, strong) NSURL *fileURL;
+@property (nonatomic, strong) NSDictionary *archiveBundleInfo;
 
 @property (nonatomic, strong) NSImage *fileIcon;
+@property (nonatomic, strong) NSImage *appIcon;
 @property (nonatomic, strong) NSString *appName;
-@property (nonatomic, strong) NSDate *creationDate;
+@property (nonatomic, strong) NSString *appVersion;
+@property (nonatomic, strong) NSString *appComment;
+@property (nonatomic, strong) NSDate *appCreationDate;
 
 @end
 
@@ -41,6 +45,8 @@
 
 #pragma mark - Getters
 
+#pragma mark - File Properties
+
 - (NSImage *)fileIcon {
     if (!_fileIcon) {
         _fileIcon = [_fileURL ats_valueForProperty:NSURLEffectiveIconKey];
@@ -50,21 +56,72 @@
 }
 
 
+#pragma mark - Bundle Properties
+
+
+- (NSDictionary *)archiveBundleInfo {
+    if (!_archiveBundleInfo) {
+        _archiveBundleInfo = [[NSBundle bundleWithURL:_fileURL] infoDictionary];
+    }
+
+    return _archiveBundleInfo;
+}
+
+
+- (NSImage *)appIcon {
+    if (!_appIcon) {
+        NSString *iconPath = [self.archiveBundleInfo[@"ApplicationProperties"][@"IconPaths"] firstObject];
+        if (iconPath) {
+            NSURL *iconURL = [[_fileURL URLByAppendingPathComponent:@"Products"] URLByAppendingPathComponent:iconPath];
+            _appIcon = [[NSImage alloc] initWithContentsOfURL:iconURL];
+        } else {
+            _appIcon = [self fileIcon];
+        }
+    }
+
+    return _appIcon;
+}
+
+
 - (NSString *)appName {
     if (!_appName) {
-        _appName = @"<App Name>";
+        _appName = self.archiveBundleInfo[@"Name"];
     }
 
     return _appName;
 }
 
 
-- (NSDate *)creationDate {
-    if (!_creationDate) {
-        _creationDate = [_fileURL ats_valueForProperty:NSURLCreationDateKey];
+- (NSString *)appVersion {
+    if (!_appVersion) {
+        NSDictionary *info = self.archiveBundleInfo;
+        _appVersion = info[@"ApplicationProperties"][@"CFBundleShortVersionString"];
+
+        NSString *versionNumber = info[@"ApplicationProperties"][@"CFBundleVersion"];
+        if (versionNumber.length > 0 && ![_appVersion isEqualToString:versionNumber]) {
+            _appVersion = [_appVersion stringByAppendingFormat:@" (%@)", versionNumber];
+        }
     }
 
-    return _creationDate;
+    return _appVersion;
+}
+
+
+- (NSDate *)appCreationDate {
+    if (!_appCreationDate) {
+        _appCreationDate = self.archiveBundleInfo[@"CreationDate"];
+    }
+
+    return _appCreationDate;
+}
+
+
+- (NSString *)appComment {
+    if (!_appComment) {
+        _appComment = self.archiveBundleInfo[@"Comment"];
+    }
+
+    return _appComment;
 }
 
 @end

@@ -23,9 +23,9 @@
 - (void)setFileWrapper:(ATSArchiveFileWrapper *)fileWrapper {
     _fileWrapper = fileWrapper;
 
-    self.iconView.image = fileWrapper.fileIcon;
-    self.nameLabel.stringValue = fileWrapper.appName;
-    self.dateLabel.stringValue = [fileWrapper.creationDate description];
+    self.iconView.image = fileWrapper.appIcon;
+    self.nameLabel.stringValue = [NSString stringWithFormat:@"%@ %@", fileWrapper.appName, fileWrapper.appVersion] ?: @"";
+    self.dateLabel.stringValue = [fileWrapper.appCreationDate description] ?: @"";
 }
 
 @end

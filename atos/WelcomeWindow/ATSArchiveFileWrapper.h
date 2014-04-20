@@ -11,8 +11,11 @@
 @interface ATSArchiveFileWrapper : NSObject
 
 @property (nonatomic, strong, readonly) NSImage *fileIcon;
+@property (nonatomic, strong, readonly) NSImage *appIcon;
 @property (nonatomic, strong, readonly) NSString *appName;
-@property (nonatomic, strong, readonly) NSDate *creationDate;
+@property (nonatomic, strong, readonly) NSString *appVersion;
+@property (nonatomic, strong, readonly) NSString *appComment;
+@property (nonatomic, strong, readonly) NSDate *appCreationDate;
 
 + (instancetype)fileWrapperWithURL:(NSURL *)fileURL;
 - (instancetype)initWithFileURL:(NSURL *)fileURL;

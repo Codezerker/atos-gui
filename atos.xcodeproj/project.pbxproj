@@ -22,6 +22,8 @@
 		918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7EB17954FCC00FD6F07 /* Credits.rtf */; };
 		918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */; };
 		918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7F117954FCC00FD6F07 /* MainMenu.xib */; };
+		B31394BF1264DAB2AC670EDE /* ATSWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */; };
+		B313954ED580F4881CBCB02F /* ATSWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,9 @@
 		918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSAppDelegate.h; sourceTree = "<group>"; };
 		918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSAppDelegate.m; sourceTree = "<group>"; };
 		918AE7F217954FCC00FD6F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ATSWelcomeWindowController.xib; sourceTree = "<group>"; };
+		B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSWelcomeWindowController.m; sourceTree = "<group>"; };
+		B3139D999A4EBA07B1A49950 /* ATSWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSWelcomeWindowController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,7 @@
 				91EB82AF17995FD8003ABE7F /* Category */,
 				918AE7E317954FCC00FD6F07 /* Supporting Files */,
 				523C575D8DB210B7A678A2CC /* SymbolParser */,
+				B31392E47CBFA5C94A738A4A /* WelcomeWindow */,
 			);
 			path = atos;
 			sourceTree = "<group>";
@@ -207,6 +213,16 @@
 				912E2A371798114100804718 /* ATSMainWindowController.xib */,
 			);
 			name = MainWindow;
+			sourceTree = "<group>";
+		};
+		B31392E47CBFA5C94A738A4A /* WelcomeWindow */ = {
+			isa = PBXGroup;
+			children = (
+				B3139D999A4EBA07B1A49950 /* ATSWelcomeWindowController.h */,
+				B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */,
+				B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */,
+			);
+			path = WelcomeWindow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +315,7 @@
 				918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */,
 				0B4F1C321796D968001FA5EF /* atos.iconset in Resources */,
 				918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */,
+				B31394BF1264DAB2AC670EDE /* ATSWelcomeWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +357,7 @@
 				523C5B23690CA9B401C88DC0 /* NSTask+EasyExecute.m in Sources */,
 				523C5065C77978C2B16CEF0A /* ATSSymbolParser.m in Sources */,
 				523C527B68520F0EEB2165C6 /* NSColor+ATSAddition.m in Sources */,
+				B313954ED580F4881CBCB02F /* ATSWelcomeWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

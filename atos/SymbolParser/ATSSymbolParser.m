@@ -20,6 +20,8 @@ static NSString * const kAddressRegex = @"0[xX][0-9a-fA-F]+";
 static NSString * kLoadAddressRegexString;
 static NSString * kAddressRegexString;
 
+static NSString * const kSampleLoadAddressHead = @"load address ";
+static NSString * kSampleLoadAddressRegexString;
 
 @interface ATSSymbolParser ()
 
@@ -41,6 +43,7 @@ static NSString * kAddressRegexString;
     if (self = [super init]) {
         kLoadAddressRegexString = [NSString stringWithFormat:@"(%@ %@)", kAddressRegex, kAddressRegex];
         kAddressRegexString = [NSString stringWithFormat:@"(%@)", kAddressRegex];
+        kSampleLoadAddressRegexString = [NSString stringWithFormat:@"(%@%@)", kSampleLoadAddressHead, kAddressRegex];
         
         _parsingQueue = dispatch_queue_create("com.eyeplum.atos.parsing", NULL);
         _delegate = delegate;
@@ -162,7 +165,6 @@ static NSString * kAddressRegexString;
 
 
 - (NSString *)internalLoadAddress {
-
     NSRegularExpression *loadAddressRegex = [NSRegularExpression regularExpressionWithPattern:kLoadAddressRegexString
                                                                                       options:0
                                                                                         error:NULL];
@@ -173,14 +175,36 @@ static NSString * kAddressRegexString;
     NSTextCheckingResult *loadAddressMatch = [loadMatches lastObject];
 
     if (!loadAddressMatch) {
-        return @"";
+        return [self sampleLoadAddress];
     }
 
     NSString *loadAddress = [self.symbolString substringWithRange:loadAddressMatch.range];
     NSArray *addressComponents = [loadAddress componentsSeparatedByString:@" "];
+    
     loadAddress = [addressComponents lastObject];
 
     return loadAddress;
+}
+
+
+- (NSString *)sampleLoadAddress {
+    NSRegularExpression *loadAddressRegex = [NSRegularExpression regularExpressionWithPattern:kSampleLoadAddressRegexString
+                                                                                      options:0
+                                                                                        error:NULL];
+    
+    NSArray *loadMatches = [loadAddressRegex matchesInString:self.symbolString
+                                                     options:0
+                                                       range:NSMakeRange(0, self.symbolString.length)];
+    
+    NSTextCheckingResult *loadAddressMatch = [loadMatches lastObject];
+    
+    if (!loadAddressMatch) {
+        return nil;
+    }
+    
+    NSString *matchString = [self.symbolString substringWithRange:loadAddressMatch.range];
+    
+    return [matchString stringByReplacingOccurrencesOfString:kSampleLoadAddressHead withString:@""];
 }
 
 

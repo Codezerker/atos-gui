@@ -23,6 +23,7 @@
 		918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7EB17954FCC00FD6F07 /* Credits.rtf */; };
 		918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */; };
 		918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 918AE7F117954FCC00FD6F07 /* MainMenu.xib */; };
+		91E6A6A019658B60005803FC /* atos in Resources */ = {isa = PBXBuildFile; fileRef = 91E6A69F19658B60005803FC /* atos */; };
 		B3139020977A0D2B2FCF16E3 /* ATSArchiveFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */; };
 		B31391243D89ED742EB33F4B /* ATSArchiveFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139780C17AD6F6F8B85C9C /* ATSArchiveFileWrapper.m */; };
 		B31394BF1264DAB2AC670EDE /* ATSWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */; };
@@ -73,6 +74,7 @@
 		918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSAppDelegate.h; sourceTree = "<group>"; };
 		918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSAppDelegate.m; sourceTree = "<group>"; };
 		918AE7F217954FCC00FD6F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		91E6A69F19658B60005803FC /* atos */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = atos; sourceTree = "<group>"; };
 		B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ATSWelcomeWindowController.xib; sourceTree = "<group>"; };
 		B31392B5092BB1DB8285D772 /* ATSArchiveFileTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSArchiveFileTableCellView.h; sourceTree = "<group>"; };
 		B31392C5001CF9BC34071426 /* ATSArchiveFileTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSArchiveFileTableCellView.m; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		523C575D8DB210B7A678A2CC /* SymbolParser */ = {
 			isa = PBXGroup;
 			children = (
+				91E6A69F19658B60005803FC /* atos */,
 				523C5085B02B067DA30384D0 /* ATSSymbolParser.h */,
 				523C54F702D5D75F26CB7E2F /* ATSSymbolParser.m */,
 			);
@@ -335,6 +338,7 @@
 				918AE7E717954FCC00FD6F07 /* InfoPlist.strings in Resources */,
 				912E2A391798114100804718 /* ATSMainWindowController.xib in Resources */,
 				0BC9BC471903CE680059C044 /* Media.xcassets in Resources */,
+				91E6A6A019658B60005803FC /* atos in Resources */,
 				918AE7ED17954FCC00FD6F07 /* Credits.rtf in Resources */,
 				0B4F1C321796D968001FA5EF /* atos.iconset in Resources */,
 				918AE7F317954FCC00FD6F07 /* MainMenu.xib in Resources */,

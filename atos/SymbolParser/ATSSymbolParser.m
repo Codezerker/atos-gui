@@ -203,8 +203,10 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
         return address;
     }
 
-    NSString *shellCommand = [NSString stringWithFormat:@"cd %@; xcrun atos -o %@.app/Contents/MacOS/%@ -l %@ %@",
+    NSString *atosBinaryPath = [[NSBundle mainBundle] pathForResource:@"atos" ofType:nil];
+    NSString *shellCommand = [NSString stringWithFormat:@"cd %@; %@ -o %@.app/Contents/MacOS/%@ -l %@ %@",
                                                         self.internalApplicationFilePath,
+                                                        atosBinaryPath,
                                                         self.internalApplicationName,
                                                         self.internalApplicationName,
                                                         baseAddress,

@@ -16,8 +16,9 @@ static NSString * const kAppExt       = @".app";
 static NSString * const kdSYMDirName  = @"dSYMs";
 static NSString * const kAppDirName   = @"Products/Applications";
 
-static NSString * const kBaseAddressRegexString     = @"(0[xX][0-9a-fA-F]+ 0[xX][0-9a-fA-F]+)";
-static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
+static NSString * const kAddressRegex = @"0[xX][0-9a-fA-F]+";
+static NSString * kLoadAddressRegexString;
+static NSString * kAddressRegexString;
 
 
 @interface ATSSymbolParser ()
@@ -38,6 +39,9 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 
 - (instancetype)initWithDelegate:(id <ATSSymbolParserDelegate>)delegate {
     if (self = [super init]) {
+        kLoadAddressRegexString = [NSString stringWithFormat:@"(%@ %@)", kAddressRegex, kAddressRegex];
+        kAddressRegexString = [NSString stringWithFormat:@"(%@)", kAddressRegex];
+        
         _parsingQueue = dispatch_queue_create("com.eyeplum.atos.parsing", NULL);
         _delegate = delegate;
     }
@@ -85,7 +89,7 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 
 
 - (NSString *)loadAddress {
-    return [[self baseAddress] copy];
+    return [[self internalLoadAddress] copy];
 }
 
 
@@ -102,7 +106,7 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
     self.symbolString = symbolString;
 
     dispatch_async(self.parsingQueue, ^{
-        [self reSymbolicateWithBaseAddress:[self baseAddress]
+        [self reSymbolicateWithLoadAddress:[self loadAddress]
                              matchesString:[self matchesString]];
     });
 }
@@ -133,16 +137,16 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 }
 
 
-- (void)reSymbolicateWithBaseAddress:(NSString *)baseAddress matchesString:(NSArray *)matchesString {
+- (void)reSymbolicateWithLoadAddress:(NSString *)loadAddress matchesString:(NSArray *)matchesString {
 
-    if (baseAddress.length == 0) {
+    if (loadAddress.length == 0) {
         return;
     }
 
     [[matchesString copy] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *address = (NSString *)obj;
-        if (![address isEqualToString:baseAddress]) {
-            NSString *symbol = [self reSymbolicateAddress:address baseAddress:baseAddress];
+        if (![address isEqualToString:loadAddress]) {
+            NSString *symbol = [self reSymbolicateAddress:address loadAddress:loadAddress];
             if (![symbol isEqualToString:address]) {
                 if (self.delegate && [self.delegate respondsToSelector:@selector(symbolParser:didFindValidSymbol:fromAddress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -157,26 +161,26 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 }
 
 
-- (NSString *)baseAddress {
+- (NSString *)internalLoadAddress {
 
-    NSRegularExpression *baseAddressRegex = [NSRegularExpression regularExpressionWithPattern:kBaseAddressRegexString
+    NSRegularExpression *loadAddressRegex = [NSRegularExpression regularExpressionWithPattern:kLoadAddressRegexString
                                                                                       options:0
                                                                                         error:NULL];
-    NSArray *baseMatches = [baseAddressRegex matchesInString:self.symbolString
+    NSArray *loadMatches = [loadAddressRegex matchesInString:self.symbolString
                                                      options:0
                                                        range:NSMakeRange(0, self.symbolString.length)];
 
-    NSTextCheckingResult *baseAddressMatch = [baseMatches lastObject];
+    NSTextCheckingResult *loadAddressMatch = [loadMatches lastObject];
 
-    if (!baseAddressMatch) {
+    if (!loadAddressMatch) {
         return @"";
     }
 
-    NSString *baseAddress = [self.symbolString substringWithRange:baseAddressMatch.range];
-    NSArray *addressComponents = [baseAddress componentsSeparatedByString:@" "];
-    baseAddress = [addressComponents lastObject];
+    NSString *loadAddress = [self.symbolString substringWithRange:loadAddressMatch.range];
+    NSArray *addressComponents = [loadAddress componentsSeparatedByString:@" "];
+    loadAddress = [addressComponents lastObject];
 
-    return baseAddress;
+    return loadAddress;
 }
 
 
@@ -198,7 +202,7 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 }
 
 
-- (NSString *)reSymbolicateAddress:(NSString *)address baseAddress:(NSString *)baseAddress {
+- (NSString *)reSymbolicateAddress:(NSString *)address loadAddress:(NSString *)loadAddress {
     if (!self.internalApplicationFilePath) {
         return address;
     }
@@ -209,7 +213,7 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
                                                         atosBinaryPath,
                                                         self.internalApplicationName,
                                                         self.internalApplicationName,
-                                                        baseAddress,
+                                                        loadAddress,
                                                         address];
 
     NSString *symbol = [NSTask executeAndReturnStdOut:@"/bin/sh" arguments:@[@"-c", shellCommand]];

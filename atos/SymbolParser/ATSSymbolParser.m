@@ -16,8 +16,7 @@ static NSString * const kAppExt       = @".app";
 static NSString * const kdSYMDirName  = @"dSYMs";
 static NSString * const kAppDirName   = @"Products/Applications";
 
-static NSString * const kBaseAddressRegexString     = @"(0[xX][0-9a-fA-F]+) \\+ ([0-9]+)";
-static NSString * const kBaseAddressTailRegexString = @" \\+ ([0-9]+)";
+static NSString * const kBaseAddressRegexString     = @"(0[xX][0-9a-fA-F]+ 0[xX][0-9a-fA-F]+)";
 static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
 
 
@@ -174,15 +173,8 @@ static NSString * const kAddressRegexString         = @"(0[xX][0-9a-fA-F]+)";
     }
 
     NSString *baseAddress = [self.symbolString substringWithRange:baseAddressMatch.range];
-
-    NSRegularExpression *baseAddressTail = [NSRegularExpression regularExpressionWithPattern:kBaseAddressTailRegexString
-                                                                                     options:0
-                                                                                       error:NULL];
-
-    baseAddress = [baseAddressTail stringByReplacingMatchesInString:baseAddress
-                                                            options:0
-                                                              range:NSMakeRange(0, baseAddress.length)
-                                                       withTemplate:@""];
+    NSArray *addressComponents = [baseAddress componentsSeparatedByString:@" "];
+    baseAddress = [addressComponents lastObject];
 
     return baseAddress;
 }

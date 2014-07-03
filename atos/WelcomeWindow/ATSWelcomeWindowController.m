@@ -85,7 +85,7 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
             }
         }
     }
-    self.archiveFileWrappers = wrappers;
+    self.archiveFileWrappers = [[wrappers reverseObjectEnumerator] allObjects];
 
     [self.tableView reloadData];
 }

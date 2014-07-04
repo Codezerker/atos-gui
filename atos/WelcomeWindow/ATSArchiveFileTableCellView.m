@@ -25,7 +25,10 @@
     _fileWrapper = fileWrapper;
 
     self.iconView.image = fileWrapper.appIcon;
-    self.nameLabel.stringValue = [NSString stringWithFormat:@"%@ %@", fileWrapper.appName, fileWrapper.appVersion] ?: @"";
+    
+    self.nameLabel.stringValue = [NSString stringWithFormat:@"%@ %@",
+                                  fileWrapper.appName,
+                                  fileWrapper.appComment ?: fileWrapper.appVersion] ?: @"";
 
     self.dateLabel.stringValue =
             [fileWrapper.appCreationDate descriptionWithCalendarFormat:@"%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil] ?: @"";

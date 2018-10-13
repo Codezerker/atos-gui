@@ -9,3 +9,7 @@ A GUI wrapper for [atos](https://developer.apple.com/library/archive/technotes/t
 3. Chose __YourApp.app__
 4. Paste the crash log into __atos-gui__
 5. Press __⌘R__ to re-symbolicate
+
+### Manually Set Load Address
+
+Normally __atos-gui__ should be able to find the load address from the crash log, if it fails to find it, you can manually set it at the buttom text field.

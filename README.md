@@ -1,6 +1,6 @@
 # atos-gui
 
-A GUI wrapper for [atos(1)](x-man-page://atos)
+A GUI wrapper for [atos](https://developer.apple.com/library/archive/technotes/tn2151/_index.html#//apple_ref/doc/uid/DTS40008184-CH1-SYMBOLICATE_WITH_ATOS)
 
 ## How to use
 

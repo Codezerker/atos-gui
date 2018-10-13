@@ -19,7 +19,7 @@ static const CGFloat kLineSpacing = 8.0f;
 @interface ATSMainWindowController ()<ATSSymbolParserDelegate, NSWindowDelegate>
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
-@property (nonatomic, strong) ATSArchiveFileWrapper *fileWrapper;
+@property (nonatomic, weak) IBOutlet NSTextField *loadAddressTextField;
 @property (nonatomic, strong) ATSSymbolParser *symbolParser;
 
 @end
@@ -29,10 +29,10 @@ static const CGFloat kLineSpacing = 8.0f;
 
 #pragma mark - Window Lifecycle
 
-- (instancetype)initWithArchiveFileWrapper:(ATSArchiveFileWrapper *)fileWrapper {
+- (instancetype)initWithAppFileURL:(NSURL *)appFileURL {
     if (self = [super initWithWindowNibName:[self className]]) {
-        _fileWrapper = fileWrapper;
         _symbolParser = [[ATSSymbolParser alloc] initWithDelegate:self];
+        [_symbolParser setApplicationLocationWithFilePath:[appFileURL path]];
     }
     
     return self;
@@ -71,10 +71,6 @@ static const CGFloat kLineSpacing = 8.0f;
 
 
 - (void)setupParser {
-    // TODO: Adapt fileWrapper in symbolParser
-    NSString *appPath = [self.fileWrapper.fileURL path];
-    [self.symbolParser setApplicationLocationWithFilePath:appPath];
-
     if (self.symbolParser.applicationFilePath.length > 0) {
         self.window.title = [NSString stringWithFormat:@"%@ - (%@)",
                                                        self.symbolParser.applicationName,
@@ -93,9 +89,14 @@ static const CGFloat kLineSpacing = 8.0f;
 
 #pragma mark - Action
 
-- (void)performReSymbolicate {
+- (IBAction)performReSymbolicate:(id)sender {
     [self.textView scrollPoint:NSZeroPoint];
     [self.symbolParser parseWithString:self.textView.string];
+}
+
+
+- (IBAction)updateLoadAddress:(id)sender {
+    [self.symbolParser setLoadAddress:self.loadAddressTextField.stringValue];
 }
 
 
@@ -109,6 +110,8 @@ static const CGFloat kLineSpacing = 8.0f;
 
     [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor ats_highlightedTextColor]}
                                        range:[self.textView.string rangeOfString:symbol]];
+    
+    [self.loadAddressTextField setStringValue:parser.loadAddress];
 }
 
 @end

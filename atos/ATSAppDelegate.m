@@ -17,24 +17,27 @@
 @property (nonatomic, strong) ATSWelcomeWindowController *welcomeWindowController;
 @property (nonatomic, strong) ATSMainWindowController *mainWindowController;
 
-- (IBAction)performReSymbolicate:(id)sender;
-- (IBAction)performSetExecutable:(id)sender;
-
 @end
 
 
 @implementation ATSAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"NSApplicationCrashOnExceptions" : @YES}];
+    
     [self.window orderOut:self];
 
     self.welcomeWindowController = [[ATSWelcomeWindowController alloc] init];
     [self.welcomeWindowController.window makeKeyAndOrderFront:self];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(archiveDidBeSelected:)
-                                                 name:ATSArchiveDidBeSelectedNotification
+                                             selector:@selector(welcomeWindowDidSelectArchive:)
+                                                 name:ATSWelcomeWindowDidSelectArchiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(welcomeWindowDidSelectApp:)
+                                                 name:ATSWelcomeWindowDidSelectAppNotification
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -51,7 +54,6 @@
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
     if (!flag) {
-        // TODO: handle reopen when main window is key
         [self.welcomeWindowController.window makeKeyAndOrderFront:self];
     }
     
@@ -59,10 +61,19 @@
 }
 
 
-- (void)archiveDidBeSelected:(NSNotification *)notification {
+- (void)welcomeWindowDidSelectArchive:(NSNotification *)notification {
     ATSArchiveFileWrapper *fileWrapper = notification.userInfo[ATSArchiveFileWrapperKey];
-    self.mainWindowController = [[ATSMainWindowController alloc] initWithArchiveFileWrapper:fileWrapper];
+    self.mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileWrapper.fileURL];
 
+    [self.welcomeWindowController.window orderOut:self];
+    [self.mainWindowController.window makeKeyAndOrderFront:self];
+}
+
+
+- (void)welcomeWindowDidSelectApp:(NSNotification *)notification {
+    NSURL *fileURL = notification.userInfo[ATSAppFileURLKey];
+    self.mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileURL];
+    
     [self.welcomeWindowController.window orderOut:self];
     [self.mainWindowController.window makeKeyAndOrderFront:self];
 }
@@ -71,16 +82,6 @@
 - (void)mainWindowDidClose:(__unused NSNotification *)notification {
     self.mainWindowController = nil;
     [self.welcomeWindowController.window makeKeyAndOrderFront:self];
-}
-
-
-- (IBAction)performReSymbolicate:(id)sender {
-    [self.mainWindowController performReSymbolicate];
-}
-
-
-- (IBAction)performSetExecutable:(id)sender {
-    // [self.mainWindowController performSetExecutable];
 }
 
 @end

@@ -35,7 +35,9 @@ static NSString * kSampleLoadAddressRegexString;
 @end
 
 
-@implementation ATSSymbolParser
+@implementation ATSSymbolParser {
+    NSString *_loadAddress;
+}
 
 #pragma mark - Public Methods
 
@@ -45,7 +47,7 @@ static NSString * kSampleLoadAddressRegexString;
         kAddressRegexString = [NSString stringWithFormat:@"(%@)", kAddressRegex];
         kSampleLoadAddressRegexString = [NSString stringWithFormat:@"(%@%@)", kSampleLoadAddressHead, kAddressRegex];
         
-        _parsingQueue = dispatch_queue_create("com.eyeplum.atos.parsing", NULL);
+        _parsingQueue = dispatch_queue_create("com.codezerker.atos.parsing", NULL);
         _delegate = delegate;
     }
 
@@ -92,7 +94,16 @@ static NSString * kSampleLoadAddressRegexString;
 
 
 - (NSString *)loadAddress {
-    return [[self internalLoadAddress] copy];
+    if (!_loadAddress) {
+        return [[self internalLoadAddress] copy];
+    } else {
+        return [_loadAddress copy];
+    }
+}
+
+
+- (void)setLoadAddress:(NSString *)loadAddress {
+    _loadAddress = [loadAddress copy];
 }
 
 
@@ -231,7 +242,12 @@ static NSString * kSampleLoadAddressRegexString;
         return address;
     }
 
-    NSString *atosBinaryPath = [[NSBundle mainBundle] pathForResource:@"atos" ofType:nil];
+    // Assuming atos is installed at "/usr/bin/atos"
+    NSString *atosBinaryPath = @"/usr/bin/atos";
+    
+    // Assuming the .app bundle's filename is always the same as the executable name
+    // FIXME: Find application name from .app bundle's Info.plist
+    // TODO: Optimize performance by passing multiple symbol addresses to the shell command
     NSString *shellCommand = [NSString stringWithFormat:@"cd %@; %@ -o %@.app/Contents/MacOS/%@ -l %@ %@",
                                                         self.internalApplicationFilePath,
                                                         atosBinaryPath,

@@ -9,4 +9,3 @@ A GUI wrapper for [atos](https://developer.apple.com/library/archive/technotes/t
 3. Chose __YourApp.app__
 4. Paste the crash log into __atos-gui__
 5. Press __⌘R__ to re-symbolicate
-0. Press __⌘⇧E__ to chose another .app file

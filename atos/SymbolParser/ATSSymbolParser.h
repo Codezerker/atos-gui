@@ -22,9 +22,9 @@
 @property (nonatomic, strong, readonly) NSString *applicationName;
 @property (nonatomic, strong, readonly) NSString *applicationFilePath;
 @property (nonatomic, strong, readonly) NSString *symbolString;
-@property (nonatomic, strong, readonly) NSString *loadAddress;
 @property (nonatomic, strong, readonly) NSArray  *symbolAddresses;
 
+@property (nonatomic, strong) NSString *loadAddress;
 @property (nonatomic, weak) id<ATSSymbolParserDelegate> delegate;
 
 - (instancetype)initWithDelegate:(id<ATSSymbolParserDelegate>)delegate;

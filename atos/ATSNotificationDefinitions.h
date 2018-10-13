@@ -9,9 +9,11 @@
 #ifndef atos_ATSNotificationDefinitions____FILEEXTENSION___
 #define atos_ATSNotificationDefinitions____FILEEXTENSION___
 
-static NSString * const ATSArchiveDidBeSelectedNotification      = @"com.eyeplum.atos.archiveSelect";
-static NSString * const ATSArchiveFileWrapperKey                 = @"com.eyeplum.atos.archiveFileWrapper";
+static NSString * const ATSWelcomeWindowDidSelectArchiveNotification = @"com.codezerker.atos.archiveSelect";
+static NSString * const ATSWelcomeWindowDidSelectAppNotification = @"com.codezerker.atos.appSelect";
+static NSString * const ATSArchiveFileWrapperKey = @"com.codezerker.atos.archiveFileWrapper";
+static NSString * const ATSAppFileURLKey = @"com.codezerker.atos.appFileURL";
 
-static NSString * const ATSMainWindowDidCloseNotification = @"com.eyeplum.atos.mainWindowClose";
+static NSString * const ATSMainWindowDidCloseNotification = @"com.codezerker.atos.mainWindowClose";
 
 #endif

@@ -13,7 +13,9 @@
 
 
 static NSString * const kXCArchiveFilePath = @"/Library/Developer/Xcode/Archives";
-static NSString * const kCellID = @"com.eyeplum.archiveCell";
+static NSString * const kCellID = @"com.codezerker.archiveCell";
+static NSString * const kFileExtensionXcodeArchive = @"xcarchive";
+static NSString * const kFileExtensionApplicationBundle = @"app";
 
 
 @interface ATSWelcomeWindowController () <NSTableViewDataSource, NSTableViewDelegate>
@@ -125,12 +127,16 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
     [openPanel setCanChooseFiles:YES];
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowsMultipleSelection:NO];
-    [openPanel setAllowedFileTypes:@[@"xcarchive"]];
+    [openPanel setAllowedFileTypes:@[kFileExtensionXcodeArchive, kFileExtensionApplicationBundle]];
 
     [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
-            ATSArchiveFileWrapper *fileWrapper = [ATSArchiveFileWrapper fileWrapperWithURL:[openPanel.URLs firstObject]];
-            [self postNotificationWithFileWrapper:fileWrapper];
+            if ([[[openPanel.URLs firstObject] pathExtension] isEqualToString:kFileExtensionXcodeArchive]) {
+                ATSArchiveFileWrapper *fileWrapper = [ATSArchiveFileWrapper fileWrapperWithURL:[openPanel.URLs firstObject]];
+                [self postNotificationWithFileWrapper:fileWrapper];
+            } else if ([openPanel.URLs firstObject]) {
+                [self postNotificationWithFileURL:[openPanel.URLs firstObject]];
+            }
         }
     }];
 
@@ -140,9 +146,17 @@ static NSString * const kCellID = @"com.eyeplum.archiveCell";
 #pragma mark - Notification Helper
 
 - (void)postNotificationWithFileWrapper:(ATSArchiveFileWrapper *)fileWrapper {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ATSArchiveDidBeSelectedNotification
+    [[NSNotificationCenter defaultCenter] postNotificationName:ATSWelcomeWindowDidSelectArchiveNotification
                                                         object:self
                                                       userInfo:@{ATSArchiveFileWrapperKey:fileWrapper}];
 }
+
+
+- (void)postNotificationWithFileURL:(NSURL *)fileURL {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ATSWelcomeWindowDidSelectAppNotification
+                                                        object:self
+                                                      userInfo:@{ATSAppFileURLKey:fileURL}];
+}
+
 
 @end

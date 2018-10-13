@@ -12,4 +12,4 @@ A GUI wrapper for [atos](https://developer.apple.com/library/archive/technotes/t
 
 ### Manually Set Load Address
 
-Normally __atos-gui__ should be able to find the load address from the crash log, if it fails to find it, you can manually set it at the buttom text field.
+Normally __atos-gui__ should be able to find the load address in the crash log, if it fails to do so, you can manually set it at the text field on the bottom right of the main window.

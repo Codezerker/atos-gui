@@ -111,7 +111,9 @@ static const CGFloat kLineSpacing = 8.0f;
     [self.textView.textStorage addAttributes:@{NSForegroundColorAttributeName : [NSColor ats_highlightedTextColor]}
                                        range:[self.textView.string rangeOfString:symbol]];
     
-    [self.loadAddressTextField setStringValue:parser.loadAddress];
+    if (parser.loadAddress) {
+        [self.loadAddressTextField setStringValue:parser.loadAddress];
+    }
 }
 
 @end

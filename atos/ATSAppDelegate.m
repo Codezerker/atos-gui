@@ -22,9 +22,7 @@
 
 @implementation ATSAppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"NSApplicationCrashOnExceptions" : @YES}];
-    
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {    
     [self.window orderOut:self];
 
     self.welcomeWindowController = [[ATSWelcomeWindowController alloc] init];

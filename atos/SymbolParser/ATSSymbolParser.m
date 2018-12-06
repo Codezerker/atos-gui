@@ -248,7 +248,7 @@ static NSString * kSampleLoadAddressRegexString;
     // Assuming the .app bundle's filename is always the same as the executable name
     // FIXME: Find application name from .app bundle's Info.plist
     // TODO: Optimize performance by passing multiple symbol addresses to the shell command
-    NSString *shellCommand = [NSString stringWithFormat:@"cd %@; %@ -o %@.app/Contents/MacOS/%@ -l %@ %@",
+    NSString *shellCommand = [NSString stringWithFormat:@"cd \"%@\"; \"%@\" -o \"%@.app/Contents/MacOS/%@\" -l %@ %@",
                                                         self.internalApplicationFilePath,
                                                         atosBinaryPath,
                                                         self.internalApplicationName,

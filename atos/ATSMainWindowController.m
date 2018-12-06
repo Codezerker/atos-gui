@@ -104,7 +104,7 @@ static const CGFloat kLineSpacing = 8.0f;
 
 - (void)symbolParser:(ATSSymbolParser *)parser didFindValidSymbol:(NSString *)symbol fromAddress:(NSString *)address {
     [[self.textView.textStorage mutableString] replaceOccurrencesOfString:address
-                                                               withString:symbol
+                                                               withString:[NSString stringWithFormat:@"%@ %@", address, symbol]
                                                                   options:NSCaseInsensitiveSearch
                                                                     range:NSMakeRange(0, self.textView.textStorage.length)];
 

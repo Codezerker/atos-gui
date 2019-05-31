@@ -91,7 +91,7 @@ static const CGFloat kLineSpacing = 8.0f;
 
 - (IBAction)performReSymbolicate:(id)sender {
     [self.textView scrollPoint:NSZeroPoint];
-    [self.symbolParser parseWithString:self.textView.string];
+    [self.symbolParser parseWithString:[self.textView.string copy]];
 }
 
 

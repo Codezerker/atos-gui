@@ -48,6 +48,7 @@
 		0B1AC0C818DEE6B2006773C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B1AC0CA18DEE6B2006773C4 /* ATSCrashLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSCrashLogTests.m; sourceTree = "<group>"; };
 		0B1AC0CC18DEE6B2006773C4 /* atosTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "atosTests-Prefix.pch"; sourceTree = "<group>"; };
+		0B2DCC6022A10EC3002E77F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0BC9BC461903CE680059C044 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		523C5085B02B067DA30384D0 /* ATSSymbolParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSSymbolParser.h; sourceTree = "<group>"; };
 		523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ATSAddition.m"; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		918AE7EC17954FCC00FD6F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		918AE7EE17954FCC00FD6F07 /* ATSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSAppDelegate.h; sourceTree = "<group>"; };
 		918AE7EF17954FCC00FD6F07 /* ATSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSAppDelegate.m; sourceTree = "<group>"; };
-		918AE7F217954FCC00FD6F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B313908BC103197014D9ECA4 /* ATSWelcomeWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ATSWelcomeWindowController.xib; sourceTree = "<group>"; };
 		B31392B5092BB1DB8285D772 /* ATSArchiveFileTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSArchiveFileTableCellView.h; sourceTree = "<group>"; };
 		B31392C5001CF9BC34071426 /* ATSArchiveFileTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSArchiveFileTableCellView.m; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ATS;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Codezerker;
 				TargetAttributes = {
 					0B1AC0C018DEE6B2006773C4 = {
@@ -303,10 +303,11 @@
 			};
 			buildConfigurationList = 918AE7D417954FCC00FD6F07 /* Build configuration list for PBXProject "atos" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 918AE7D017954FCC00FD6F07;
 			productRefGroup = 918AE7DA17954FCC00FD6F07 /* Products */;
@@ -409,7 +410,7 @@
 		918AE7F117954FCC00FD6F07 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				918AE7F217954FCC00FD6F07 /* en */,
+				0B2DCC6022A10EC3002E77F8 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -482,6 +483,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -531,6 +533,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;

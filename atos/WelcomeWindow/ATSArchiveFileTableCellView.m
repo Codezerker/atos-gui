@@ -16,10 +16,19 @@
 @property (nonatomic, weak) IBOutlet NSTextField *dateLabel;
 @property (nonatomic, weak) IBOutlet NSTextField *statusLabel;
 
+@property (nonatomic, strong) IBOutlet NSDateFormatter *dateFormatter;
+
 @end
 
 
 @implementation ATSArchiveFileTableCellView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+}
 
 - (void)setFileWrapper:(ATSArchiveFileWrapper *)fileWrapper {
     _fileWrapper = fileWrapper;
@@ -30,8 +39,7 @@
                                   fileWrapper.appName,
                                   fileWrapper.appComment ?: fileWrapper.appVersion] ?: @"";
 
-    self.dateLabel.stringValue =
-            [fileWrapper.appCreationDate descriptionWithCalendarFormat:@"%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil] ?: @"";
+    self.dateLabel.stringValue = [self.dateFormatter stringFromDate:fileWrapper.appCreationDate];
 
     [self.statusLabel setHidden:!fileWrapper.isSubmittedToAppStore.boolValue];
 }

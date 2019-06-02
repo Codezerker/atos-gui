@@ -15,19 +15,21 @@
 @interface ATSAppDelegate()
 
 @property (nonatomic, strong) ATSWelcomeWindowController *welcomeWindowController;
-@property (nonatomic, strong) ATSMainWindowController *mainWindowController;
+
+// Notes: Is this the only way to display multiple Windows in the same instance of the application?
+@property (nonatomic, strong) NSMutableArray<ATSMainWindowController *> *mainWindowControllers;
 
 @end
 
 
 @implementation ATSAppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {    
-    [self.window orderOut:self];
-
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     self.welcomeWindowController = [[ATSWelcomeWindowController alloc] init];
     [self.welcomeWindowController.window makeKeyAndOrderFront:self];
 
+    self.mainWindowControllers = [NSMutableArray array];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(welcomeWindowDidSelectArchive:)
                                                  name:ATSWelcomeWindowDidSelectArchiveNotification
@@ -51,35 +53,37 @@
 
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
-    if (!flag) {
-        [self.welcomeWindowController.window makeKeyAndOrderFront:self];
-    }
-    
-    return YES;
+    [self.welcomeWindowController.window makeKeyAndOrderFront:self];
+    return NO;
 }
 
 
 - (void)welcomeWindowDidSelectArchive:(NSNotification *)notification {
     ATSArchiveFileWrapper *fileWrapper = notification.userInfo[ATSArchiveFileWrapperKey];
-    self.mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileWrapper.fileURL];
+    ATSMainWindowController *mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileWrapper.fileURL];
 
     [self.welcomeWindowController.window orderOut:self];
-    [self.mainWindowController.window makeKeyAndOrderFront:self];
+    [mainWindowController.window makeKeyAndOrderFront:self];
+    [self.mainWindowControllers addObject:mainWindowController];
 }
 
 
 - (void)welcomeWindowDidSelectApp:(NSNotification *)notification {
     NSURL *fileURL = notification.userInfo[ATSAppFileURLKey];
-    self.mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileURL];
+    ATSMainWindowController *mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileURL];
     
     [self.welcomeWindowController.window orderOut:self];
-    [self.mainWindowController.window makeKeyAndOrderFront:self];
+    [mainWindowController.window makeKeyAndOrderFront:self];
+    [self.mainWindowControllers addObject:mainWindowController];
 }
 
 
-- (void)mainWindowDidClose:(__unused NSNotification *)notification {
-    self.mainWindowController = nil;
-    [self.welcomeWindowController.window makeKeyAndOrderFront:self];
+- (void)mainWindowDidClose:(NSNotification *)notification {
+    [self.mainWindowControllers removeObject:notification.object];
+    
+    if (self.mainWindowControllers.count == 0) {
+        [self.welcomeWindowController.window makeKeyAndOrderFront:self];
+    }
 }
 
 @end

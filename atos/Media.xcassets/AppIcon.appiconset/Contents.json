@@ -21,15 +21,13 @@
       "scale" : "2x"
     },
     {
-      "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "icon_128x128.png",
+      "size" : "128x128",
       "scale" : "1x"
     },
     {
-      "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "icon_128x128@2x.png",
+      "size" : "128x128",
       "scale" : "2x"
     },
     {
@@ -48,8 +46,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "mac",
       "size" : "512x512",
+      "idiom" : "mac",
+      "filename" : "atos-gui_AppIcon.png",
       "scale" : "2x"
     }
   ],

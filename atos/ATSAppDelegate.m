@@ -52,8 +52,16 @@
 }
 
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+- (IBAction)openApplicationBinary:(id)sender {
     [self.welcomeWindowController.window makeKeyAndOrderFront:self];
+}
+
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)hasVisibleWindows {
+    if (!hasVisibleWindows) {
+        [self.welcomeWindowController.window makeKeyAndOrderFront:self];
+    }
+
     return NO;
 }
 

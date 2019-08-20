@@ -8,7 +8,6 @@
 
 #import "ATSMainWindowController.h"
 #import "ATSSymbolParser.h"
-#import "ATSArchiveFileWrapper.h"
 #import "NSColor+ATSAddition.h"
 
 

@@ -9,7 +9,6 @@
 #import "ATSAppDelegate.h"
 #import "ATSWelcomeWindowController.h"
 #import "ATSMainWindowController.h"
-#import "ATSArchiveFileWrapper.h"
 
 
 @interface ATSAppDelegate()
@@ -29,11 +28,6 @@
     [self.welcomeWindowController.window makeKeyAndOrderFront:self];
 
     self.mainWindowControllers = [NSMutableArray array];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(welcomeWindowDidSelectArchive:)
-                                                 name:ATSWelcomeWindowDidSelectArchiveNotification
-                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(welcomeWindowDidSelectApp:)
@@ -63,16 +57,6 @@
     }
 
     return NO;
-}
-
-
-- (void)welcomeWindowDidSelectArchive:(NSNotification *)notification {
-    ATSArchiveFileWrapper *fileWrapper = notification.userInfo[ATSArchiveFileWrapperKey];
-    ATSMainWindowController *mainWindowController = [[ATSMainWindowController alloc] initWithAppFileURL:fileWrapper.fileURL];
-
-    [self.welcomeWindowController.window orderOut:self];
-    [mainWindowController.window makeKeyAndOrderFront:self];
-    [self.mainWindowControllers addObject:mainWindowController];
 }
 
 

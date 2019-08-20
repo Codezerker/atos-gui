@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="101000" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14865.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATSWelcomeWindowController">
             <connections>
-                <outlet property="tableView" destination="fSq-ES-t1E" id="PO4-iy-kXs"/>
                 <outlet property="versionLabel" destination="hUv-hs-6oL" id="PRV-jg-Qqz"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -17,146 +16,88 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="atos-gui" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="969" y="472" width="640" height="480"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
-            <value key="minSize" type="size" width="640" height="480"/>
-            <value key="maxSize" type="size" width="640" height="480"/>
+            <rect key="contentRect" x="969" y="472" width="328" height="440"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <value key="minSize" type="size" width="328" height="440"/>
+            <value key="maxSize" type="size" width="328" height="440"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
+                <rect key="frame" x="0.0" y="0.0" width="328" height="440"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView focusRingType="none" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="juo-xb-z69">
-                        <rect key="frame" x="316" y="-1" width="325" height="482"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" drawsBackground="NO" id="THN-d1-zLr">
-                            <rect key="frame" x="1" y="1" width="323" height="480"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" rowSizeStyle="automatic" viewBased="YES" id="fSq-ES-t1E">
-                                    <rect key="frame" x="0.0" y="0.0" width="323" height="480"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                    <tableColumns>
-                                        <tableColumn width="320" minWidth="40" maxWidth="1000" id="pOo-2Q-j15">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
-                                            </tableHeaderCell>
-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Jtj-Il-6pj">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                            <prototypeCellViews>
-                                                <tableCellView identifier="com.codezerker.archiveCell" id="90A-O4-UOf" customClass="ATSArchiveFileTableCellView">
-                                                    <rect key="frame" x="1" y="1" width="320" height="80"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="JFQ-Ug-JIg">
-                                                            <rect key="frame" x="74" y="46" width="154" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Atos" id="Dv6-Lv-eBB">
-                                                                <font key="font" metaFont="systemBold"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Vmz-2D-Jxz">
-                                                            <rect key="frame" x="74" y="21" width="222" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2013.06.15" id="nZ2-1Z-Gw0">
-                                                                <font key="font" metaFont="smallSystem"/>
-                                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="1dk-Ps-Sd4">
-                                                            <rect key="frame" x="202" y="46" width="91" height="14"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Submitted" id="sqi-Zm-dcu">
-                                                                <font key="font" metaFont="miniSystem"/>
-                                                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Yxe-MI-Qea">
-                                                            <rect key="frame" x="16" y="18" width="44" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="3U6-yc-fek"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <connections>
-                                                        <outlet property="dateLabel" destination="Vmz-2D-Jxz" id="sKE-zz-OSc"/>
-                                                        <outlet property="iconView" destination="Yxe-MI-Qea" id="Ofk-vz-rZf"/>
-                                                        <outlet property="nameLabel" destination="JFQ-Ug-JIg" id="Sh4-nR-PKJ"/>
-                                                        <outlet property="statusLabel" destination="1dk-Ps-Sd4" id="z4g-Xi-sdy"/>
-                                                    </connections>
-                                                </tableCellView>
-                                            </prototypeCellViews>
-                                        </tableColumn>
-                                    </tableColumns>
-                                </tableView>
-                            </subviews>
-                            <nil key="backgroundColor"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="MCh-OD-kJG">
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="bfg-2B-gjN">
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <customView id="acy-gb-PyX">
-                        <rect key="frame" x="20" y="20" width="288" height="440"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="rsQ-9c-4BQ">
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="440"/>
                         <subviews>
-                            <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aeQ-N6-Vo9">
-                                <rect key="frame" x="0.0" y="272" width="288" height="100"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <imageCell key="cell" selectable="YES" editable="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" image="atos-gui-icon" id="8kj-Rv-xWH"/>
-                            </imageView>
-                            <button verticalHuggingPriority="750" id="2J9-gx-cA8">
-                                <rect key="frame" x="14" y="-7" width="260" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Select Executable…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bl5-ul-BhZ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openOther:" target="-2" id="hQM-BI-UVZ"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="hUv-hs-6oL">
-                                <rect key="frame" x="-2" y="201" width="292" height="17"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version 1.0 (123)" id="8AD-DR-wGo">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="zeS-RN-w8O">
-                                <rect key="frame" x="-2" y="226" width="292" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="atos-gui" id="gES-ya-jnN">
-                                    <font key="font" metaFont="systemBold" size="25"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="acy-gb-PyX">
+                                <rect key="frame" x="20" y="20" width="288" height="400"/>
+                                <subviews>
+                                    <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aeQ-N6-Vo9">
+                                        <rect key="frame" x="80" y="261" width="128" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="vfj-Ny-1W4"/>
+                                            <constraint firstAttribute="width" constant="128" id="yOo-z0-nml"/>
+                                        </constraints>
+                                        <imageCell key="cell" selectable="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" image="atos-gui-icon" id="8kj-Rv-xWH"/>
+                                    </imageView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2J9-gx-cA8">
+                                        <rect key="frame" x="65" y="-7" width="159" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Select Executable…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bl5-ul-BhZ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openOther:" target="-2" id="hQM-BI-UVZ"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hUv-hs-6oL">
+                                        <rect key="frame" x="-2" y="192" width="292" height="16"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Version 1.0 (123)" id="8AD-DR-wGo">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-RN-w8O">
+                                        <rect key="frame" x="-2" y="216" width="292" height="29"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" title="atos-gui" id="gES-ya-jnN">
+                                            <font key="font" metaFont="systemBold" size="25"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hUv-hs-6oL" secondAttribute="trailing" id="FZh-th-IBY"/>
+                                    <constraint firstItem="hUv-hs-6oL" firstAttribute="top" secondItem="zeS-RN-w8O" secondAttribute="bottom" constant="8" id="SLb-kL-SF1"/>
+                                    <constraint firstAttribute="bottom" secondItem="2J9-gx-cA8" secondAttribute="bottom" id="bYV-ID-d89"/>
+                                    <constraint firstItem="aeQ-N6-Vo9" firstAttribute="centerX" secondItem="acy-gb-PyX" secondAttribute="centerX" id="bt2-Nv-K5a"/>
+                                    <constraint firstAttribute="trailing" secondItem="zeS-RN-w8O" secondAttribute="trailing" id="cK2-CQ-UWA"/>
+                                    <constraint firstItem="2J9-gx-cA8" firstAttribute="centerX" secondItem="acy-gb-PyX" secondAttribute="centerX" id="dBf-zM-tmr"/>
+                                    <constraint firstItem="zeS-RN-w8O" firstAttribute="leading" secondItem="acy-gb-PyX" secondAttribute="leading" id="hkC-FF-HTa"/>
+                                    <constraint firstItem="zeS-RN-w8O" firstAttribute="top" secondItem="aeQ-N6-Vo9" secondAttribute="bottom" constant="16" id="j0e-7C-J13"/>
+                                    <constraint firstItem="hUv-hs-6oL" firstAttribute="leading" secondItem="acy-gb-PyX" secondAttribute="leading" id="qqC-bk-cnK"/>
+                                    <constraint firstItem="hUv-hs-6oL" firstAttribute="centerY" secondItem="acy-gb-PyX" secondAttribute="centerY" id="r6M-94-hB2"/>
+                                </constraints>
+                            </customView>
                         </subviews>
-                    </customView>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="acy-gb-PyX" secondAttribute="trailing" constant="20" id="0Vf-LV-V7K"/>
+                            <constraint firstItem="acy-gb-PyX" firstAttribute="top" secondItem="rsQ-9c-4BQ" secondAttribute="top" constant="20" id="mTV-HQ-8V5"/>
+                            <constraint firstItem="acy-gb-PyX" firstAttribute="leading" secondItem="rsQ-9c-4BQ" secondAttribute="leading" constant="20" id="qKw-WC-iJm"/>
+                            <constraint firstAttribute="bottom" secondItem="acy-gb-PyX" secondAttribute="bottom" constant="20" id="zt4-lf-i0v"/>
+                        </constraints>
+                    </visualEffectView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="rsQ-9c-4BQ" secondAttribute="bottom" id="4W5-JH-Wt4"/>
+                    <constraint firstItem="rsQ-9c-4BQ" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="Kqy-OT-PD6"/>
+                    <constraint firstAttribute="trailing" secondItem="rsQ-9c-4BQ" secondAttribute="trailing" id="X4R-bJ-nzM"/>
+                    <constraint firstItem="rsQ-9c-4BQ" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="qKi-zH-BxI"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="414" y="399"/>
+            <point key="canvasLocation" x="198" y="362"/>
         </window>
     </objects>
     <resources>

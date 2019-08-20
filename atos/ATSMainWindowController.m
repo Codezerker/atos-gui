@@ -53,7 +53,11 @@ static const CGFloat kLineSpacing = 8.0f;
 
     // If preferred font not found, fallback to system font
     if (!textFont) {
-        textFont = [NSFont systemFontOfSize:kFontSize];
+        if (@available(macOS 10.15, *)) {
+            textFont = [NSFont monospacedSystemFontOfSize:kFontSize weight:NSFontWeightRegular];
+        } else {
+            textFont = [NSFont systemFontOfSize:kFontSize];
+        }
     }
 
     [self.textView setFont:textFont];

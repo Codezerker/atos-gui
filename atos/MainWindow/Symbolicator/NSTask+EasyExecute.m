@@ -10,12 +10,17 @@
 
 @implementation NSTask (EasyExecute)
 
-+ (NSString*) executeAndReturnStdOut:(NSString *)taskPath arguments:(NSArray *)args
++ (NSString*)ats_executeAndReturnStdOut:(NSString *)taskPath
+                              arguments:(NSArray *)args
 {
-    return [self executeAndReturnStdOut:taskPath arguments:args withMaxStringLength:-1];
+    return [self ats_executeAndReturnStdOut:taskPath
+                                  arguments:args
+                        withMaxStringLength:-1];
 }
 
-+ (NSString*) executeAndReturnStdOut:(NSString *)taskPath arguments:(NSArray *)args withMaxStringLength:(NSUInteger)strLen
++ (NSString*)ats_executeAndReturnStdOut:(NSString *)taskPath
+                              arguments:(NSArray *)args
+                    withMaxStringLength:(NSUInteger)strLen
 {
     @autoreleasepool {
         NSTask* otool = [[NSTask alloc] init];

@@ -1,0 +1,37 @@
+//
+//  ATSSymbolicator.h
+//  atos-gui
+//
+//  Created by Yan Li on 20/08/19.
+//  Copyright © 2019 Codezerker. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class ATSSymbolicator;
+@protocol ATSSymbolConverter <NSObject>
+
+- (NSString *)symbolicator:(ATSSymbolicator *)symbolicator
+          symbolForAddress:(NSString *)address
+               loadAddress:(NSString *)loadAddress
+            executablePath:(NSString *)executablePath;
+
+@end
+
+@interface ATSSymbolicator : NSObject
+
+@property (nonatomic, strong, readonly) id<ATSSymbolConverter> symbolConverter;
+
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSymbolConverter:(id<ATSSymbolConverter>)symbolConverter NS_DESIGNATED_INITIALIZER;
+
+- (void)symbolicateString:(NSString *)stringToSymbolicate
+            executableURL:(NSURL *)executableURL
+      overrideLoadAddress:(NSString * _Nullable)overrideLoadAddress
+      withCompletionBlock:(void (^)(NSDictionary *symbolLookupTable))completion;
+
+@end
+
+NS_ASSUME_NONNULL_END

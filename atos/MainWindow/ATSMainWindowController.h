@@ -12,6 +12,4 @@
 
 - (instancetype)initWithAppFileURL:(NSURL *)appFileURL;
 
-- (IBAction)performReSymbolicate:(id)sender;
-
 @end

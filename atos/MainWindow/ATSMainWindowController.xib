@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ATSMainWindowController">
             <connections>
                 <outlet property="loadAddressTextField" destination="cnk-bh-Dkf" id="I7P-gH-BB3"/>
+                <outlet property="progressIndicator" destination="AOT-ho-yJ2" id="yWF-0E-mmS"/>
                 <outlet property="textView" destination="IkC-ir-ovh" id="bzf-Am-Fum"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -55,7 +56,7 @@
                         </scroller>
                     </scrollView>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnk-bh-Dkf">
-                        <rect key="frame" x="312" y="8" width="141" height="22"/>
+                        <rect key="frame" x="322" y="8" width="141" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="0x0" bezelStyle="round" id="oVR-hl-z50">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -64,7 +65,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wb7-Ju-Aj4">
-                        <rect key="frame" x="219" y="10" width="87" height="17"/>
+                        <rect key="frame" x="229" y="10" width="87" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Load Address" id="NwH-Qy-sei">
                             <font key="font" metaFont="system"/>
@@ -73,7 +74,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KU0-UR-kFY">
-                        <rect key="frame" x="455" y="1" width="171" height="32"/>
+                        <rect key="frame" x="465" y="1" width="171" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Update Load Address" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nXs-WI-BH6">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -83,6 +84,10 @@
                             <action selector="updateLoadAddress:" target="-2" id="5se-a4-sMs"/>
                         </connections>
                     </button>
+                    <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="AOT-ho-yJ2">
+                        <rect key="frame" x="10" y="10" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </progressIndicator>
                 </subviews>
             </view>
             <connections>

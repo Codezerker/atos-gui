@@ -3,10 +3,16 @@
     <channel>
         <title>atos-gui</title>
         <item>
-            <title>0.4</title>
-            <pubDate>Mon, 26 Aug 2019 22:08:46 +1200</pubDate>
+            <title>0.4.1</title>
+            <pubDate>Mon, 26 Aug 2019 22:19:37 +1200</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.4/atos-gui.app.zip" sparkle:version="6" sparkle:shortVersionString="0.4" length="1835162" type="application/octet-stream"/>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.4.1/atos-gui.app.zip" sparkle:version="7" sparkle:shortVersionString="0.4.1" length="1835157" type="application/octet-stream" sparkle:edSignature="vfCXHCV2rPoPoaLQUCF4x9kqQiobITeHQ8BGtLJa0vCbW9cdTalxUNJJYaUm3PXtdetPQc4sa4Vhxyld2REBDg=="/>
+        </item>
+        <item>
+            <title>0.4</title>
+            <pubDate>Mon, 26 Aug 2019 22:22:16 +1200</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.4.0/atos-gui.app.zip" sparkle:version="6" sparkle:shortVersionString="0.4" length="1835162" type="application/octet-stream" sparkle:edSignature="9ZL9MZKVNKp00pz9Ef2pzxB/r7tKKVJgn03LdyjeNX1ajCYQyIrQIiwoSq7pWlZf2u6+ZVUrKEEmmIPP2hLoDQ=="/>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>atos-gui</title>
+        <item>
+            <title>0.4</title>
+            <pubDate>Mon, 26 Aug 2019 22:08:46 +1200</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.4/atos-gui.app.zip" sparkle:version="6" sparkle:shortVersionString="0.4" length="1835162" type="application/octet-stream"/>
+        </item>
+    </channel>
+</rss>

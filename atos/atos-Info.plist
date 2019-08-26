@@ -25,10 +25,14 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2018 Codezerker Limited. All rights reserved.</string>
+	<string>Copyright © 2019 Codezerker Limited. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/Codezerker/atos-gui/master/SparkleAppCast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>Fpwh1jE/nSAyK48KH6uzBtkLpKBZxeGWBZsVTiT4NkQ=</string>
 </dict>
 </plist>

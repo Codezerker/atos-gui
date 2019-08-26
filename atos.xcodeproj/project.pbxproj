@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B064936230D5E5000300FFD /* ATSSymbolicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E79EE230BF2B700D67E82 /* ATSSymbolicator.mm */; };
 		0B064937230D5E5900300FFD /* ATSSystemShellSymbolConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E79F8230D362E00D67E82 /* ATSSystemShellSymbolConverter.m */; };
+		0B36CACC2313E112002AC4B8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B36CACB2313E103002AC4B8 /* Sparkle.framework */; };
+		0B36CACE2313E145002AC4B8 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B36CACB2313E103002AC4B8 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0B5620BF230D568700725546 /* SymbolicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5620BE230D568700725546 /* SymbolicatorTests.m */; };
 		0B5620C6230D589600725546 /* MockSymbolConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5620C5230D589600725546 /* MockSymbolConverter.m */; };
 		0B6E79EF230BF2B700D67E82 /* ATSSymbolicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E79EE230BF2B700D67E82 /* ATSSymbolicator.mm */; };
@@ -28,8 +30,23 @@
 		B313954ED580F4881CBCB02F /* ATSWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3139592DF037AEF3DF7AAC6 /* ATSWelcomeWindowController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0B36CACD2313E13A002AC4B8 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0B36CACE2313E145002AC4B8 /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0B2DCC6022A10EC3002E77F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		0B36CACB2313E103002AC4B8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		0B5620BC230D568700725546 /* SymbolicatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5620BE230D568700725546 /* SymbolicatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SymbolicatorTests.m; sourceTree = "<group>"; };
 		0B5620C0230D568700725546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,12 +92,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6E79F5230BF38100D67E82 /* AppKit.framework in Frameworks */,
+				0B36CACC2313E112002AC4B8 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B36CACA2313E0E4002AC4B8 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				0B36CACB2313E103002AC4B8 /* Sparkle.framework */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
 		0B5620BD230D568700725546 /* SymbolicatorTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +177,7 @@
 			children = (
 				918AE7E217954FCC00FD6F07 /* atos */,
 				0B5620BD230D568700725546 /* SymbolicatorTests */,
+				0B36CACA2313E0E4002AC4B8 /* ThirdParty */,
 				0B6E79F3230BF38100D67E82 /* Frameworks */,
 				918AE7DA17954FCC00FD6F07 /* Products */,
 			);
@@ -216,6 +243,7 @@
 			buildPhases = (
 				918AE7D517954FCC00FD6F07 /* Sources */,
 				918AE7D617954FCC00FD6F07 /* Frameworks */,
+				0B36CACD2313E13A002AC4B8 /* Copy Frameworks */,
 				918AE7D717954FCC00FD6F07 /* Resources */,
 			);
 			buildRules = (
@@ -506,9 +534,14 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 55724LR9PN;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdParty",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atos/atos-Prefix.pch";
 				INFOPLIST_FILE = "atos/atos-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codezerker.atos-gui";
@@ -528,9 +561,14 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 55724LR9PN;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdParty",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atos/atos-Prefix.pch";
 				INFOPLIST_FILE = "atos/atos-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codezerker.atos-gui";

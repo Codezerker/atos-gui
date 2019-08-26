@@ -15,18 +15,21 @@ static NSString * const SYSTEM_ATOS_PATH = @"/usr/bin/atos";
 
 static NSString * const ADDRESS_FORMAT = @"0x%llX";
 
+static NSString * const INPUT_SEPARATOR = @" ";
+static NSString * const OUTPUT_SEPARATOR = @"\n";
+
 @implementation ATSSystemShellSymbolConverter
 
-- (NSString *)symbolicator:(ATSSymbolicator *)symbolicator
-          symbolForAddress:(NSString *)address
-               loadAddress:(NSString *)loadAddress
-            executablePath:(NSString *)executablePath
+- (NSArray<NSString *> *)symbolicator:(ATSSymbolicator *)symbolicator
+                  symbolsForAddresses:(NSArray<NSString *> *)addresses
+                          loadAddress:(NSString *)loadAddress
+                       executablePath:(NSString *)executablePath
 {
     NSString *command = [NSString stringWithFormat:@"\"%@\" -o \"%@\" -l %@ %@",
                          SYSTEM_ATOS_PATH,
                          executablePath,
                          loadAddress,
-                         address];
+                         [addresses componentsJoinedByString:INPUT_SEPARATOR]];
     
     NSLog(@"$ %@", command);
     
@@ -35,7 +38,7 @@ static NSString * const ADDRESS_FORMAT = @"0x%llX";
     
     NSLog(@"%@", result);
     
-    return result;
+    return [result componentsSeparatedByString:OUTPUT_SEPARATOR];
 }
 
 @end

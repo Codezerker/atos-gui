@@ -30,6 +30,7 @@ namespace
     
     static std::regex BINARY_IMAGE_NAME_AND_SYMBOL_ADDRESS_REGEX{ R"~((?:^|$|\r\n|\n)\s*[0-9]+\s+(\S+)\s+(0[xX][0-9a-fA-F]+))~" };
     static std::regex BINARY_IMAGE_NAME_AND_LOAD_ADDRESS_REGEX{ R"~((?:^|$|\r\n|\n)\s*(0[xX][0-9a-fA-F]+)\s+-\s+(0[xX][0-9a-fA-F]+)\s+(\S+))~" };
+    static std::regex HEX_STRING_REGEX{ "0[xX][0-9a-fA-F]+" };
         
     struct BinaryImage
     {
@@ -57,7 +58,8 @@ namespace
             BinaryImage image{ match[1].str(), match[3].str() };
             binaryImages.emplace_back(std::move(image));
             
-            break; // FIXME: Looks like only the main binary load address is useful?
+            // Note: Abort the match, assuming the first match is always the binary image we are looking for
+            break;
         }
         
         return binaryImages;
@@ -76,7 +78,7 @@ namespace
     }
     
     std::set<SymbolAddress>
-    extract_symbol_addresses_from_string( const std::string& string )
+    extract_crash_report_symbol_addresses_from_string( const std::string& string )
     {
         std::set<SymbolAddress> addresses;
         
@@ -93,7 +95,31 @@ namespace
             NSLog(@"Found symbol address %s for binary image '%s'", match[2].str().c_str(), match[1].str().c_str());
             
             SymbolAddress address{ match[2].str(), match[1].str() };
-            addresses.insert(std::move(address));
+            addresses.emplace(std::move(address));
+        }
+
+        return addresses;
+    }
+
+    std::set<SymbolAddress>
+    extract_hex_addresses_from_string( const std::string& string )
+    {
+        std::set<SymbolAddress> addresses;
+        
+        const auto begin = std::sregex_iterator{ string.begin(), string.end(), HEX_STRING_REGEX };
+        const auto end = std::sregex_iterator{};
+        for (std::sregex_iterator iter = begin; iter != end; ++iter)
+        {
+            std::smatch match = *iter;
+            if (match.size() < 1)
+            {
+                continue;
+            }
+            
+            NSLog(@"Found hexadecimal address %s", match[0].str().c_str());
+            
+            SymbolAddress address{ match[0].str(), std::string{} };
+            addresses.emplace(std::move(address));
         }
 
         return addresses;
@@ -136,54 +162,58 @@ namespace
       overrideLoadAddress:(NSString * _Nullable)overrideLoadAddress
       withCompletionBlock:(void (^)(NSDictionary *))completion
 {
-    NSString * executablePath = [executableURL path];
-    
     dispatch_async(self.symbolicatingQueue, ^{
         const std::string string{ [stringToSymbolicate UTF8String] };
-        
-        const std::vector<BinaryImage> binaryImages = extract_binary_images_from_string(string);
-        const std::set<SymbolAddress> addressesToSymbolicate = extract_symbol_addresses_from_string(string);
 
-        NSMutableDictionary *symbolLookupTable = [NSMutableDictionary dictionary];
-        
-        for (const SymbolAddress& symbolAddress : addressesToSymbolicate)
+        NSString *loadAddress;
         {
-            NSString *loadAddress;
+            const std::vector<BinaryImage> binaryImages = extract_binary_images_from_string(string);
             if (overrideLoadAddress)
             {
                 loadAddress = overrideLoadAddress;
             }
+            else if (!binaryImages.empty())
+            {
+                loadAddress = [NSString stringWithUTF8String:binaryImages[0].loadAddress.c_str()];
+            }
             else
             {
-                // TODO: Build a <name, loadAddress> lookup table, so that O(NM) -> O(N)
-                const auto find_it = std::find_if(
-                    binaryImages.cbegin(),
-                    binaryImages.cend(),
-                    [&symbolAddress](const BinaryImage& image)
-                    {
-                        return symbolAddress.binaryImageName == image.name           // com.company.App
-                               || "+" + symbolAddress.binaryImageName == image.name; // +com.company.App
-                    }
-                );
-                if (find_it == binaryImages.cend())
-                {
-                    continue;
-                }
-            
-                loadAddress = [NSString stringWithUTF8String:find_it->loadAddress.c_str()];
+                loadAddress = @"LoadAddressNotFound";
+            }
+        }
+        
+        NSMutableArray *addresses;
+        {
+            std::set<SymbolAddress> addressesToSymbolicate = extract_crash_report_symbol_addresses_from_string(string);
+            if (addressesToSymbolicate.empty())
+            {
+                NSLog(@"Failed to extract symbol addresses with expected Darwin crash report pattern, extracting all hexadecimal strings...");
+                addressesToSymbolicate = extract_hex_addresses_from_string(string);
             }
 
-            NSString *address = [NSString stringWithUTF8String:symbolAddress.address.c_str()];
-            NSString *symbol = [self.symbolConverter symbolicator:self
-                                                 symbolForAddress:address
-                                                      loadAddress:loadAddress
-                                                   executablePath:executablePath];
-            
-            if (symbol.length > 0 && ![symbol hasPrefix:address])
+            addresses = [NSMutableArray arrayWithCapacity:addressesToSymbolicate.size()];
+            for (const SymbolAddress& symbolAddress : addressesToSymbolicate)
             {
-                NSString *symbolAddressString = [NSString stringWithUTF8String:symbolAddress.address.c_str()];
-                symbolLookupTable[symbolAddressString] = symbol;
+                [addresses addObject:[NSString stringWithUTF8String:symbolAddress.address.c_str()]];
             }
+        }
+        
+        NSString * executablePath = [executableURL path];
+        
+        NSArray *symbols = [self.symbolConverter symbolicator:self
+                                          symbolsForAddresses:addresses
+                                                  loadAddress:loadAddress
+                                               executablePath:executablePath];
+        
+        NSMutableDictionary *symbolLookupTable = [NSMutableDictionary dictionary];
+        {
+            [symbols enumerateObjectsUsingBlock:^(NSString *symbol, NSUInteger idx, BOOL *stop) {
+                NSString *address = addresses[idx];
+                if (symbol.length > 0 && ![symbol hasPrefix:address])
+                {
+                    symbolLookupTable[address] = symbol;
+                }
+            }];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

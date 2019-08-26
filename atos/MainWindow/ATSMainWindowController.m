@@ -101,8 +101,6 @@ static const CGFloat kLineSpacing = 8.0f;
 #pragma mark - Action
 
 - (IBAction)performReSymbolicate:(id)sender {
-    [self.textView scrollPoint:NSZeroPoint];
-    
     [self.progressIndicator startAnimation:nil];
     
     [self.symbolicator symbolicateString:self.textView.string

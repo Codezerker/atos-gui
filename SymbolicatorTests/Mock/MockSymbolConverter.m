@@ -14,27 +14,34 @@
 {
     if (self = [super init])
     {
-        _requestedAddresses = [NSMutableSet set];
-        _requestedLoadAddresses = [NSMutableSet set];
-        _requestedExecutablePaths = [NSMutableSet set];
+        _requestedAddresses = [NSMutableArray array];
+        _requestedLoadAddresses = [NSMutableArray array];
+        _requestedExecutablePaths = [NSMutableArray array];
         _resultSymbolTable = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (NSString *)symbolicator:(ATSSymbolicator *)symbolicator
-          symbolForAddress:(NSString *)address
-               loadAddress:(NSString *)loadAddress
-            executablePath:(NSString *)executablePath
+- (NSArray<NSString *> *)symbolicator:(ATSSymbolicator *)symbolicator
+                  symbolsForAddresses:(NSArray<NSString *> *)addresses
+                          loadAddress:(NSString *)loadAddress
+                       executablePath:(NSString *)executablePath
 {
-    [self.requestedAddresses addObject:address];
+    NSMutableArray<NSString *> *results = [NSMutableArray arrayWithCapacity:addresses.count];
+    
+    [addresses enumerateObjectsUsingBlock:^(NSString * _Nonnull address, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.requestedAddresses addObject:address];
+        
+        NSString *convertedSymbol = [NSString stringWithFormat:@"%@ - %@", address, loadAddress];
+        self.resultSymbolTable[address] = convertedSymbol;
+        
+        [results addObject:convertedSymbol];
+    }];
+    
     [self.requestedLoadAddresses addObject:loadAddress];
     [self.requestedExecutablePaths addObject:executablePath];
     
-    NSString *convertedSymbol = [NSString stringWithFormat:@"%@ - %@", address, loadAddress];
-    self.resultSymbolTable[address] = convertedSymbol;
-    
-    return convertedSymbol;
+    return results;
 }
 
 @end

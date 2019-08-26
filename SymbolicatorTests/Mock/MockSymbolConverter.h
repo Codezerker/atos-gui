@@ -12,9 +12,9 @@
 
 @interface MockSymbolConverter : NSObject<ATSSymbolConverter>
 
-@property (nonatomic, strong) NSMutableSet *requestedAddresses;
-@property (nonatomic, strong) NSMutableSet *requestedLoadAddresses;
-@property (nonatomic, strong) NSMutableSet *requestedExecutablePaths;
+@property (nonatomic, strong) NSMutableArray<NSString *> *requestedAddresses;
+@property (nonatomic, strong) NSMutableArray<NSString *> *requestedLoadAddresses;
+@property (nonatomic, strong) NSMutableArray<NSString *> *requestedExecutablePaths;
 @property (nonatomic, strong) NSMutableDictionary *resultSymbolTable;
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;

@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @class ATSSymbolicator;
 @protocol ATSSymbolConverter <NSObject>
 
-- (NSString *)symbolicator:(ATSSymbolicator *)symbolicator
-          symbolForAddress:(NSString *)address
-               loadAddress:(NSString *)loadAddress
-            executablePath:(NSString *)executablePath;
+- (NSArray<NSString *> *)symbolicator:(ATSSymbolicator *)symbolicator
+                  symbolsForAddresses:(NSArray<NSString *> *)addresses
+                          loadAddress:(NSString *)loadAddress
+                       executablePath:(NSString *)executablePath;
 
 @end
 

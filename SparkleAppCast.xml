@@ -3,6 +3,16 @@
     <channel>
         <title>atos-gui</title>
         <item>
+            <title>0.4.2</title>
+            <pubDate>Tue, 27 Aug 2019 20:57:15 +1200</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.4.2/atos-gui.app.zip" sparkle:version="8" sparkle:shortVersionString="0.4.2" length="1836858" type="application/octet-stream" sparkle:edSignature="g1UcZmxldEF4ilMwLlCQEMPXDcnY9b85TQU2AeXAGB8qlRi6LxuVvYAQBNBvIpvOqKoWMpwy0fbodvCvHIbMBw=="/>
+            <description>
+            - Improve binary image name matching when the image name contains whitespaces.
+            - Builds from now on are nortarized by Apple.
+            </description>
+        </item>
+        <item>
             <title>0.4.1</title>
             <pubDate>Mon, 26 Aug 2019 22:19:37 +1200</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>

@@ -73,6 +73,52 @@
     );
 }
 
+- (void)testSimpleCrashReportMatchingWithWhitespaceBinaryImageNames
+{
+    NSArray *lines = @[
+        @"7   Report Crash                       0x0000000103677652 0x103660000 + 95826",
+        @"8   Report Crash                       0x000000010367765A 0x103660000 + 95834",
+        @"0x103660000 -        0x10367fff7  Report Crash (15007) <BCE573F4-0EF5-3A29-9D8A-D54EF484BC22> /System/Library/CoreServices/ReportCrash",
+    ];
+    NSString *string = [lines componentsJoinedByString:@"\n"];
+    
+    NSURL *executableURL = [NSURL fileURLWithPath:@"/path/to/test.app"];
+    
+    __block XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@"Symbolicating completed"];
+    [self.symbolicator symbolicateString:string
+                           executableURL:executableURL
+                     overrideLoadAddress:nil
+                     withCompletionBlock:^(NSDictionary * _Nonnull symbolLookupTable) {
+        [expectation fulfill];
+    }];
+    [self waitForExpectations:@[expectation] timeout:1.0];
+    
+    NSArray *expectedRequestedAddresses = @[@"0x0000000103677652", @"0x000000010367765A"];
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.requestedAddresses,
+        expectedRequestedAddresses
+    );
+    
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.requestedLoadAddresses,
+        @[@"0x103660000"]
+    );
+    
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.requestedExecutablePaths,
+        @[executableURL.path]
+    );
+    
+    NSDictionary *expectedResults = @{
+        @"0x0000000103677652" : @"0x0000000103677652 - 0x103660000",
+        @"0x000000010367765A" : @"0x000000010367765A - 0x103660000",
+    };
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.resultSymbolTable,
+        expectedResults
+    );
+}
+
 - (void)testSimpleCrashReportMatchingWithLoadAddressOverride
 {
     NSArray *lines = @[

@@ -28,10 +28,17 @@ namespace
         return dispatch_queue_create("com.codezerker.atos-gui.atos", DISPATCH_QUEUE_CONCURRENT);
     }
     
-    static std::regex BINARY_IMAGE_NAME_AND_SYMBOL_ADDRESS_REGEX{ R"~((?:^|$|\r\n|\n)\s*[0-9]+\s+(\S+)\s+(0[xX][0-9a-fA-F]+))~" };
-    static std::regex BINARY_IMAGE_NAME_AND_LOAD_ADDRESS_REGEX{ R"~((?:^|$|\r\n|\n)\s*(0[xX][0-9a-fA-F]+)\s+-\s+(0[xX][0-9a-fA-F]+)\s+(\S+))~" };
+    static std::regex BINARY_IMAGE_NAME_AND_SYMBOL_ADDRESS_REGEX{ R"~((?:^|$|\r\n|\n)\s*[0-9]+\s+((?:\w+\s?)*\s*)\s+(0[xX][0-9a-fA-F]+))~" };
+    static std::regex BINARY_IMAGE_NAME_AND_LOAD_ADDRESS_REGEX{ R"~((?:^|$|\r\n|\n)\s*(0[xX][0-9a-fA-F]+)\s+-\s+(0[xX][0-9a-fA-F]+)\s+((?:\w+\s?)*\s*))~" };
     static std::regex HEX_STRING_REGEX{ "0[xX][0-9a-fA-F]+" };
-        
+    
+    std::string string_by_trimming_whitespaces( const std::string& str )
+    {
+        NSString *nsstring = [NSString stringWithUTF8String:str.c_str()];
+        nsstring = [nsstring stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        return std::string{ nsstring.UTF8String };
+    }
+
     struct BinaryImage
     {
         std::string loadAddress;
@@ -53,9 +60,12 @@ namespace
                 continue;
             }
             
-            NSLog(@"Found load address %s for binary image '%s'", match[1].str().c_str(), match[3].str().c_str());
+            const std::string loadAddress = string_by_trimming_whitespaces(match[1].str());
+            const std::string binaryImageName = string_by_trimming_whitespaces(match[3].str());
             
-            BinaryImage image{ match[1].str(), match[3].str() };
+            NSLog(@"Found load address %s for binary image '%s'", loadAddress.c_str(), binaryImageName.c_str());
+            
+            BinaryImage image{ std::move(loadAddress), std::move(binaryImageName) };
             binaryImages.emplace_back(std::move(image));
             
             // Note: Abort the match, assuming the first match is always the binary image we are looking for
@@ -92,9 +102,12 @@ namespace
                 continue;
             }
             
-            NSLog(@"Found symbol address %s for binary image '%s'", match[2].str().c_str(), match[1].str().c_str());
+            const std::string addressString = string_by_trimming_whitespaces(match[2].str());
+            const std::string binaryImageName = string_by_trimming_whitespaces(match[1].str());
             
-            SymbolAddress address{ match[2].str(), match[1].str() };
+            NSLog(@"Found symbol address %s for binary image '%s'", addressString.c_str(), binaryImageName.c_str());
+            
+            SymbolAddress address{ std::move(addressString), std::move(binaryImageName) };
             addresses.emplace(std::move(address));
         }
 
@@ -174,6 +187,7 @@ namespace
             }
             else if (!binaryImages.empty())
             {
+                // Assuming the first binary image is always what we want
                 loadAddress = [NSString stringWithUTF8String:binaryImages[0].loadAddress.c_str()];
             }
             else

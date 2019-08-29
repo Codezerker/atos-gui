@@ -190,6 +190,12 @@
                                     <action selector="performReSymbolicate:" target="-1" id="SmE-o2-fAK"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="eQj-Kl-hji"/>
+                            <menuItem title="Show Debugging Logs…" keyEquivalent="l" id="xRD-Mh-eqA">
+                                <connections>
+                                    <action selector="showDebuggingLogs:" target="-1" id="MBF-uh-d95"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

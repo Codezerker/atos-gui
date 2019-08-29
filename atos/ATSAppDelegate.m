@@ -78,4 +78,9 @@
     }
 }
 
+
+- (IBAction)showDebuggingLogs:(id)sender {
+    [[NSWorkspace sharedWorkspace] launchApplication:@"Console"];
+}
+
 @end

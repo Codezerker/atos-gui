@@ -3,6 +3,17 @@
     <channel>
         <title>atos-gui</title>
         <item>
+            <title>0.5</title>
+            <pubDate>Thu, 29 Aug 2019 22:41:46 +1200</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.5/atos-gui.app.zip" sparkle:version="9" sparkle:shortVersionString="0.5" length="1842995" type="application/octet-stream" sparkle:edSignature="IQ749s+HFbQzqwW2q8OBDSKrd4Oc+HH8b0z8mV2pNeAio0rllKPXfhg2KxtFI2osNv2i9cvvHEZr1ff9+RCeCw=="/>
+            <description><![CDATA[ 
+              <li>[Feature] The main window has been split into two text views, the symbolicated text is now displayed in a non-editable text view to avoid destructive changes to the original crash report.</li>
+              <li>[Feature] A new option has been added to allow the user toggling whether to match load address automatically.</li>
+              <li>[Known Issue] The editable text view's undo and redo are not working at the moment.</li>
+            ]]>
+        </item>
+        <item>
             <title>0.4.1</title>
             <pubDate>Mon, 26 Aug 2019 22:19:37 +1200</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>

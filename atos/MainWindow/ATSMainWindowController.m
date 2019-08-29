@@ -14,7 +14,7 @@
 
 static const CGFloat kFontSize    = 13.0f;
 
-@interface ATSMainWindowController ()<NSWindowDelegate>
+@interface ATSMainWindowController ()<NSWindowDelegate, NSTextFieldDelegate>
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *outputView;
@@ -88,6 +88,8 @@ static const CGFloat kFontSize    = 13.0f;
     [self.outputView setBackgroundColor:[NSColor controlBackgroundColor]];
     
     [self.bottomBarStackView setEdgeInsets:NSEdgeInsetsMake(0, 10, 0, 10)];
+    
+    [self.loadAddressTextField setDelegate:self];
 }
 
 
@@ -146,13 +148,27 @@ static const CGFloat kFontSize    = 13.0f;
 }
 
 
-- (IBAction)updateLoadAddress:(id)sender {
+- (IBAction)symbolicatorConfigurationChanged:(id)sender {
+    if (self.autoLoadAddressCheckBox.state == NSControlStateValueOn)
+    {
+        self.loadAddressTextField.enabled = NO;
+    }
+    else
+    {
+        self.loadAddressTextField.enabled = YES;
+        [self.loadAddressTextField becomeFirstResponder];
+    }
+}
+
+
+- (void)controlTextDidChange:(NSNotification *)obj {
     NSString *loadAddress = self.loadAddressTextField.stringValue;
     if (loadAddress.length > 0) {
         self.overrideLoadAddress = loadAddress;
     } else {
         self.overrideLoadAddress = nil;
     }
+    NSLog(@"Overriding load address to: %@", self.overrideLoadAddress);
 }
 
 @end

@@ -131,6 +131,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="symbolicatorConfigurationChanged:" target="-2" id="1Q4-Nq-KXS"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnk-bh-Dkf">
                                 <rect key="frame" x="824" y="5" width="200" height="22"/>

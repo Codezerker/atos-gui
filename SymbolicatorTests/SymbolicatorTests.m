@@ -257,4 +257,43 @@
     );
 }
 
+- (void)testMatchingWithNoAddresses
+{
+    NSArray *lines = @[
+        @"hello world",
+    ];
+    NSString *string = [lines componentsJoinedByString:@"\n"];
+    
+    NSURL *executableURL = [NSURL fileURLWithPath:@"/path/to/test.app"];
+    
+    __block XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@"Symbolicating completed"];
+    [self.symbolicator symbolicateString:string
+                           executableURL:executableURL
+                     overrideLoadAddress:nil
+                     withCompletionBlock:^(NSDictionary * _Nonnull symbolLookupTable) {
+        [expectation fulfill];
+    }];
+    [self waitForExpectations:@[expectation] timeout:1.0];
+    
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.requestedAddresses,
+        @[]
+    );
+    
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.requestedLoadAddresses,
+        @[]
+    );
+    
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.requestedExecutablePaths,
+        @[]
+    );
+    
+    XCTAssertEqualObjects(
+        self.mockSymbolConverter.resultSymbolTable,
+        @{}
+    );
+}
+
 @end

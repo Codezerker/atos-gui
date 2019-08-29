@@ -199,6 +199,34 @@ namespace
     dispatch_async(self.symbolicatingQueue, ^{
         const std::string string{ [stringToSymbolicate UTF8String] };
 
+        NSMutableArray *addresses;
+        {
+            std::set<SymbolAddress> addressesToSymbolicate = extract_crash_report_symbol_addresses_from_string(string);
+            if (addressesToSymbolicate.empty())
+            {
+                NSLog(@"Failed to extract symbol addresses with expected Darwin crash report pattern, falling back to extract all hexadecimal strings.");
+                addressesToSymbolicate = extract_hex_addresses_from_string(string);
+                if (addressesToSymbolicate.empty())
+                {
+                    NSLog(@"Can't find any hexadecimal string.");
+                }
+            }
+
+            addresses = [NSMutableArray arrayWithCapacity:addressesToSymbolicate.size()];
+            for (const SymbolAddress& symbolAddress : addressesToSymbolicate)
+            {
+                [addresses addObject:[NSString stringWithUTF8String:symbolAddress.address.c_str()]];
+            }
+        }
+        
+        if (addresses.count == 0)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(@{});
+            });
+            return;
+        }
+        
         NSString *loadAddress;
         {
             const std::vector<BinaryImage> binaryImages = extract_binary_images_from_string(string);
@@ -214,22 +242,6 @@ namespace
             else
             {
                 loadAddress = @"LoadAddressNotFound";
-            }
-        }
-        
-        NSMutableArray *addresses;
-        {
-            std::set<SymbolAddress> addressesToSymbolicate = extract_crash_report_symbol_addresses_from_string(string);
-            if (addressesToSymbolicate.empty())
-            {
-                NSLog(@"Failed to extract symbol addresses with expected Darwin crash report pattern, extracting all hexadecimal strings...");
-                addressesToSymbolicate = extract_hex_addresses_from_string(string);
-            }
-
-            addresses = [NSMutableArray arrayWithCapacity:addressesToSymbolicate.size()];
-            for (const SymbolAddress& symbolAddress : addressesToSymbolicate)
-            {
-                [addresses addObject:[NSString stringWithUTF8String:symbolAddress.address.c_str()]];
             }
         }
         

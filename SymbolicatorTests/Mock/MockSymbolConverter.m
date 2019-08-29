@@ -27,8 +27,13 @@
                           loadAddress:(NSString *)loadAddress
                        executablePath:(NSString *)executablePath
 {
-    NSMutableArray<NSString *> *results = [NSMutableArray arrayWithCapacity:addresses.count];
+    if (addresses.count == 0)
+    {
+        return @[@""];
+    }
     
+    NSMutableArray<NSString *> *results = [NSMutableArray arrayWithCapacity:addresses.count];
+        
     [addresses enumerateObjectsUsingBlock:^(NSString * _Nonnull address, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.requestedAddresses addObject:address];
         

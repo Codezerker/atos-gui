@@ -10,12 +10,8 @@
 
 @interface NSColor (ATSAddition)
 
-+ (NSColor *)ats_backgroundColor;
-
-+ (NSColor *)ats_highlightedBackgroundColor;
-
-+ (NSColor *)ats_textColor;
-
 + (NSColor *)ats_highlightedTextColor;
+
++ (NSColor *)ats_separatorColor;
 
 @end

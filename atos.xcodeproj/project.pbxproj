@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B064936230D5E5000300FFD /* ATSSymbolicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E79EE230BF2B700D67E82 /* ATSSymbolicator.mm */; };
 		0B064937230D5E5900300FFD /* ATSSystemShellSymbolConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E79F8230D362E00D67E82 /* ATSSystemShellSymbolConverter.m */; };
+		0B2BFB8B2317D4F80089DE47 /* ATSSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFB8A2317D4F80089DE47 /* ATSSeparatorView.m */; };
 		0B36CACC2313E112002AC4B8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B36CACB2313E103002AC4B8 /* Sparkle.framework */; };
 		0B36CACE2313E145002AC4B8 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B36CACB2313E103002AC4B8 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0B5620BF230D568700725546 /* SymbolicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5620BE230D568700725546 /* SymbolicatorTests.m */; };
@@ -45,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B2BFB892317D4F80089DE47 /* ATSSeparatorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSSeparatorView.h; sourceTree = "<group>"; };
+		0B2BFB8A2317D4F80089DE47 /* ATSSeparatorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSSeparatorView.m; sourceTree = "<group>"; };
 		0B2DCC6022A10EC3002E77F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0B36CACB2313E103002AC4B8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		0B5620BC230D568700725546 /* SymbolicatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +136,8 @@
 				912E2A351798114100804718 /* ATSMainWindowController.h */,
 				912E2A361798114100804718 /* ATSMainWindowController.m */,
 				912E2A371798114100804718 /* ATSMainWindowController.xib */,
+				0B2BFB892317D4F80089DE47 /* ATSSeparatorView.h */,
+				0B2BFB8A2317D4F80089DE47 /* ATSSeparatorView.m */,
 				523C5C5137F7CE5FA8AB3898 /* NSColor+ATSAddition.h */,
 				523C5150B3CDA4D692730356 /* NSColor+ATSAddition.m */,
 			);
@@ -357,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6E79F9230D362E00D67E82 /* ATSSystemShellSymbolConverter.m in Sources */,
+				0B2BFB8B2317D4F80089DE47 /* ATSSeparatorView.m in Sources */,
 				918AE7E917954FCC00FD6F07 /* main.m in Sources */,
 				912E2A381798114100804718 /* ATSMainWindowController.m in Sources */,
 				918AE7F017954FCC00FD6F07 /* ATSAppDelegate.m in Sources */,

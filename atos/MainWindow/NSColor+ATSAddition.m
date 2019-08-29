@@ -10,23 +10,16 @@
 
 @implementation NSColor (ATSAddition)
 
-+ (NSColor *)ats_backgroundColor {
-    return [NSColor colorWithDeviceRed:57.0/255.0 green:57.0/255.0 blue:57.0/255.0 alpha:1.0];
-}
-
-
-+ (NSColor *)ats_highlightedBackgroundColor {
-    return [NSColor colorWithDeviceRed:65.0/255.0 green:65.0/255.0 blue:65.0/255.0 alpha:1.0];
-}
-
-
-+ (NSColor *)ats_textColor {
-    return [NSColor lightGrayColor];
-}
-
-
 + (NSColor *)ats_highlightedTextColor {
-    return [NSColor colorWithDeviceRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0];
+    return [NSColor colorWithCalibratedRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0];
+}
+
++ (NSColor *)ats_separatorColor {
+    if (@available(macOS 10.13, *)) {
+        return [NSColor colorNamed:@"separator-color"];
+    } else {
+        return [NSColor colorWithCalibratedRed:0.572 green:0.572 blue:0.572 alpha:1.0];
+    }
 }
 
 @end

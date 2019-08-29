@@ -13,12 +13,14 @@
 
 
 static const CGFloat kFontSize    = 13.0f;
-static const CGFloat kLineHeight  = 14.0f;
-static const CGFloat kLineSpacing = 8.0f;
 
 @interface ATSMainWindowController ()<NSWindowDelegate>
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView *textView;
+@property (nonatomic, unsafe_unretained) IBOutlet NSTextView *outputView;
+@property (nonatomic, weak) IBOutlet NSView *separatorView;
+@property (nonatomic, weak) IBOutlet NSStackView *bottomBarStackView;
+@property (nonatomic, weak) IBOutlet NSButton *autoLoadAddressCheckBox;
 @property (nonatomic, weak) IBOutlet NSTextField *loadAddressTextField;
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *progressIndicator;
 
@@ -65,30 +67,27 @@ static const CGFloat kLineSpacing = 8.0f;
                          self.appExecutableURL.lastPathComponent,
                          self.appExecutableURL.path];
     
-    {
-        // Preferred text font is SourceCodePro-Regular
-        NSFont *textFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:kFontSize];
+    // Preferred text font is SourceCodePro-Regular
+    NSFont *textFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:kFontSize];
 
-        // If preferred font not found, fallback to system font
-        if (!textFont) {
-            if (@available(macOS 10.15, *)) {
-                textFont = [NSFont monospacedSystemFontOfSize:kFontSize weight:NSFontWeightRegular];
-            } else {
-                textFont = [NSFont systemFontOfSize:kFontSize];
-            }
+    // If preferred font not found, fallback to system font
+    if (!textFont) {
+        if (@available(macOS 10.15, *)) {
+            textFont = [NSFont monospacedSystemFontOfSize:kFontSize weight:NSFontWeightRegular];
+        } else {
+            textFont = [NSFont systemFontOfSize:kFontSize];
         }
-        
-        [self.textView setFont:textFont];
-        [self.textView setTextColor:[NSColor ats_textColor]];
-        [self.textView setBackgroundColor:[NSColor ats_backgroundColor]];
-        [self.textView setSelectedTextAttributes:@{NSBackgroundColorAttributeName : [NSColor ats_highlightedBackgroundColor]}];
     }
-
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setMinimumLineHeight:kLineHeight];
-    [paragraphStyle setMaximumLineHeight:kLineHeight];
-    [paragraphStyle setLineSpacing:kLineSpacing];
-    [self.textView setDefaultParagraphStyle:paragraphStyle];
+    
+    [self.textView setFont:textFont];
+    [self.textView setTextColor:[NSColor textColor]];
+    [self.textView setBackgroundColor:[NSColor textBackgroundColor]];
+    
+    [self.outputView setFont:textFont];
+    [self.outputView setTextColor:[NSColor textColor]];
+    [self.outputView setBackgroundColor:[NSColor controlBackgroundColor]];
+    
+    [self.bottomBarStackView setEdgeInsets:NSEdgeInsetsMake(0, 10, 0, 10)];
 }
 
 
@@ -109,8 +108,8 @@ static const CGFloat kLineSpacing = 8.0f;
                      withCompletionBlock:^(NSDictionary *symbolLookupTable) {        
         
         NSDictionary *textAttrs = @{
-            NSForegroundColorAttributeName : [NSColor ats_textColor],
-            NSFontAttributeName : self.textView.font,
+            NSForegroundColorAttributeName : self.outputView.textColor,
+            NSFontAttributeName : self.outputView.font,
         };
         NSMutableAttributedString *resultAttrString = [[NSMutableAttributedString alloc] initWithString:self.textView.string
                                                                                              attributes:textAttrs];
@@ -139,7 +138,7 @@ static const CGFloat kLineSpacing = 8.0f;
             }];
                 
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.textView.textStorage setAttributedString:resultAttrString];
+                [self.outputView.textStorage setAttributedString:resultAttrString];
                 [self.progressIndicator stopAnimation:nil];
             });
         });

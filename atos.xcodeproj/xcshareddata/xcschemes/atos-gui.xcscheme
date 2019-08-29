@@ -41,19 +41,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B1AC0C018DEE6B2006773C4"
-               BuildableName = "atosTests.xctest"
-               BlueprintName = "atosTests"
-               ReferencedContainer = "container:atos.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BE4EBE5230D553700610AD0"
-               BuildableName = "AtosGUITests.xctest"
-               BlueprintName = "AtosGUITests"
+               BlueprintIdentifier = "0B5620BB230D568700725546"
+               BuildableName = "SymbolicatorTests.xctest"
+               BlueprintName = "SymbolicatorTests"
                ReferencedContainer = "container:atos.xcodeproj">
             </BuildableReference>
          </TestableReference>

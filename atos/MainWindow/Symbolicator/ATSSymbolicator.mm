@@ -50,26 +50,33 @@ namespace
     {
         std::vector<BinaryImage> binaryImages;
 
-        const auto begin = std::sregex_iterator{ string.begin(), string.end(), BINARY_IMAGE_NAME_AND_LOAD_ADDRESS_REGEX };
-        const auto end = std::sregex_iterator{};
-        for (std::sregex_iterator iter = begin; iter != end; ++iter)
+        try
         {
-            std::smatch match = *iter;
-            if (match.size() < 4)
+            const auto begin = std::sregex_iterator{ string.begin(), string.end(), BINARY_IMAGE_NAME_AND_LOAD_ADDRESS_REGEX };
+            const auto end = std::sregex_iterator{};
+            for (std::sregex_iterator iter = begin; iter != end; ++iter)
             {
-                continue;
+                std::smatch match = *iter;
+                if (match.size() < 4)
+                {
+                    continue;
+                }
+                
+                const std::string loadAddress = string_by_trimming_whitespaces(match[1].str());
+                const std::string binaryImageName = string_by_trimming_whitespaces(match[3].str());
+                
+                NSLog(@"Found load address %s for binary image '%s'", loadAddress.c_str(), binaryImageName.c_str());
+                
+                BinaryImage image{ std::move(loadAddress), std::move(binaryImageName) };
+                binaryImages.emplace_back(std::move(image));
+                
+                // Note: Abort the match, assuming the first match is always the binary image we are looking for
+                break;
             }
-            
-            const std::string loadAddress = string_by_trimming_whitespaces(match[1].str());
-            const std::string binaryImageName = string_by_trimming_whitespaces(match[3].str());
-            
-            NSLog(@"Found load address %s for binary image '%s'", loadAddress.c_str(), binaryImageName.c_str());
-            
-            BinaryImage image{ std::move(loadAddress), std::move(binaryImageName) };
-            binaryImages.emplace_back(std::move(image));
-            
-            // Note: Abort the match, assuming the first match is always the binary image we are looking for
-            break;
+        }
+        catch (...)
+        {
+            NSLog(@"[ERROR] Failed to extract binary image name and load address!");
         }
         
         return binaryImages;
@@ -92,23 +99,30 @@ namespace
     {
         std::set<SymbolAddress> addresses;
         
-        const auto begin = std::sregex_iterator{ string.begin(), string.end(), BINARY_IMAGE_NAME_AND_SYMBOL_ADDRESS_REGEX };
-        const auto end = std::sregex_iterator{};
-        for (std::sregex_iterator iter = begin; iter != end; ++iter)
+        try
         {
-            std::smatch match = *iter;
-            if (match.size() < 3)
+            const auto begin = std::sregex_iterator{ string.begin(), string.end(), BINARY_IMAGE_NAME_AND_SYMBOL_ADDRESS_REGEX };
+            const auto end = std::sregex_iterator{};
+            for (std::sregex_iterator iter = begin; iter != end; ++iter)
             {
-                continue;
+                std::smatch match = *iter;
+                if (match.size() < 3)
+                {
+                    continue;
+                }
+                
+                const std::string addressString = string_by_trimming_whitespaces(match[2].str());
+                const std::string binaryImageName = string_by_trimming_whitespaces(match[1].str());
+                
+                NSLog(@"Found symbol address %s for binary image '%s'", addressString.c_str(), binaryImageName.c_str());
+                
+                SymbolAddress address{ std::move(addressString), std::move(binaryImageName) };
+                addresses.emplace(std::move(address));
             }
-            
-            const std::string addressString = string_by_trimming_whitespaces(match[2].str());
-            const std::string binaryImageName = string_by_trimming_whitespaces(match[1].str());
-            
-            NSLog(@"Found symbol address %s for binary image '%s'", addressString.c_str(), binaryImageName.c_str());
-            
-            SymbolAddress address{ std::move(addressString), std::move(binaryImageName) };
-            addresses.emplace(std::move(address));
+        }
+        catch (...)
+        {
+            NSLog(@"[ERROR] Failed to extract symbol addresses with crash report pattern!");
         }
 
         return addresses;
@@ -119,20 +133,27 @@ namespace
     {
         std::set<SymbolAddress> addresses;
         
-        const auto begin = std::sregex_iterator{ string.begin(), string.end(), HEX_STRING_REGEX };
-        const auto end = std::sregex_iterator{};
-        for (std::sregex_iterator iter = begin; iter != end; ++iter)
+        try
         {
-            std::smatch match = *iter;
-            if (match.size() < 1)
+            const auto begin = std::sregex_iterator{ string.begin(), string.end(), HEX_STRING_REGEX };
+            const auto end = std::sregex_iterator{};
+            for (std::sregex_iterator iter = begin; iter != end; ++iter)
             {
-                continue;
+                std::smatch match = *iter;
+                if (match.size() < 1)
+                {
+                    continue;
+                }
+                
+                NSLog(@"Found hexadecimal address %s", match[0].str().c_str());
+                
+                SymbolAddress address{ match[0].str(), std::string{} };
+                addresses.emplace(std::move(address));
             }
-            
-            NSLog(@"Found hexadecimal address %s", match[0].str().c_str());
-            
-            SymbolAddress address{ match[0].str(), std::string{} };
-            addresses.emplace(std::move(address));
+        }
+        catch (...)
+        {
+            NSLog(@"[ERROR] Failed to extract hexadecimal addresses!");
         }
 
         return addresses;

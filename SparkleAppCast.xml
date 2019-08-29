@@ -12,6 +12,7 @@
               <li>[Feature] A new option has been added to allow the user toggling whether to match load address automatically.</li>
               <li>[Known Issue] The editable text view's undo and redo are not working at the moment.</li>
             ]]>
+            </description>
         </item>
         <item>
             <title>0.4.1</title>

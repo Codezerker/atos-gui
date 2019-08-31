@@ -82,6 +82,7 @@ static const CGFloat kFontSize    = 13.0f;
     [self.textView setFont:textFont];
     [self.textView setTextColor:[NSColor textColor]];
     [self.textView setBackgroundColor:[NSColor textBackgroundColor]];
+    [self.textView setAllowsUndo:YES];
     
     [self.outputView setFont:textFont];
     [self.outputView setTextColor:[NSColor textColor]];

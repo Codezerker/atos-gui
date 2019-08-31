@@ -3,6 +3,17 @@
     <channel>
         <title>atos-gui</title>
         <item>
+            <title>0.5.1</title>
+            <pubDate>Sat, 31 Aug 2019 15:02:16 +1200</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.5.1/atos-gui.app.zip" sparkle:version="10" sparkle:shortVersionString="0.5.1" length="1843116" type="application/octet-stream" sparkle:edSignature="iSAbgA8MBWhd6+JRB3nVv1MO0opL53mu4VdqruGEnnnMVpPyhujxSmSA3tw9Tt+W4icm/zrSb9HzPVemFJJ7CQ=="/>
+            <description><![CDATA[ 
+              <li>Fix undo and redo for the input text view.</li>
+              <li>The symbolicator now correctly ignores the custom load address when "Automatically Match Load Address" is toggled on.</li>
+            ]]>
+            </description>
+        </item>
+        <item>
             <title>0.5</title>
             <pubDate>Thu, 29 Aug 2019 22:41:46 +1200</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>

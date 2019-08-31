@@ -150,19 +150,27 @@ static const CGFloat kFontSize    = 13.0f;
 
 
 - (IBAction)symbolicatorConfigurationChanged:(id)sender {
-    if (self.autoLoadAddressCheckBox.state == NSControlStateValueOn)
-    {
+    if (self.autoLoadAddressCheckBox.state == NSControlStateValueOn) {
         self.loadAddressTextField.enabled = NO;
-    }
-    else
-    {
+        [self _resetOverrideLoadAddress];
+    } else {
         self.loadAddressTextField.enabled = YES;
         [self.loadAddressTextField becomeFirstResponder];
+        [self _updateOverrideLoadAddress];
     }
 }
 
 
+#pragma mark - NSTextFieldDelegate
+
 - (void)controlTextDidChange:(NSNotification *)obj {
+    [self _updateOverrideLoadAddress];
+}
+
+
+#pragma mark - Helper methods
+
+- (void)_updateOverrideLoadAddress {
     NSString *loadAddress = self.loadAddressTextField.stringValue;
     if (loadAddress.length > 0) {
         self.overrideLoadAddress = loadAddress;
@@ -170,6 +178,12 @@ static const CGFloat kFontSize    = 13.0f;
         self.overrideLoadAddress = nil;
     }
     NSLog(@"Overriding load address to: %@", self.overrideLoadAddress);
+}
+
+
+- (void)_resetOverrideLoadAddress {
+    self.overrideLoadAddress = nil;
+    NSLog(@"Resetting load address override.");
 }
 
 @end

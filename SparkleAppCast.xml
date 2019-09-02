@@ -8,7 +8,7 @@
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.5.2/atos-gui.app.zip" sparkle:version="11" sparkle:shortVersionString="0.5.2" length="1844686" type="application/octet-stream" sparkle:edSignature="Uoe0VdKjBfUjaFZjKCry5Sgh3MatYs7RqOLcjfb7IysUs27gmkJqXAtov95pVDVs4ERkU6bviN3JMn9kaE1WDw=="/>
             <description><![CDATA[ 
-              <li>It is now possible to configure the symbolicator to always match all hexadecimal strings, this can be useful when the default matching rules (currently based on macOS crash reports) doesn't catch all the symbol addresses in the input.</li>
+              <li>It is now possible to configure the symbolicator to always match all hexadecimal strings, this can be useful when the default matching rules (currently based on macOS crash reports) don't catch all the symbol addresses in the input.</li>
             ]]>
             </description>
         </item>

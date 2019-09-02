@@ -3,6 +3,16 @@
     <channel>
         <title>atos-gui</title>
         <item>
+            <title>0.5.2</title>
+            <pubDate>Mon, 02 Sep 2019 21:09:43 +1200</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Codezerker/atos-gui/releases/download/0.5.2/atos-gui.app.zip" sparkle:version="11" sparkle:shortVersionString="0.5.2" length="1844686" type="application/octet-stream" sparkle:edSignature="Uoe0VdKjBfUjaFZjKCry5Sgh3MatYs7RqOLcjfb7IysUs27gmkJqXAtov95pVDVs4ERkU6bviN3JMn9kaE1WDw=="/>
+            <description><![CDATA[ 
+              <li>It is now possible to configure the symbolicator to always match all hexadecimal strings, this can be useful when the default matching rules (currently based on macOS crash reports) doesn't catch all the symbol addresses in the input.</li>
+            ]]>
+            </description>
+        </item>
+        <item>
             <title>0.5.1</title>
             <pubDate>Sat, 31 Aug 2019 15:02:16 +1200</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>

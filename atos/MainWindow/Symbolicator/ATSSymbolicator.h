@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ATSSymbolicator : NSObject
 
 @property (nonatomic, strong, readonly) id<ATSSymbolConverter> symbolConverter;
+@property (nonatomic, assign) BOOL alwaysMatchAllHexadecimalStringsAsSymbolAddress;
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithSymbolConverter:(id<ATSSymbolConverter>)symbolConverter NS_DESIGNATED_INITIALIZER;

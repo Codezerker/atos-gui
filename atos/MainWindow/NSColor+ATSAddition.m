@@ -11,7 +11,7 @@
 @implementation NSColor (ATSAddition)
 
 + (NSColor *)ats_highlightedTextColor {
-    return [NSColor colorWithCalibratedRed:204.0/255 green:120.0/255 blue:50.0/255 alpha:1.0];
+    return [NSColor colorWithCalibratedRed:204.0/255 green:90.0/255 blue:0 alpha:1.0];
 }
 
 + (NSColor *)ats_separatorColor {

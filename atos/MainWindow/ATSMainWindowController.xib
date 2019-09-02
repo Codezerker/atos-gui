@@ -8,9 +8,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATSMainWindowController">
             <connections>
-                <outlet property="autoLoadAddressCheckBox" destination="icQ-bL-JHT" id="U65-P2-sbC"/>
+                <outlet property="autoLoadAddressCheckBox" destination="30O-4q-N88" id="xN1-eo-3Z1"/>
                 <outlet property="bottomBarStackView" destination="84h-NM-AgO" id="Jn2-T7-pDb"/>
-                <outlet property="loadAddressTextField" destination="cnk-bh-Dkf" id="I7P-gH-BB3"/>
+                <outlet property="loadAddressTextField" destination="PAl-5g-fNs" id="CRh-nU-Dhz"/>
+                <outlet property="matchAllHexStringCheckBox" destination="xGd-lO-FLY" id="7Oz-iA-wFW"/>
                 <outlet property="outputView" destination="gev-Tb-3nV" id="yzA-6N-KQ1"/>
                 <outlet property="progressIndicator" destination="AOT-ho-yJ2" id="yWF-0E-mmS"/>
                 <outlet property="separatorView" destination="Yzn-u1-wZ0" id="AUn-NA-PVD"/>
@@ -23,34 +24,33 @@
         <window title="atos" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" animationBehavior="default" tabbingMode="disallowed" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-            <rect key="contentRect" x="196" y="240" width="1024" height="640"/>
+            <rect key="contentRect" x="196" y="240" width="1034" height="682"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="640" height="480"/>
             <value key="minFullScreenContentSize" type="size" width="640" height="480"/>
             <view key="contentView" wantsLayer="YES" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="1024" height="640"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="1468" height="682"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKu-9r-tse">
-                        <rect key="frame" x="0.0" y="33" width="1024" height="607"/>
+                        <rect key="frame" x="0.0" y="67" width="1468" height="615"/>
                         <subviews>
-                            <customView id="Hva-UD-FDM">
-                                <rect key="frame" x="0.0" y="0.0" width="515" height="607"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hva-UD-FDM">
+                                <rect key="frame" x="0.0" y="0.0" width="740" height="615"/>
                                 <subviews>
                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG5-gq-Jmc">
-                                        <rect key="frame" x="0.0" y="0.0" width="515" height="607"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="740" height="615"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="hyc-4q-Mje">
-                                            <rect key="frame" x="0.0" y="0.0" width="515" height="607"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="740" height="615"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" incrementalSearchingEnabled="YES" smartInsertDelete="YES" id="VoN-vo-t13">
-                                                    <rect key="frame" x="0.0" y="0.0" width="515" height="607"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="740" height="615"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="515" height="607"/>
-                                                    <size key="maxSize" width="515" height="10000000"/>
+                                                    <size key="minSize" width="740" height="615"/>
+                                                    <size key="maxSize" width="844" height="10000000"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
                                             </subviews>
@@ -60,7 +60,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="xlC-Ek-9Pb">
-                                            <rect key="frame" x="499" y="0.0" width="16" height="607"/>
+                                            <rect key="frame" x="724" y="0.0" width="16" height="615"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -72,23 +72,22 @@
                                     <constraint firstItem="XG5-gq-Jmc" firstAttribute="top" secondItem="Hva-UD-FDM" secondAttribute="top" id="imG-Kk-t82"/>
                                 </constraints>
                             </customView>
-                            <customView id="Hz0-ta-vsw">
-                                <rect key="frame" x="516" y="0.0" width="508" height="607"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz0-ta-vsw">
+                                <rect key="frame" x="741" y="0.0" width="727" height="615"/>
                                 <subviews>
                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QS-a2-L4i">
-                                        <rect key="frame" x="0.0" y="0.0" width="508" height="607"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="727" height="615"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="2kd-rd-aUg">
-                                            <rect key="frame" x="0.0" y="0.0" width="508" height="607"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="727" height="615"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" incrementalSearchingEnabled="YES" smartInsertDelete="YES" id="gev-Tb-3nV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="508" height="607"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="727" height="615"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="508" height="607"/>
-                                                    <size key="maxSize" width="508" height="10000000"/>
+                                                    <size key="minSize" width="727" height="615"/>
+                                                    <size key="maxSize" width="831" height="10000000"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
                                             </subviews>
@@ -98,7 +97,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="6Vl-FK-Inz">
-                                            <rect key="frame" x="492" y="0.0" width="16" height="607"/>
+                                            <rect key="frame" x="711" y="0.0" width="16" height="615"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -117,41 +116,76 @@
                         </holdingPriorities>
                     </splitView>
                     <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84h-NM-AgO">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1468" height="66"/>
                         <subviews>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="1000" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="AOT-ho-yJ2">
-                                <rect key="frame" x="0.0" y="8" width="16" height="16"/>
+                                <rect key="frame" x="0.0" y="25" width="16" height="16"/>
                             </progressIndicator>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="SI7-m4-CGV" userLabel="Flexible Space View">
-                                <rect key="frame" x="24" y="0.0" width="556" height="32"/>
+                                <rect key="frame" x="24" y="8" width="1000" height="50"/>
                             </customView>
-                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="icQ-bL-JHT">
-                                <rect key="frame" x="586" y="7" width="232" height="18"/>
-                                <buttonCell key="cell" type="check" title="Automatically Match Load Address" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tiT-bZ-SS6">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="symbolicatorConfigurationChanged:" target="-2" id="1Q4-Nq-KXS"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnk-bh-Dkf">
-                                <rect key="frame" x="824" y="5" width="200" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="i3B-24-q4l"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Load Address" bezelStyle="round" id="oVR-hl-z50">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3L0-Te-3Q2">
+                                <rect key="frame" x="1032" y="11" width="436" height="44"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="1Vs-8b-ZNo">
+                                        <rect key="frame" x="0.0" y="22" width="436" height="22"/>
+                                        <subviews>
+                                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="30O-4q-N88">
+                                                <rect key="frame" x="-2" y="2" width="232" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Automatically Match Load Address" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="r3v-ik-xDP">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="symbolicatorConfigurationChanged:" target="-2" id="kWq-t5-40E"/>
+                                                </connections>
+                                            </button>
+                                            <textField hidden="YES" horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PAl-5g-fNs">
+                                                <rect key="frame" x="236" y="0.0" width="200" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="0JF-SU-J1c"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Specify Load Address" bezelStyle="round" id="kdi-Nn-rjP">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xGd-lO-FLY">
+                                        <rect key="frame" x="-2" y="-2" width="327" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Match All Hexadecimal Strings As Symbol Address" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iKr-kT-ofL">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="matchAllHexStringChanged:" target="-2" id="Bde-5I-nb0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="4rS-Cb-j6G"/>
+                            <constraint firstAttribute="height" constant="66" id="4rS-Cb-j6G"/>
                         </constraints>
                         <visibilityPriorities>
-                            <integer value="1000"/>
                             <integer value="1000"/>
                             <integer value="1000"/>
                             <integer value="1000"/>
@@ -160,11 +194,10 @@
                             <real value="3.4028234663852886e+38"/>
                             <real value="3.4028234663852886e+38"/>
                             <real value="3.4028234663852886e+38"/>
-                            <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Yzn-u1-wZ0" customClass="ATSSeparatorView">
-                        <rect key="frame" x="0.0" y="32" width="1024" height="1"/>
+                        <rect key="frame" x="0.0" y="66" width="1468" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="i83-ge-mdT"/>
                         </constraints>
@@ -186,7 +219,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
-            <point key="canvasLocation" x="139" y="147"/>
+            <point key="canvasLocation" x="-338" y="168"/>
         </window>
     </objects>
 </document>

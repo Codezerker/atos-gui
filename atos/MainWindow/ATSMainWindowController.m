@@ -22,6 +22,7 @@ static const CGFloat kFontSize    = 13.0f;
 @property (nonatomic, weak) IBOutlet NSStackView *bottomBarStackView;
 @property (nonatomic, weak) IBOutlet NSButton *autoLoadAddressCheckBox;
 @property (nonatomic, weak) IBOutlet NSTextField *loadAddressTextField;
+@property (nonatomic, weak) IBOutlet NSButton *matchAllHexStringCheckBox;
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *progressIndicator;
 
 @property (nonatomic, strong) NSBundle *appBundle;
@@ -149,12 +150,18 @@ static const CGFloat kFontSize    = 13.0f;
 }
 
 
+- (IBAction)matchAllHexStringChanged:(id)sender {
+    self.symbolicator.alwaysMatchAllHexadecimalStringsAsSymbolAddress
+        = (self.matchAllHexStringCheckBox.state == NSControlStateValueOn);
+}
+
+
 - (IBAction)symbolicatorConfigurationChanged:(id)sender {
     if (self.autoLoadAddressCheckBox.state == NSControlStateValueOn) {
-        self.loadAddressTextField.enabled = NO;
+        [self.loadAddressTextField setHidden:YES];
         [self _resetOverrideLoadAddress];
     } else {
-        self.loadAddressTextField.enabled = YES;
+        [self.loadAddressTextField setHidden:NO];
         [self.loadAddressTextField becomeFirstResponder];
         [self _updateOverrideLoadAddress];
     }
